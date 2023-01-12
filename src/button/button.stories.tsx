@@ -1,3 +1,4 @@
+import 'tw-elements'
 import '../tailwind.css'
 
 import { Button } from './index'
@@ -10,14 +11,17 @@ export const Warning = () => <Button color="warning">Warning</Button>
 export const Info = () => <Button color="info">Info</Button>
 export const Light = () => <Button color="light">Light</Button>
 export const Dark = () => <Button color="dark">Dark</Button>
+export const Outline = () => <Button isOutline>Outline</Button>
 export const Small = () => <Button size="small">Small</Button>
 export const Normal = () => <Button size="normal">Normal</Button>
-export const Big = () => <Button size="big">Big</Button>
+export const Large = () => <Button size="large">Large</Button>
 export const Rounded = () => <Button isRounded>Rounded</Button>
 export const Disabled = () => <Button isDisabled>Disabled</Button>
+export const WithRipple = () => <Button withRipple>With Ripple</Button>
+export const FullWith = () => <Button fullwith>Full With</Button>
 
 export const AllButtons = () => (
-  <div className="flex justify-center space-x-2">
+  <div className="grid grid-cols-2 place-content-center gap-4">
     <div>
       <Primary />
       <Secondary />
@@ -29,15 +33,24 @@ export const AllButtons = () => (
       <Dark />
     </div>
     <div>
+      <Outline />
+    </div>
+    <div>
       <Small />
       <Normal />
-      <Big />
+      <Large />
     </div>
     <div>
       <Rounded />
     </div>
     <div>
       <Disabled />
+    </div>
+    <div>
+      <WithRipple />
+    </div>
+    <div>
+      <FullWith />
     </div>
   </div>
 )

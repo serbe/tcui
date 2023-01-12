@@ -8,9 +8,9 @@ export type PrimarylColor = 'primary'
 
 export type LinkColor = 'link'
 
-export type Sizes = 'large' | 'medium' | 'normal' | 'small'
+export type Sizes = 'large' | 'normal' | 'small' | undefined
 
-export type InputTypes = 'email' | 'password' | 'tel' | 'text'
+export type InputTypes = 'email' | 'password' | 'tel' | 'text' | 'url' | 'number'
 
 export type Positions = 'left' | 'right'
 
