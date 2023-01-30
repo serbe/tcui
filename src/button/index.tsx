@@ -11,22 +11,21 @@ export type ButtonColors =
   | 'info'
   | 'light'
   | 'dark'
-  | undefined
 
 type ButtonProperties = {
   children: ReactNode
   className?: string
-  color: ButtonColors
-  fullwith?: boolean
+  color?: ButtonColors
+  hasRipple?: boolean
   isDisabled?: boolean
+  isFullwith?: boolean
   isOutline?: boolean
   isRounded?: boolean
-  withRipple?: boolean
   onClick?: MouseEventHandler<HTMLAnchorElement | HTMLButtonElement | HTMLInputElement>
   size?: Sizes
 }
 
-const colorClass = (color: ButtonColors): string => {
+const colorClass = (color?: ButtonColors): string => {
   switch (color) {
     case 'primary':
       return 'bg-blue-600 text-white shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg active:bg-blue-800 active:shadow-lg'
@@ -49,7 +48,7 @@ const colorClass = (color: ButtonColors): string => {
   }
 }
 
-const colorClassOutline = (color: ButtonColors): string => {
+const colorClassOutline = (color?: ButtonColors): string => {
   switch (color) {
     case 'primary':
       return 'border-2 border-blue-600 text-blue-600 hover:bg-black hover:bg-opacity-5'
@@ -102,28 +101,28 @@ export function Button({
   children,
   className,
   color,
-  fullwith,
-  isRounded,
+  hasRipple,
   isDisabled,
+  isFullwith,
   isOutline,
+  isRounded,
   onClick,
   size,
-  withRipple,
 }: ButtonProperties): JSX.Element {
   const buttonClass = clsx(
     `inline-block font-medium uppercase leading-tight transition duration-150 ease-in-out focus:outline-none focus:ring-0`,
     className,
-    fullwith ? (isRounded ? 'w-full' : 'mb-2 w-full') : '',
+    isFullwith ? (isRounded ? 'w-full' : 'mb-2 w-full') : '',
     isRounded ? 'rounded-full' : 'rounded',
     isOutline ? sizeClassOutline(size) : sizeClass(size),
     isOutline ? colorClassOutline(color) : colorClass(color),
-    { ['pointer-events-none opacity-60']: isDisabled },
+    { 'pointer-events-none opacity-60': isDisabled },
   )
 
   return (
     <button
-      data-mdb-ripple={withRipple}
-      data-mdb-ripple-color={withRipple ? 'light' : undefined}
+      data-mdb-ripple={hasRipple}
+      data-mdb-ripple-color={hasRipple ? 'light' : undefined}
       className={buttonClass}
       disabled={isDisabled}
       type="button"
@@ -136,9 +135,8 @@ export function Button({
 
 Button.defaultProps = {
   className: undefined,
-  color: undefined,
-  fullwith: false,
-  isDisable: false,
+  isDisabled: false,
+  isFullwith: false,
   isOutline: false,
   isRounded: false,
   onClick: undefined,

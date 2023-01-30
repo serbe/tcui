@@ -1,5 +1,5 @@
 import clsx from 'clsx'
-import { ChangeEventHandler, FocusEventHandler, Fragment, MouseEventHandler } from 'react'
+import type { ChangeEventHandler, FocusEventHandler, MouseEventHandler } from 'react'
 import type { InputTypes, Sizes } from '../variables'
 
 type InputProperties = {
@@ -50,24 +50,24 @@ export function Input({
   type,
   value,
 }: InputProperties): JSX.Element {
-  const Helper = () =>
-    textHelper ? <div className="mt-1 text-sm text-gray-500">{textHelper}</div> : <Fragment />
+  function Helper() {
+    return textHelper ? <div className="mt-1 text-sm text-gray-500">{textHelper}</div> : null
+  }
 
-  const Label = () =>
-    label ? (
+  function Label() {
+    return label ? (
       <label htmlFor={name} className="mb-2 inline-block text-gray-700">
         {label}
       </label>
-    ) : (
-      <Fragment />
-    )
+    ) : null
+  }
 
   // eslint-disable-next-line tailwindcss/no-custom-classname
   const inputClass = clsx(
     `form-control m-0 block w-full rounded border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-1.5 text-base font-normal text-gray-700 transition ease-in-out focus:border-blue-600 focus:bg-white focus:text-gray-700 focus:outline-none`,
     className,
     sizeClass(size),
-    { ['pointer-events-none opacity-60']: isDisabled },
+    { 'pointer-events-none opacity-60': isDisabled },
   )
 
   const defaultValueCheck = onChange ? undefined : ''
@@ -76,19 +76,19 @@ export function Input({
     <div className="mb-3 xl:w-96">
       <Label />
       <input
+        key={name}
         type={type}
         className={inputClass}
         autoComplete={autocomplete}
         defaultValue={defaultValue ? defaultValue : defaultValueCheck}
         disabled={isDisabled}
         id={name}
-        placeholder={placeholder || label}
-        key={name}
+        placeholder={placeholder ?? label}
+        readOnly={isReadOnly}
+        value={value}
         onBlur={onBlur}
         onChange={onChange}
         onClick={onClick}
-        readOnly={isReadOnly}
-        value={value}
       />
       <Helper />
     </div>
@@ -97,7 +97,6 @@ export function Input({
 
 Input.defaultProps = {
   autocomplete: undefined,
-  color: undefined,
   defaultValue: undefined,
   isDisabled: false,
   isReadOnly: false,

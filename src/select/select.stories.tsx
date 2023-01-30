@@ -9,4 +9,6 @@ const data = [
   { id: 3, name: 'name-3' },
 ]
 
-export const Default = () => <Select data={data} name="default" />
+export function Default() {
+  return <Select data={data} name="default" />
+}

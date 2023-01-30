@@ -1,5 +1,5 @@
 import clsx from 'clsx'
-// import { ChangeEventHandler, FocusEventHandler, Fragment, MouseEventHandler } from 'react'
+// Import { ChangeEventHandler, FocusEventHandler, Fragment, MouseEventHandler } from 'react'
 import type { Sizes } from '../variables'
 
 type SelectItem = {
@@ -13,10 +13,10 @@ type SelectProperties = {
   id?: number
   name: string
   size?: Sizes
-  // setter: Dispatch<SetStateAction<number | undefined>>
+  // Setter: Dispatch<SetStateAction<number | undefined>>
 }
 
-// export function Select({
+// Export function Select({
 //   name,
 //   id,
 //   label,
@@ -153,7 +153,7 @@ const sizeClass = (size: Sizes): string => {
   }
 }
 
-export const Select = ({ className, data, id, name, size }: SelectProperties) => {
+export function Select({ className, data, id, name, size }: SelectProperties) {
   // eslint-disable-next-line tailwindcss/no-custom-classname
   const selectClass = clsx(
     'form-select m-0 block w-full appearance-none rounded border border-solid border-gray-300 bg-white bg-clip-padding bg-no-repeat font-normal text-gray-700 transition ease-in-out focus:border-blue-600 focus:bg-white focus:text-gray-700 focus:outline-none',
@@ -167,7 +167,7 @@ export const Select = ({ className, data, id, name, size }: SelectProperties) =>
         <select className={selectClass} aria-label={name}>
           {data.map((SelectItem) => (
             <option
-              key={name + SelectItem.id}
+              key={`${name} + ${SelectItem.id}`}
               value={SelectItem.id}
               selected={SelectItem.id === (id ? id : 0)}
             >
