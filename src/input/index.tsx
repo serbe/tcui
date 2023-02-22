@@ -1,5 +1,5 @@
-import clsx from 'clsx'
 import type { ChangeEventHandler, FocusEventHandler, MouseEventHandler } from 'react'
+import { classNames } from 'utils'
 import type { InputTypes, Sizes } from '../variables'
 
 type InputProperties = {
@@ -50,11 +50,11 @@ export function Input({
   type,
   value,
 }: InputProperties): JSX.Element {
-  function Helper() {
+  function Helper(): JSX.Element | null {
     return textHelper ? <div className="mt-1 text-sm text-gray-500">{textHelper}</div> : null
   }
 
-  function Label() {
+  function Label(): JSX.Element | null {
     return label ? (
       <label htmlFor={name} className="mb-2 inline-block text-gray-700">
         {label}
@@ -63,7 +63,7 @@ export function Input({
   }
 
   // eslint-disable-next-line tailwindcss/no-custom-classname
-  const inputClass = clsx(
+  const inputClass = classNames(
     `form-control m-0 block w-full rounded border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-1.5 text-base font-normal text-gray-700 transition ease-in-out focus:border-blue-600 focus:bg-white focus:text-gray-700 focus:outline-none`,
     className,
     sizeClass(size),

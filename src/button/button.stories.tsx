@@ -1,73 +1,156 @@
-import 'tw-elements'
-import '../tailwind.css'
-
 import { Button } from './index'
 
-export function Primary() {
+export const Primary = (): JSX.Element => {
   return <Button color="primary">Primary</Button>
 }
 
-export function Secondary() {
+export const Secondary = (): JSX.Element => {
   return <Button color="secondary">Secondary</Button>
 }
 
-export function Success() {
+export const Success = (): JSX.Element => {
   return <Button color="success">Success</Button>
 }
 
-export function Danger() {
+export const Danger = (): JSX.Element => {
   return <Button color="danger">Danger</Button>
 }
 
-export function Warning() {
+export const Warning = (): JSX.Element => {
   return <Button color="warning">Warning</Button>
 }
 
-export function Info() {
+export const Info = (): JSX.Element => {
   return <Button color="info">Info</Button>
 }
 
-export function Light() {
+export const Light = (): JSX.Element => {
   return <Button color="light">Light</Button>
 }
 
-export function Dark() {
+export const Dark = (): JSX.Element => {
   return <Button color="dark">Dark</Button>
 }
 
-export function Outline() {
-  return <Button isOutline>Outline</Button>
+export const PrimaryO = (): JSX.Element => {
+  return (
+    <Button color="primary" isOutline>
+      PrimaryO
+    </Button>
+  )
 }
 
-export function Small() {
+export const SecondaryO = (): JSX.Element => {
+  return (
+    <Button color="secondary" isOutline>
+      SecondaryO
+    </Button>
+  )
+}
+
+export const SuccessO = (): JSX.Element => {
+  return (
+    <Button color="success" isOutline>
+      SuccessO
+    </Button>
+  )
+}
+
+export const DangerO = (): JSX.Element => {
+  return (
+    <Button color="danger" isOutline>
+      DangerO
+    </Button>
+  )
+}
+
+import '../tailwind.css'
+
+export const WarningO = (): JSX.Element => {
+  return (
+    <Button color="warning" isOutline>
+      WarningO
+    </Button>
+  )
+}
+
+export const InfoO = (): JSX.Element => {
+  return (
+    <Button color="info" isOutline>
+      InfoO
+    </Button>
+  )
+}
+
+export const LightO = (): JSX.Element => {
+  return (
+    <Button color="light" isOutline>
+      LightO
+    </Button>
+  )
+}
+
+export const DarkO = (): JSX.Element => {
+  return (
+    <Button color="dark" isOutline>
+      DarkO
+    </Button>
+  )
+}
+
+export const Small = (): JSX.Element => {
   return <Button size="small">Small</Button>
 }
 
-export function Normal() {
+export const Normal = (): JSX.Element => {
   return <Button size="normal">Normal</Button>
 }
 
-export function Large() {
+export const Large = (): JSX.Element => {
   return <Button size="large">Large</Button>
 }
 
-export function Rounded() {
-  return <Button isRounded>Rounded</Button>
+export const SmallO = (): JSX.Element => {
+  return (
+    <Button size="small" isOutline>
+      Small
+    </Button>
+  )
 }
 
-export function Disabled() {
+export const NormalO = (): JSX.Element => {
+  return (
+    <Button size="normal" isOutline>
+      Normal
+    </Button>
+  )
+}
+
+export const LargeO = (): JSX.Element => {
+  return (
+    <Button size="large" isOutline>
+      Large
+    </Button>
+  )
+}
+
+export const Disabled = (): JSX.Element => {
   return <Button isDisabled>Disabled</Button>
 }
 
-export function HasRipple() {
-  return <Button hasRipple>With Ripple</Button>
+export const DisabledO = (): JSX.Element => {
+  return (
+    <Button isDisabled isOutline>
+      Disabled
+    </Button>
+  )
 }
 
-export function IsFullWith() {
+export const IsFullWith = (): JSX.Element => {
   return <Button isFullwith>Full With</Button>
 }
 
-export function AllButtons() {
+export const AllButtons = (): JSX.Element => {
   return (
     <div className="grid grid-cols-2 place-content-center gap-4">
       <div>
@@ -81,7 +164,14 @@ export function AllButtons() {
         <Dark />
       </div>
       <div>
-        <Outline />
+        <PrimaryO />
+        <SecondaryO />
+        <SuccessO />
+        <DangerO />
+        <WarningO />
+        <InfoO />
+        <LightO />
+        <DarkO />
       </div>
       <div>
         <Small />
@@ -89,13 +179,15 @@ export function AllButtons() {
         <Large />
       </div>
       <div>
-        <Rounded />
+        <SmallO />
+        <NormalO />
+        <LargeO />
       </div>
       <div>
         <Disabled />
       </div>
       <div>
-        <HasRipple />
+        <DisabledO />
       </div>
       <div>
         <IsFullWith />

@@ -1,5 +1,3 @@
-import '../tailwind.css'
-
 import { Select } from './index'
 
 const data = [
@@ -9,6 +7,6 @@ const data = [
   { id: 3, name: 'name-3' },
 ]
 
-export function Default() {
+export function Default(): JSX.Element {
   return <Select data={data} name="default" />
 }

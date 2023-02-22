@@ -1,5 +1,5 @@
-import clsx from 'clsx'
 import type { MouseEventHandler, ReactNode } from 'react'
+import { classNames } from 'utils'
 import type { Sizes } from '../variables'
 
 export type ButtonColors =
@@ -25,75 +25,39 @@ type ButtonProperties = {
   size?: Sizes
 }
 
-const colorClass = (color?: ButtonColors): string => {
+const colorClass = (color?: ButtonColors): [string, number] => {
   switch (color) {
     case 'primary':
-      return 'bg-blue-600 text-white shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg active:bg-blue-800 active:shadow-lg'
+      return ['blue', 600]
     case 'secondary':
-      return 'bg-purple-600 text-white shadow-md hover:bg-purple-700 hover:shadow-lg focus:bg-purple-700 focus:shadow-lg active:bg-purple-800 active:shadow-lg'
+      return ['purple', 600]
     case 'success':
-      return 'bg-green-500 text-white shadow-md hover:bg-green-600 hover:shadow-lg focus:bg-green-600 focus:shadow-lg active:bg-green-700 active:shadow-lg'
+      return ['green', 500]
     case 'danger':
-      return 'bg-red-600 text-white shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg active:bg-red-800 active:shadow-lg'
+      return ['red', 600]
     case 'warning':
-      return 'bg-yellow-500 text-white shadow-md hover:bg-yellow-600 hover:shadow-lg focus:bg-yellow-600 focus:shadow-lg active:bg-yellow-700 active:shadow-lg'
+      return ['yellow', 500]
     case 'info':
-      return 'bg-blue-400 text-white shadow-md hover:bg-blue-500 hover:shadow-lg focus:bg-blue-500 focus:shadow-lg active:bg-blue-600 active:shadow-lg'
+      return ['blue', 400]
     case 'light':
-      return 'bg-gray-200 text-gray-700 shadow-md hover:bg-gray-300 hover:shadow-lg focus:bg-gray-300 focus:shadow-lg active:bg-gray-400 active:shadow-lg'
+      return ['gray', 200]
     case 'dark':
-      return 'bg-gray-800 text-white shadow-md hover:bg-gray-900 hover:shadow-lg focus:bg-gray-900 focus:shadow-lg active:bg-gray-900 active:shadow-lg'
+      return ['gray', 800]
     default:
-      return 'bg-blue-600 text-white shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg active:bg-blue-800 active:shadow-lg'
+      return ['blue', 600]
   }
 }
 
-const colorClassOutline = (color?: ButtonColors): string => {
-  switch (color) {
-    case 'primary':
-      return 'border-2 border-blue-600 text-blue-600 hover:bg-black hover:bg-opacity-5'
-    case 'secondary':
-      return 'border-2 border-purple-600 text-purple-600 hover:bg-black hover:bg-opacity-5'
-    case 'success':
-      return 'border-2 border-green-500 text-green-500 hover:bg-black hover:bg-opacity-5'
-    case 'danger':
-      return 'border-2 border-red-600 text-red-600 hover:bg-black hover:bg-opacity-5'
-    case 'warning':
-      return 'border-2 border-yellow-500 text-yellow-500 hover:bg-black hover:bg-opacity-5'
-    case 'info':
-      return 'border-2 border-blue-400 text-blue-400 hover:bg-black hover:bg-opacity-5'
-    case 'light':
-      return 'border-2 border-gray-200 text-gray-200 hover:bg-black hover:bg-opacity-5'
-    case 'dark':
-      return 'border-2 border-gray-800 text-gray-800 hover:bg-black hover:bg-opacity-5'
-    default:
-      return 'border-2 border-blue-600 text-blue-600 hover:bg-black hover:bg-opacity-5'
-  }
-}
-
-const sizeClass = (size: Sizes): string => {
+const sizeClass = (size: Sizes): [string, string, string] => {
   switch (size) {
     case 'small':
-      return 'px-4 py-1.5 text-xs'
+      return ['w-20', 'py-1', 'text-xs']
     case 'normal':
-      return 'px-6 py-2.5 text-xs'
+      return ['w-28', 'py-1.5', 'text-sm']
     case 'large':
-      return 'px-7 py-3 text-sm'
+      return ['w-28', 'py-2', 'text-base']
     default:
-      return 'px-6 py-2.5 text-xs'
-  }
-}
-
-const sizeClassOutline = (size: Sizes): string => {
-  switch (size) {
-    case 'small':
-      return 'px-4 py-1 text-xs'
-    case 'normal':
-      return 'px-6 py-2 text-xs'
-    case 'large':
-      return 'px-7 py-2.5 text-sm'
-    default:
-      return 'px-6 py-2 text-xs'
+      return ['w-28', 'py-1.5', 'text-sm']
   }
 }
 
@@ -101,7 +65,6 @@ export function Button({
   children,
   className,
   color,
-  hasRipple,
   isDisabled,
   isFullwith,
   isOutline,
@@ -109,27 +72,38 @@ export function Button({
   onClick,
   size,
 }: ButtonProperties): JSX.Element {
-  const buttonClass = clsx(
-    `inline-block font-medium uppercase leading-tight transition duration-150 ease-in-out focus:outline-none focus:ring-0`,
+  const [colorName, colorShade] = colorClass(color)
+  const [width, height, textSize] = sizeClass(size)
+  const round = isRounded ? 'rounded-full' : 'rounded'
+  const buttonWidth = isFullwith ? 'w-full' : width
+  const click = isDisabled ? undefined : onClick
+  const buttonClassName = (): string => {
+    if (isOutline) {
+      return classNames(
+        `inline-block ${buttonWidth} ${round} border border-${colorName}-${colorShade}`,
+        `${height} text-center ${textSize} font-medium text-${colorName}-${colorShade}`,
+        `hover:bg-${colorName}-${colorShade} hover:text-white focus:outline-none`,
+        `focus:ring active:bg-${colorName}-${colorShade}`,
+      )
+    } else {
+      return classNames(
+        `inline-block ${buttonWidth} ${round} border border-${colorName}-${colorShade}`,
+        `bg-${colorName}-${colorShade} ${height} text-center ${textSize}`,
+        `font-medium text-white hover:bg-transparent hover:text-${colorName}-${colorShade}`,
+        `focus:outline-none focus:ring active:text-${colorName}-${colorShade + 100}`,
+      )
+    }
+  }
+  const buttonClass = classNames(
     className,
-    isFullwith ? (isRounded ? 'w-full' : 'mb-2 w-full') : '',
-    isRounded ? 'rounded-full' : 'rounded',
-    isOutline ? sizeClassOutline(size) : sizeClass(size),
-    isOutline ? colorClassOutline(color) : colorClass(color),
-    { 'pointer-events-none opacity-60': isDisabled },
+    buttonClassName(),
+    isDisabled ? 'pointer-events-none opacity-50' : '',
   )
 
   return (
-    <button
-      data-mdb-ripple={hasRipple}
-      data-mdb-ripple-color={hasRipple ? 'light' : undefined}
-      className={buttonClass}
-      disabled={isDisabled}
-      type="button"
-      onClick={onClick}
-    >
+    <a className={buttonClass} onClick={click}>
       {children}
-    </button>
+    </a>
   )
 }
 
@@ -144,3 +118,10 @@ Button.defaultProps = {
 }
 
 export default Button
+
+// ;('inline-block rounded border text-center font-medium focus:outline-none focus:ring')
+// ;('w-28 py-1.5 text-sm')
+// ;('border-indigo-600 bg-indigo-600 text-white hover:bg-transparent hover:text-indigo-600 active:text-indigo-500')
+// ;('inline-block w-28 rounded border py-1.5 text-center text-sm font-medium focus:outline-none focus:ring')
+// ;('w-28 py-1.5')
+// ;('border-indigo-600 text-indigo-600 hover:bg-indigo-600 hover:text-white active:bg-indigo-500')

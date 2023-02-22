@@ -1,33 +1,30 @@
-import 'tw-elements'
-import '../tailwind.css'
-
 import { Input } from './index'
 
-export function Default() {
+export function Default(): JSX.Element {
   return <Input name="default" placeholder="default" />
 }
 
-export function Small() {
+export function Small(): JSX.Element {
   return <Input name="small" size="small" placeholder="small" />
 }
 
-export function Normal() {
+export function Normal(): JSX.Element {
   return <Input name="normal" size="normal" placeholder="normal" />
 }
 
-export function Large() {
+export function Large(): JSX.Element {
   return <Input name="large" size="large" placeholder="large" />
 }
 
-export function Label() {
+export function Label(): JSX.Element {
   return <Input name="label" label="label" placeholder="label" />
 }
 
-export function TextHelper() {
+export function TextHelper(): JSX.Element {
   return <Input name="textHelper" textHelper="text helper" placeholder="text helper" />
 }
 
-export function LabelAndHelper() {
+export function LabelAndHelper(): JSX.Element {
   return (
     <Input
       name="labelAndHelper"
@@ -38,39 +35,39 @@ export function LabelAndHelper() {
   )
 }
 
-export function IsDisabled() {
+export function IsDisabled(): JSX.Element {
   return <Input isDisabled name="isDisabled" placeholder="is disabled" />
 }
 
-export function IsReadOnly() {
+export function IsReadOnly(): JSX.Element {
   return <Input isReadOnly name="isReadOnly" placeholder="is read only" />
 }
 
-export function Email() {
+export function Email(): JSX.Element {
   return <Input name="email" type="email" placeholder="example@email.com" />
 }
 
-export function Password() {
+export function Password(): JSX.Element {
   return <Input name="password" type="password" placeholder="password" />
 }
 
-export function Tel() {
+export function Tel(): JSX.Element {
   return <Input name="tel" type="tel" placeholder="+1800123456" />
 }
 
-export function Text() {
+export function Text(): JSX.Element {
   return <Input name="text" type="text" placeholder="text" />
 }
 
-export function Url() {
+export function Url(): JSX.Element {
   return <Input name="url" type="url" placeholder="http://example.email.com" />
 }
 
-export function Number() {
+export function Number(): JSX.Element {
   return <Input name="number" type="number" placeholder="123" />
 }
 
-export function AllInputs() {
+export function AllInputs(): JSX.Element {
   return (
     <div className="grid grid-cols-2 place-content-center gap-4">
       <div>

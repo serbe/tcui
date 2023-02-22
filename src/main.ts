@@ -1,4 +1,3 @@
-import 'tw-elements'
 import './index.css'
 import './tailwind.css'
 

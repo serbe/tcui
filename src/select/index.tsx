@@ -1,5 +1,5 @@
-import clsx from 'clsx'
 // Import { ChangeEventHandler, FocusEventHandler, Fragment, MouseEventHandler } from 'react'
+import { classNames } from 'utils'
 import type { Sizes } from '../variables'
 
 type SelectItem = {
@@ -153,9 +153,9 @@ const sizeClass = (size: Sizes): string => {
   }
 }
 
-export function Select({ className, data, id, name, size }: SelectProperties) {
+export function Select({ className, data, id, name, size }: SelectProperties): JSX.Element {
   // eslint-disable-next-line tailwindcss/no-custom-classname
-  const selectClass = clsx(
+  const selectClass = classNames(
     'form-select m-0 block w-full appearance-none rounded border border-solid border-gray-300 bg-white bg-clip-padding bg-no-repeat font-normal text-gray-700 transition ease-in-out focus:border-blue-600 focus:bg-white focus:text-gray-700 focus:outline-none',
     className,
     sizeClass(size),
