@@ -1,73 +1,68 @@
-import { Input } from './index'
+import React from 'react';
 
-export function Default(): JSX.Element {
-  return <Input name="default" placeholder="default" />
-}
+import { Input } from './index';
 
-export function Small(): JSX.Element {
-  return <Input name="small" size="small" placeholder="small" />
-}
+export const Default = (): JSX.Element => {
+  return <Input name="default" placeholder="default" />;
+};
 
-export function Normal(): JSX.Element {
-  return <Input name="normal" size="normal" placeholder="normal" />
-}
+export const Small = (): JSX.Element => {
+  return <Input name="small" size="small" placeholder="small" />;
+};
 
-export function Large(): JSX.Element {
-  return <Input name="large" size="large" placeholder="large" />
-}
+export const Normal = (): JSX.Element => {
+  return <Input name="normal" size="normal" placeholder="normal" />;
+};
 
-export function Label(): JSX.Element {
-  return <Input name="label" label="label" placeholder="label" />
-}
+export const Large = (): JSX.Element => {
+  return <Input name="large" size="large" placeholder="large" />;
+};
 
-export function TextHelper(): JSX.Element {
-  return <Input name="textHelper" textHelper="text helper" placeholder="text helper" />
-}
+export const Label = (): JSX.Element => {
+  return <Input name="label" label="label" placeholder="label" />;
+};
 
-export function LabelAndHelper(): JSX.Element {
-  return (
-    <Input
-      name="labelAndHelper"
-      label="label"
-      textHelper="text helper"
-      placeholder="label and text helper"
-    />
-  )
-}
+export const TextHelper = (): JSX.Element => {
+  return <Input name="textHelper" textHelper="text helper" placeholder="text helper" />;
+};
 
-export function IsDisabled(): JSX.Element {
-  return <Input isDisabled name="isDisabled" placeholder="is disabled" />
-}
+export const LabelAndHelper = (): JSX.Element => {
+  return <Input name="labelAndHelper" label="label" textHelper="text helper" placeholder="label and text helper" />;
+};
 
-export function IsReadOnly(): JSX.Element {
-  return <Input isReadOnly name="isReadOnly" placeholder="is read only" />
-}
+export const IsDisabled = (): JSX.Element => {
+  return <Input isDisabled name="isDisabled" placeholder="is disabled" />;
+};
 
-export function Email(): JSX.Element {
-  return <Input name="email" type="email" placeholder="example@email.com" />
-}
+export const IsReadOnly = (): JSX.Element => {
+  return <Input isReadOnly name="isReadOnly" placeholder="is read only" />;
+};
 
-export function Password(): JSX.Element {
-  return <Input name="password" type="password" placeholder="password" />
-}
+export const Email = (): JSX.Element => {
+  return <Input name="email" type="email" placeholder="example@email.com" />;
+};
 
-export function Tel(): JSX.Element {
-  return <Input name="tel" type="tel" placeholder="+1800123456" />
-}
+export const Password = (): JSX.Element => {
+  return <Input name="password" type="password" placeholder="password" />;
+};
 
-export function Text(): JSX.Element {
-  return <Input name="text" type="text" placeholder="text" />
-}
+export const Tel = (): JSX.Element => {
+  return <Input name="tel" type="tel" placeholder="+1800123456" />;
+};
 
-export function Url(): JSX.Element {
-  return <Input name="url" type="url" placeholder="http://example.email.com" />
-}
+export const Text = (): JSX.Element => {
+  return <Input name="text" type="text" placeholder="text" />;
+};
 
-export function Number(): JSX.Element {
-  return <Input name="number" type="number" placeholder="123" />
-}
+export const Url = (): JSX.Element => {
+  return <Input name="url" type="url" placeholder="http://example.email.com" />;
+};
 
-export function AllInputs(): JSX.Element {
+export const Number = (): JSX.Element => {
+  return <Input name="number" type="number" placeholder="123" />;
+};
+
+export const AllInputs = (): JSX.Element => {
   return (
     <div className="grid grid-cols-2 place-content-center gap-4">
       <div>
@@ -102,5 +97,5 @@ export function AllInputs(): JSX.Element {
         <Number />
       </div>
     </div>
-  )
-}
+  );
+};
