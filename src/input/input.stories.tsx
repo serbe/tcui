@@ -62,38 +62,40 @@ export const Number = (): JSX.Element => {
 
 export const AllInputs = (): JSX.Element => {
   return (
-    <div className="grid grid-cols-2 place-content-center gap-4">
+    <form action="" className="mx-auto mt-8 mb-0 max-w-md space-y-4">
       <div>
-        <Label />
+        <div>
+          <Label />
+        </div>
+        <div>
+          <TextHelper />
+        </div>
+        <div>
+          <LabelAndHelper />
+        </div>
+        <div>
+          <Default />
+        </div>
+        <div>
+          <Small />
+          <Normal />
+          <Large />
+        </div>
+        <div>
+          <IsDisabled />
+        </div>
+        <div>
+          <IsReadOnly />
+        </div>
+        <div>
+          <Email />
+          <Password />
+          <Tel />
+          <Text />
+          <Url />
+          <Number />
+        </div>
       </div>
-      <div>
-        <TextHelper />
-      </div>
-      <div>
-        <LabelAndHelper />
-      </div>
-      <div>
-        <Default />
-      </div>
-      <div>
-        <Small />
-        <Normal />
-        <Large />
-      </div>
-      <div>
-        <IsDisabled />
-      </div>
-      <div>
-        <IsReadOnly />
-      </div>
-      <div>
-        <Email />
-        <Password />
-        <Tel />
-        <Text />
-        <Url />
-        <Number />
-      </div>
-    </div>
+    </form>
   )
 }

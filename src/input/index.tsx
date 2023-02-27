@@ -1,4 +1,4 @@
-import type { ChangeEventHandler, FocusEventHandler, MouseEventHandler } from 'react'
+import { ChangeEventHandler, FocusEventHandler, MouseEventHandler, useRef } from 'react'
 
 import { classNames } from '../utils'
 import type { InputTypes, Sizes } from '../variables'
@@ -15,23 +15,22 @@ type InputProperties = {
   onChange?: ChangeEventHandler<HTMLInputElement>
   onClick?: MouseEventHandler<HTMLInputElement>
   placeholder?: string
-  size?: Sizes
+  size: Sizes
   textHelper?: string
-  type?: InputTypes
+  type: InputTypes
   value?: number | string
 }
 
-const sizeClass = (size: Sizes): string => {
-  switch (size) {
-    case 'small':
-      return 'px-2 py-1 text-sm'
-    case 'normal':
-      return 'px-3 py-1.5 text-base'
-    case 'large':
-      return 'px-4 py-2 text-xl'
-    default:
-      return 'px-3 py-1.5 text-base'
-  }
+type InputSize = {
+  width: string
+  height: string
+  textSize: string
+}
+
+const sizeValues: Record<Sizes, InputSize> = {
+  small: { width: 'px-2', height: 'py-1', textSize: 'text-sm' },
+  normal: { width: 'px-3', height: 'py-1.5', textSize: 'text-base' },
+  large: { width: 'px-4', height: 'py-2', textSize: 'text-xl' }
 }
 
 export const Input = ({
@@ -51,47 +50,54 @@ export const Input = ({
   type,
   value
 }: InputProperties): JSX.Element => {
+  const inputRef = useRef(null)
+  const { width, height, textSize } = sizeValues[size]
+
   const Helper = (): JSX.Element | null => {
     return textHelper ? <div className="mt-1 text-sm text-gray-500">{textHelper}</div> : null
   }
 
   const Label = (): JSX.Element | null => {
     return label ? (
-      <label htmlFor={name} className="mb-2 inline-block text-gray-700">
+      <label htmlFor={name} className="sr-only">
         {label}
       </label>
     ) : null
   }
 
   const inputClass = classNames(
-    'form-control m-0 block w-full rounded border border-solid border-gray-300 bg-white bg-clip-padding',
-    'px-3 py-1.5 text-base font-normal text-gray-700 transition ease-in-out focus:border-blue-600',
-    'focus:bg-white focus:text-gray-700 focus:outline-none',
+    'w-full rounded-lg border-gray-200',
+    width,
+    height,
+    textSize,
+    'shadow-sm',
     className,
-    sizeClass(size),
-    { 'pointer-events-none opacity-60': isDisabled }
+    isDisabled ? 'pointer-events-none opacity-60' : ''
   )
 
   const defaultValueCheck = onChange ? undefined : ''
 
   return (
-    <div className="mb-3 xl:w-96">
+    <div>
       <Label />
-      <input
-        key={name}
-        type={type}
-        className={inputClass}
-        autoComplete={autocomplete}
-        defaultValue={defaultValue ? defaultValue : defaultValueCheck}
-        disabled={isDisabled}
-        id={name}
-        placeholder={placeholder ?? label}
-        readOnly={isReadOnly}
-        value={value}
-        onBlur={onBlur}
-        onChange={onChange}
-        onClick={onClick}
-      />
+      <div className="relative">
+        <input
+          key={name}
+          type={type}
+          className={inputClass}
+          autoComplete={autocomplete}
+          defaultValue={defaultValue ? defaultValue : defaultValueCheck}
+          disabled={isDisabled}
+          id={name}
+          placeholder={placeholder ?? label}
+          readOnly={isReadOnly}
+          value={value}
+          onBlur={onBlur}
+          onChange={onChange}
+          onClick={onClick}
+          ref={inputRef}
+        />
+      </div>
       <Helper />
     </div>
   )
@@ -106,6 +112,7 @@ Input.defaultProps = {
   onChange: undefined,
   onClick: undefined,
   placeholder: undefined,
+  size: 'normal',
   type: 'text',
   value: undefined
 }
