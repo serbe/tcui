@@ -1,129 +1,116 @@
 import type { MouseEventHandler, ReactNode } from 'react'
 
 import { classNames } from '../utils'
-import type { Sizes } from '../variables'
-
-export type ButtonColors = 'primary' | 'secondary' | 'success' | 'danger' | 'warning' | 'info' | 'light' | 'dark'
+import type { Colors, Sizes } from '../variables'
 
 type ButtonProperties = {
   children: ReactNode
   className?: string
-  color?: ButtonColors
+  color: Colors
   hasRipple?: boolean
   isDisabled?: boolean
   isFullwith?: boolean
   isOutline?: boolean
   isRounded?: boolean
   onClick?: MouseEventHandler<HTMLAnchorElement | HTMLButtonElement | HTMLInputElement>
-  size?: Sizes
+  size: Sizes
 }
 
-const colorClass = (color?: ButtonColors): [string, string, string, string, string, string, string] => {
-  switch (color) {
-    case 'primary':
-      return [
-        'border-blue-600',
-        'text-blue-600',
-        'bg-blue-600',
-        'hover:text-blue-600',
-        'hover:bg-blue-600',
-        'active:text-blue-700',
-        'active:bg-blue-700'
-      ]
-    case 'secondary':
-      return [
-        'border-purple-600',
-        'text-purple-600',
-        'bg-purple-600',
-        'hover:text-purple-600',
-        'hover:bg-purple-600',
-        'active:text-purple-700',
-        'active:bg-purple-700'
-      ]
-    case 'success':
-      return [
-        'border-green-500',
-        'text-green-500',
-        'bg-green-500',
-        'hover:text-green-500',
-        'hover:bg-green-500',
-        'active:text-green-600',
-        'active:bg-green-600'
-      ]
-    case 'danger':
-      return [
-        'border-red-600',
-        'text-red-600',
-        'bg-red-600',
-        'hover:text-red-600',
-        'hover:bg-red-600',
-        'active:text-red-700',
-        'active:bg-red-700'
-      ]
-    case 'warning':
-      return [
-        'border-yellow-500',
-        'text-yellow-500',
-        'bg-yellow-500',
-        'hover:text-yellow-500',
-        'hover:bg-yellow-500',
-        'active:text-yellow-600',
-        'active:bg-yellow-600'
-      ]
-    case 'info':
-      return [
-        'border-blue-400',
-        'text-blue-400',
-        'bg-blue-400',
-        'hover:text-blue-400',
-        'hover:bg-blue-400',
-        'active:text-blue-500',
-        'active:bg-blue-500'
-      ]
-    case 'light':
-      return [
-        'border-gray-200',
-        'text-gray-200',
-        'bg-gray-200',
-        'hover:text-gray-200',
-        'hover:bg-gray-200',
-        'active:text-gray-300',
-        'active:bg-gray-300'
-      ]
-    case 'dark':
-      return [
-        'border-gray-800',
-        'text-gray-800',
-        'bg-gray-800',
-        'hover:text-gray-800',
-        'hover:bg-gray-800',
-        'active:text-gray-900',
-        'active:bg-gray-900'
-      ]
-    default:
-      return [
-        'border-blue-600',
-        'text-blue-600',
-        'bg-blue-600',
-        'hover:text-blue-600',
-        'hover:bg-blue-600',
-        'active:text-blue-700',
-        'active:bg-blue-700'
-      ]
+type ButtonColors = {
+  borderColor: string
+  textColor: string
+  bgColor: string
+  hoverTextColor: string
+  hoverBgColor: string
+  activeTextColor: string
+  activeBgColor: string
+}
+
+type ButtonSize = {
+  width: string
+  height: string
+  textSize: string
+}
+
+const colorValues: Record<Colors, ButtonColors> = {
+  primary: {
+    borderColor: 'border-blue-600',
+    textColor: 'text-blue-600',
+    bgColor: 'bg-blue-600',
+    hoverTextColor: 'hover:text-blue-600',
+    hoverBgColor: 'hover:bg-blue-600',
+    activeTextColor: 'active:text-blue-700',
+    activeBgColor: 'active:bg-blue-700'
+  },
+  secondary: {
+    borderColor: 'border-purple-600',
+    textColor: 'text-purple-600',
+    bgColor: 'bg-purple-600',
+    hoverTextColor: 'hover:text-purple-600',
+    hoverBgColor: 'hover:bg-purple-600',
+    activeTextColor: 'active:text-purple-700',
+    activeBgColor: 'active:bg-purple-700'
+  },
+  success: {
+    borderColor: 'border-green-500',
+    textColor: 'text-green-500',
+    bgColor: 'bg-green-500',
+    hoverTextColor: 'hover:text-green-500',
+    hoverBgColor: 'hover:bg-green-500',
+    activeTextColor: 'active:text-green-600',
+    activeBgColor: 'active:bg-green-600'
+  },
+  danger: {
+    borderColor: 'border-red-600',
+    textColor: 'text-red-600',
+    bgColor: 'bg-red-600',
+    hoverTextColor: 'hover:text-red-600',
+    hoverBgColor: 'hover:bg-red-600',
+    activeTextColor: 'active:text-red-700',
+    activeBgColor: 'active:bg-red-700'
+  },
+  warning: {
+    borderColor: 'border-yellow-500',
+    textColor: 'text-yellow-500',
+    bgColor: 'bg-yellow-500',
+    hoverTextColor: 'hover:text-yellow-500',
+    hoverBgColor: 'hover:bg-yellow-500',
+    activeTextColor: 'active:text-yellow-600',
+    activeBgColor: 'active:bg-yellow-600'
+  },
+  info: {
+    borderColor: 'border-blue-400',
+    textColor: 'text-blue-400',
+    bgColor: 'bg-blue-400',
+    hoverTextColor: 'hover:text-blue-400',
+    hoverBgColor: 'hover:bg-blue-400',
+    activeTextColor: 'active:text-blue-500',
+    activeBgColor: 'active:bg-blue-500'
+  },
+  light: {
+    borderColor: 'border-gray-200',
+    textColor: 'text-gray-200',
+    bgColor: 'bg-gray-200',
+    hoverTextColor: 'hover:text-gray-200',
+    hoverBgColor: 'hover:bg-gray-200',
+    activeTextColor: 'active:text-gray-300',
+    activeBgColor: 'active:bg-gray-300'
+  },
+  dark: {
+    borderColor: 'border-gray-800',
+    textColor: 'text-gray-800',
+    bgColor: 'bg-gray-800',
+    hoverTextColor: 'hover:text-gray-800',
+    hoverBgColor: 'hover:bg-gray-800',
+    activeTextColor: 'active:text-gray-900',
+    activeBgColor: 'active:bg-gray-900'
   }
 }
 
-const sizeClass = (size: Sizes): [string, string, string] => {
-  switch (size) {
-    case 'small':
-      return ['w-20', 'py-1', 'text-xs']
-    case 'normal':
-      return ['w-28', 'py-1.5', 'text-sm']
-    case 'large':
-      return ['w-28', 'py-2', 'text-base']
-    default:
-      return ['w-28', 'py-1.5', 'text-sm']
-  }
+const sizeValues: Record<Sizes, ButtonSize> = {
+  small: { width: 'w-20', height: 'py-1', textSize: 'text-xs' },
+  normal: { width: 'w-28', height: 'py-1.5', textSize: 'text-sm' },
+  large: { width: 'w-28', height: 'py-2', textSize: 'text-base' }
 }
 
 export const Button = ({
@@ -137,16 +124,14 @@ export const Button = ({
   onClick,
   size
 }: ButtonProperties): JSX.Element => {
-  const [borderColor, textColor, bgColor, hoverTextColor, hoverBgColor, activeTextColor, activeBgColor] =
-    colorClass(color)
-  const [width, height, textSize] = sizeClass(size)
+  const { borderColor, textColor, bgColor, hoverTextColor, hoverBgColor, activeTextColor, activeBgColor } =
+    colorValues[color]
+  const { width, height, textSize } = sizeValues[size]
   const round = isRounded ? 'rounded-full' : 'rounded'
   const buttonWidth = isFullwith ? 'w-full' : width
   const click = isDisabled ? undefined : onClick
   const buttonClassName = (): string => {
     if (isOutline) {
-      // inline-block rounded border border-indigo-600 px-12 py-3 text-sm font-medium
-      // text-indigo-600 hover:bg-indigo-600 hover:text-white focus:outline-none focus:ring active:bg-indigo-500
       return classNames(
         `inline-block ${buttonWidth} ${round} border ${borderColor} ${height}`,
         `text-center ${textSize} font-medium ${textColor} ${hoverBgColor}`,
@@ -172,6 +157,7 @@ export const Button = ({
 
 Button.defaultProps = {
   className: undefined,
+  color: 'primary',
   isDisabled: false,
   isFullwith: false,
   isOutline: false,

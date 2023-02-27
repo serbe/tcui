@@ -1,5 +1,9 @@
 import { Button } from './index'
 
+export const Default = (): JSX.Element => {
+  return <Button>Default</Button>
+}
+
 export const Primary = (): JSX.Element => {
   return <Button color="primary">Primary</Button>
 }
@@ -32,10 +36,14 @@ export const Dark = (): JSX.Element => {
   return <Button color="dark">Dark</Button>
 }
 
+export const DefaultO = (): JSX.Element => {
+  return <Button isOutline>Default</Button>
+}
+
 export const PrimaryO = (): JSX.Element => {
   return (
     <Button color="primary" isOutline>
-      PrimaryO
+      Primary
     </Button>
   )
 }
@@ -43,7 +51,7 @@ export const PrimaryO = (): JSX.Element => {
 export const SecondaryO = (): JSX.Element => {
   return (
     <Button color="secondary" isOutline>
-      SecondaryO
+      Secondary
     </Button>
   )
 }
@@ -51,7 +59,7 @@ export const SecondaryO = (): JSX.Element => {
 export const SuccessO = (): JSX.Element => {
   return (
     <Button color="success" isOutline>
-      SuccessO
+      Success
     </Button>
   )
 }
@@ -59,17 +67,15 @@ export const SuccessO = (): JSX.Element => {
 export const DangerO = (): JSX.Element => {
   return (
     <Button color="danger" isOutline>
-      DangerO
+      Danger
     </Button>
   )
 }
 
-import '../tailwind.css'
-
 export const WarningO = (): JSX.Element => {
   return (
     <Button color="warning" isOutline>
-      WarningO
+      Warning
     </Button>
   )
 }
@@ -77,7 +83,7 @@ export const WarningO = (): JSX.Element => {
 export const InfoO = (): JSX.Element => {
   return (
     <Button color="info" isOutline>
-      InfoO
+      Info
     </Button>
   )
 }
@@ -85,7 +91,7 @@ export const InfoO = (): JSX.Element => {
 export const LightO = (): JSX.Element => {
   return (
     <Button color="light" isOutline>
-      LightO
+      Light
     </Button>
   )
 }
@@ -93,7 +99,7 @@ export const LightO = (): JSX.Element => {
 export const DarkO = (): JSX.Element => {
   return (
     <Button color="dark" isOutline>
-      DarkO
+      Dark
     </Button>
   )
 }
@@ -170,6 +176,7 @@ export const AllButtons = (): JSX.Element => {
   return (
     <div className="grid grid-cols-2 place-content-center gap-4">
       <div>
+        <Default />
         <Primary />
         <Secondary />
         <Success />
@@ -180,6 +187,7 @@ export const AllButtons = (): JSX.Element => {
         <Dark />
       </div>
       <div>
+        <DefaultO />
         <PrimaryO />
         <SecondaryO />
         <SuccessO />

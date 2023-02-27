@@ -1,14 +1,8 @@
 import type { ChangeEvent, Dispatch, SetStateAction } from 'react'
 
-export type BasicColors = 'black' | 'dark' | 'ghost' | 'light' | 'text' | 'white'
+export type Colors = 'primary' | 'secondary' | 'success' | 'danger' | 'warning' | 'info' | 'light' | 'dark'
 
-export type AdditionalColors = 'danger' | 'info' | 'success' | 'warning'
-
-export type PrimarylColor = 'primary'
-
-export type LinkColor = 'link'
-
-export type Sizes = 'large' | 'normal' | 'small' | undefined
+export type Sizes = 'large' | 'normal' | 'small'
 
 export type InputTypes = 'email' | 'password' | 'tel' | 'text' | 'url' | 'number'
 
