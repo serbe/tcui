@@ -1,39 +1,38 @@
-import type { ChangeEventHandler, FocusEventHandler, MouseEventHandler } from 'react';
-import React from 'react';
+import type { ChangeEventHandler, FocusEventHandler, MouseEventHandler } from 'react'
 
-import { classNames } from '../utils';
-import type { InputTypes, Sizes } from '../variables';
+import { classNames } from '../utils'
+import type { InputTypes, Sizes } from '../variables'
 
 type InputProperties = {
-  autocomplete?: string;
-  className?: string;
-  defaultValue?: number | string;
-  isDisabled?: boolean;
-  isReadOnly?: boolean;
-  label?: string;
-  name: string;
-  onBlur?: FocusEventHandler<HTMLInputElement>;
-  onChange?: ChangeEventHandler<HTMLInputElement>;
-  onClick?: MouseEventHandler<HTMLInputElement>;
-  placeholder?: string;
-  size?: Sizes;
-  textHelper?: string;
-  type?: InputTypes;
-  value?: number | string;
-};
+  autocomplete?: string
+  className?: string
+  defaultValue?: number | string
+  isDisabled?: boolean
+  isReadOnly?: boolean
+  label?: string
+  name: string
+  onBlur?: FocusEventHandler<HTMLInputElement>
+  onChange?: ChangeEventHandler<HTMLInputElement>
+  onClick?: MouseEventHandler<HTMLInputElement>
+  placeholder?: string
+  size?: Sizes
+  textHelper?: string
+  type?: InputTypes
+  value?: number | string
+}
 
 const sizeClass = (size: Sizes): string => {
   switch (size) {
     case 'small':
-      return 'px-2 py-1 text-sm';
+      return 'px-2 py-1 text-sm'
     case 'normal':
-      return 'px-3 py-1.5 text-base';
+      return 'px-3 py-1.5 text-base'
     case 'large':
-      return 'px-4 py-2 text-xl';
+      return 'px-4 py-2 text-xl'
     default:
-      return 'px-3 py-1.5 text-base';
+      return 'px-3 py-1.5 text-base'
   }
-};
+}
 
 export const Input = ({
   autocomplete,
@@ -50,19 +49,19 @@ export const Input = ({
   size,
   textHelper,
   type,
-  value,
+  value
 }: InputProperties): JSX.Element => {
   const Helper = (): JSX.Element | null => {
-    return textHelper ? <div className="mt-1 text-sm text-gray-500">{textHelper}</div> : null;
-  };
+    return textHelper ? <div className="mt-1 text-sm text-gray-500">{textHelper}</div> : null
+  }
 
   const Label = (): JSX.Element | null => {
     return label ? (
       <label htmlFor={name} className="mb-2 inline-block text-gray-700">
         {label}
       </label>
-    ) : null;
-  };
+    ) : null
+  }
 
   const inputClass = classNames(
     'form-control m-0 block w-full rounded border border-solid border-gray-300 bg-white bg-clip-padding',
@@ -71,9 +70,9 @@ export const Input = ({
     className,
     sizeClass(size),
     { 'pointer-events-none opacity-60': isDisabled }
-  );
+  )
 
-  const defaultValueCheck = onChange ? undefined : '';
+  const defaultValueCheck = onChange ? undefined : ''
 
   return (
     <div className="mb-3 xl:w-96">
@@ -95,8 +94,8 @@ export const Input = ({
       />
       <Helper />
     </div>
-  );
-};
+  )
+}
 
 Input.defaultProps = {
   autocomplete: undefined,
@@ -108,7 +107,7 @@ Input.defaultProps = {
   onClick: undefined,
   placeholder: undefined,
   type: 'text',
-  value: undefined,
-};
+  value: undefined
+}
 
-export default Input;
+export default Input

@@ -1,7 +1,6 @@
-import type { GlobalProvider } from '@ladle/react';
-import React from 'react';
+import type { GlobalProvider } from '@ladle/react'
 
-import './tailwind.css';
+import './tailwind.css'
 
 export const Provider: GlobalProvider = ({ children }) => (
   <>
@@ -12,4 +11,4 @@ export const Provider: GlobalProvider = ({ children }) => (
     /> */}
     {children}
   </>
-);
+)

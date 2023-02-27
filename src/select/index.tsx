@@ -1,22 +1,20 @@
 // Import { ChangeEventHandler, FocusEventHandler, Fragment, MouseEventHandler } from 'react'
-import React from 'react';
-
-import { classNames } from '../utils';
-import type { Sizes } from '../variables';
+import { classNames } from '../utils'
+import type { Sizes } from '../variables'
 
 type SelectItem = {
-  id: number;
-  name: string;
-};
+  id: number
+  name: string
+}
 
 type SelectProperties = {
-  className?: string;
-  data: SelectItem[];
-  id?: number;
-  name: string;
-  size?: Sizes;
+  className?: string
+  data: SelectItem[]
+  id?: number
+  name: string
+  size?: Sizes
   // Setter: Dispatch<SetStateAction<number | undefined>>
-};
+}
 
 // Export const Select({
 //   name,
@@ -145,15 +143,15 @@ type SelectProperties = {
 const sizeClass = (size: Sizes): string => {
   switch (size) {
     case 'small':
-      return 'form-select-sm px-2 py-1 text-sm';
+      return 'form-select-sm px-2 py-1 text-sm'
     case 'normal':
-      return 'px-3 py-1.5 text-base';
+      return 'px-3 py-1.5 text-base'
     case 'large':
-      return 'form-select-lg mb-3 px-4 py-2 text-xl';
+      return 'form-select-lg mb-3 px-4 py-2 text-xl'
     default:
-      return 'px-3 py-1.5 text-base';
+      return 'px-3 py-1.5 text-base'
   }
-};
+}
 
 export const Select = ({ className, data, id, name, size }: SelectProperties): JSX.Element => {
   // eslint-disable-next-line tailwindcss/no-custom-classname
@@ -163,7 +161,7 @@ export const Select = ({ className, data, id, name, size }: SelectProperties): J
     'focus:border-blue-600 focus:bg-white focus:text-gray-700 focus:outline-none',
     className,
     sizeClass(size)
-  );
+  )
 
   return (
     <div className="flex justify-center">
@@ -177,7 +175,7 @@ export const Select = ({ className, data, id, name, size }: SelectProperties): J
         </select>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Select;
+export default Select
