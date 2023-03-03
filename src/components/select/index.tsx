@@ -1,20 +1,34 @@
 // Import { ChangeEventHandler, FocusEventHandler, Fragment, MouseEventHandler } from 'react'
-import { classNames } from '../utils'
-import type { Sizes } from '../variables'
+import React from "react";
 
-type SelectItem = {
-  id: number
-  name: string
+import { classNames } from "../../utils";
+import type { Sizes } from "../../utils/variables";
+
+interface SelectItem {
+  id: number;
+  name: string;
 }
 
-type SelectProperties = {
-  className?: string
-  data: SelectItem[]
-  id?: number
-  name: string
-  size?: Sizes
+interface SelectProperties {
+  className?: string;
+  data: SelectItem[];
+  id?: number;
+  name: string;
+  size: Sizes;
   // Setter: Dispatch<SetStateAction<number | undefined>>
 }
+
+interface SelectSize {
+  width: string;
+  height: string;
+  textSize: string;
+}
+
+const selectValues: Record<Sizes, SelectSize> = {
+  small: { width: "px-2", height: "py-1", textSize: "text-sm" },
+  normal: { width: "px-3", height: "py-1.5", textSize: "text-base" },
+  large: { width: "px-4", height: "py-2", textSize: "text-xl" },
+};
 
 // Export const Select({
 //   name,
@@ -140,42 +154,43 @@ type SelectProperties = {
 //   label: undefined,
 // }
 
-const sizeClass = (size: Sizes): string => {
-  switch (size) {
-    case 'small':
-      return 'form-select-sm px-2 py-1 text-sm'
-    case 'normal':
-      return 'px-3 py-1.5 text-base'
-    case 'large':
-      return 'form-select-lg mb-3 px-4 py-2 text-xl'
-    default:
-      return 'px-3 py-1.5 text-base'
-  }
-}
-
-export const Select = ({ className, data, id, name, size }: SelectProperties): JSX.Element => {
+export const Select = ({
+  className,
+  data,
+  id,
+  name,
+  size,
+}: SelectProperties): JSX.Element => {
   // eslint-disable-next-line tailwindcss/no-custom-classname
   const selectClass = classNames(
-    'form-select m-0 block w-full appearance-none rounded border border-solid border-gray-300',
-    'bg-white bg-clip-padding bg-no-repeat font-normal text-gray-700 transition ease-in-out',
-    'focus:border-blue-600 focus:bg-white focus:text-gray-700 focus:outline-none',
+    "form-select m-0 block w-full appearance-none rounded border border-solid border-gray-300",
+    "bg-white bg-clip-padding bg-no-repeat font-normal text-gray-700 transition ease-in-out",
+    "focus:border-blue-600 focus:bg-white focus:text-gray-700 focus:outline-none",
     className,
-    sizeClass(size)
-  )
+    selectValues[size]
+  );
 
   return (
     <div className="flex justify-center">
       <div className="mb-3 xl:w-96">
         <select className={selectClass} aria-label={name}>
           {data.map((SelectItem) => (
-            <option key={`${name} + ${SelectItem.id}`} value={SelectItem.id} selected={SelectItem.id === (id ? id : 0)}>
+            <option
+              key={`${name} + ${SelectItem.id}`}
+              value={SelectItem.id}
+              selected={SelectItem.id === (id ? id : 0)}
+            >
               {SelectItem.name}
             </option>
           ))}
         </select>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Select
+Select.defaultProps = {
+  size: "normal",
+};
+
+export default Select;

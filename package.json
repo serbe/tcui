@@ -1,73 +1,49 @@
 {
   "name": "tcui",
-  "author": "Serbe",
-  "license": "MIT",
-  "private": true,
-  "version": "0.1.0",
+  "version": "1.0.0",
+  "description": "",
+  "author": "",
+  "license": "ISC",
   "type": "module",
+  "main": "./dist/tcui.umd.cjs",
+  "module": "./dist/tcui.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/tcui.js",
+      "require": "./dist/tcui.umd.cjs"
+    }
+  },
   "files": [
     "dist"
   ],
-  "exports": {
-    ".": {
-      "import": "./dist/tcui.es.js",
-      "require": "./dist/tcui.umd.js"
-    },
-    "./dist/style.css": "./dist/style.css"
-  },
-  "main": "./dist/tcui.umd.js",
-  "module": "./dist/tcui.es.js",
-  "types": "./dist/index.d.ts",
   "scripts": {
-    "dev": "vite build --watch",
+    "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "ladle:dev": "ladle serve",
-    "ladle:build": "ladle build",
-    "ladle:preview": "ladle preview",
+    "test": "vitest",
     "lint": "eslint --ext .js,.jsx,.ts,.tsx src/",
     "lint:fix": "eslint --fix 'src/**/*.{jsx,ts,tsx}'",
     "format": "prettier --write src//**/*.{ts,tsx,css} --config ./.prettierrc",
-    "typecheck": "tsc --project tsconfig.json --noEmit",
-    "test": "vitest",
-    "test:ui": "vitest --ui",
-    "coverage": "vitest run --coverage"
-  },
-  "peerDependencies": {
-    "react": "^18.2.0"
+    "typecheck": "tsc --project tsconfig.json --noEmit"
   },
   "devDependencies": {
-    "@ladle/react": "^2.9.0",
-    "@tailwindcss/forms": "^0.5.3",
+    "@types/node": "^18.14.5",
     "@types/react": "^18.0.28",
-    "@types/react-dom": "^18.0.11",
-    "@types/react-test-renderer": "^18.0.0",
-    "@typescript-eslint/eslint-plugin": "^5.53.0",
-    "@typescript-eslint/parser": "^5.53.0",
-    "@vitejs/plugin-react": "^3.1.0",
-    "@vitest/coverage-c8": "^0.29.1",
-    "@vitest/ui": "^0.29.1",
-    "autoprefixer": "^10.4.13",
+    "@typescript-eslint/eslint-plugin": "^5.54.0",
+    "@typescript-eslint/parser": "^5.54.0",
     "eslint": "^8.35.0",
     "eslint-config-prettier": "^8.6.0",
+    "eslint-plugin-jsx-a11y": "^6.7.1",
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-react": "^7.32.2",
     "eslint-plugin-react-hooks": "^4.6.0",
-    "eslint-plugin-simple-import-sort": "^10.0.0",
-    "eslint-plugin-tailwindcss": "^3.9.0",
-    "happy-dom": "^8.9.0",
-    "postcss": "^8.4.21",
-    "prettier": "2.8.4",
-    "prettier-plugin-tailwindcss": "^0.2.3",
+    "eslint-plugin-tailwindcss": "^3.10.1",
+    "prettier": "^2.8.4",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-test-renderer": "^18.2.0",
-    "tailwindcss": "^3.2.7",
-    "tslib": "^2.5.0",
     "typescript": "^4.9.5",
     "vite": "^4.1.4",
     "vite-plugin-dts": "^2.0.2",
-    "vite-tsconfig-paths": "^4.0.5",
-    "vitest": "^0.29.1"
+    "vitest": "^0.29.2"
   }
 }
