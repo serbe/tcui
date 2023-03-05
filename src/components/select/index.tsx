@@ -1,30 +1,30 @@
 // Import { ChangeEventHandler, FocusEventHandler, Fragment, MouseEventHandler } from 'react'
-import React from "react";
+import React, { FC } from "react";
 
-import { classNames } from "../../utils";
+import { classNames } from "../../utils/classNames";
 import type { Sizes } from "../../utils/variables";
 
-interface SelectItem {
+interface ISelectItem {
   id: number;
   name: string;
 }
 
-interface SelectProperties {
+interface ISelectProps {
   className?: string;
-  data: SelectItem[];
+  data: ISelectItem[];
   id?: number;
   name: string;
-  size: Sizes;
+  size?: Sizes;
   // Setter: Dispatch<SetStateAction<number | undefined>>
 }
 
-interface SelectSize {
+interface ISelectSize {
   width: string;
   height: string;
   textSize: string;
 }
 
-const selectValues: Record<Sizes, SelectSize> = {
+const selectValues: Record<Sizes, ISelectSize> = {
   small: { width: "px-2", height: "py-1", textSize: "text-sm" },
   normal: { width: "px-3", height: "py-1.5", textSize: "text-base" },
   large: { width: "px-4", height: "py-2", textSize: "text-xl" },
@@ -38,6 +38,7 @@ const selectValues: Record<Sizes, SelectSize> = {
 //   color,
 //   listName,
 //   setter,
+//   size = "normal"
 // }: SelectProperties): JSX.Element {
 //   const [opened, setOpened] = useState(false)
 //   const [itemID, setItemID] = useState(id ?? 0)
@@ -154,20 +155,20 @@ const selectValues: Record<Sizes, SelectSize> = {
 //   label: undefined,
 // }
 
-export const Select = ({
+export const Select: FC<ISelectProps> = ({
   className,
   data,
   id,
   name,
   size,
-}: SelectProperties): JSX.Element => {
+}) => {
   // eslint-disable-next-line tailwindcss/no-custom-classname
   const selectClass = classNames(
     "form-select m-0 block w-full appearance-none rounded border border-solid border-gray-300",
     "bg-white bg-clip-padding bg-no-repeat font-normal text-gray-700 transition ease-in-out",
     "focus:border-blue-600 focus:bg-white focus:text-gray-700 focus:outline-none",
     className,
-    selectValues[size]
+    selectValues[size ?? "normal"]
   );
 
   return (

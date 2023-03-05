@@ -22,7 +22,13 @@ module.exports = {
     project: true,
     tsconfigRootDir: __dirname,
   },
-  plugins: ["react", "@typescript-eslint", "tailwindcss"],
+  plugins: [
+    "react",
+    "@typescript-eslint",
+    "tailwindcss",
+    "simple-import-sort",
+    "import",
+  ],
   rules: {
     indent: ["error", 2],
     "linebreak-style": ["error", "unix"],
@@ -37,6 +43,11 @@ module.exports = {
     "tailwindcss/classnames-order": "warn",
     "tailwindcss/no-custom-classname": "warn",
     "tailwindcss/no-contradicting-classname": "error",
+    "simple-import-sort/imports": "error",
+    "simple-import-sort/exports": "error",
+    "import/first": "error",
+    "import/newline-after-import": "error",
+    "import/no-duplicates": "error",
   },
   settings: {
     react: {

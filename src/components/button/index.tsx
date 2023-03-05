@@ -1,13 +1,13 @@
-import type { MouseEventHandler, ReactNode } from "react";
+import type { FC, MouseEventHandler, ReactNode } from "react";
 import React from "react";
 
-import { classNames } from "../../utils";
+import { classNames } from "../../utils/classNames";
 import type { Colors, Sizes } from "../../utils/variables";
 
-interface ButtonProperties {
+interface IButtonProps {
   children: ReactNode;
   className?: string;
-  color: Colors;
+  color?: Colors;
   hasRipple?: boolean;
   isDisabled?: boolean;
   isFullwith?: boolean;
@@ -16,10 +16,10 @@ interface ButtonProperties {
   onClick?: MouseEventHandler<
     HTMLAnchorElement | HTMLButtonElement | HTMLInputElement
   >;
-  size: Sizes;
+  size?: Sizes;
 }
 
-interface ButtonColors {
+interface IButtonColors {
   borderColor: string;
   textColor: string;
   bgColor: string;
@@ -29,13 +29,13 @@ interface ButtonColors {
   activeBgColor: string;
 }
 
-interface ButtonSize {
+interface IButtonSize {
   width: string;
   height: string;
   textSize: string;
 }
 
-const colorValues: Record<Colors, ButtonColors> = {
+const colorValues: Record<Colors, IButtonColors> = {
   primary: {
     borderColor: "border-blue-600",
     textColor: "text-blue-600",
@@ -110,23 +110,23 @@ const colorValues: Record<Colors, ButtonColors> = {
   },
 };
 
-const sizeValues: Record<Sizes, ButtonSize> = {
+const sizeValues: Record<Sizes, IButtonSize> = {
   small: { width: "w-20", height: "py-1", textSize: "text-xs" },
   normal: { width: "w-28", height: "py-1.5", textSize: "text-sm" },
   large: { width: "w-28", height: "py-2", textSize: "text-base" },
 };
 
-export const Button = ({
+export const Button: FC<IButtonProps> = ({
   children,
   className,
-  color,
+  color = "primary",
   isDisabled,
   isFullwith,
   isOutline,
   isRounded,
   onClick,
-  size,
-}: ButtonProperties): JSX.Element => {
+  size = "normal",
+}) => {
   const {
     borderColor,
     textColor,
@@ -163,21 +163,10 @@ export const Button = ({
   );
 
   return (
-    <a className={buttonClass} onClick={click}>
+    <button className={buttonClass} onClick={click}>
       {children}
-    </a>
+    </button>
   );
-};
-
-Button.defaultProps = {
-  className: undefined,
-  color: "primary",
-  isDisabled: false,
-  isFullwith: false,
-  isOutline: false,
-  isRounded: false,
-  onClick: undefined,
-  size: "normal",
 };
 
 export default Button;

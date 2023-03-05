@@ -1,48 +1,47 @@
-import React from "react";
-import {
-  ChangeEventHandler,
+import React, {
+  ChangeEvent,
+  FC,
   FocusEventHandler,
   MouseEventHandler,
   useRef,
+  useState,
 } from "react";
 
-import { classNames } from "../../utils";
+import { classNames } from "../../utils/classNames";
 import type { InputTypes, Sizes } from "../../utils/variables";
 
-interface InputProperties {
+interface IInputProps {
   autocomplete?: string;
   className?: string;
-  defaultValue?: number | string;
   isDisabled?: boolean;
   isReadOnly?: boolean;
   label?: string;
   name: string;
   onBlur?: FocusEventHandler<HTMLInputElement>;
-  onChange?: ChangeEventHandler<HTMLInputElement>;
+  onChange: (value: string | number) => void;
   onClick?: MouseEventHandler<HTMLInputElement>;
   placeholder?: string;
-  size: Sizes;
+  size?: Sizes;
   textHelper?: string;
-  type: InputTypes;
-  value?: number | string;
+  type?: InputTypes;
+  value: number | string;
 }
 
-interface InputSize {
+interface IInputSize {
   width: string;
   height: string;
   textSize: string;
 }
 
-const sizeValues: Record<Sizes, InputSize> = {
+const sizeValues: Record<Sizes, IInputSize> = {
   small: { width: "px-2", height: "py-1", textSize: "text-sm" },
   normal: { width: "px-3", height: "py-1.5", textSize: "text-base" },
   large: { width: "px-4", height: "py-2", textSize: "text-xl" },
 };
 
-export const Input = ({
+export const Input: FC<IInputProps> = ({
   autocomplete,
   className,
-  defaultValue,
   isDisabled,
   isReadOnly,
   label,
@@ -51,13 +50,26 @@ export const Input = ({
   onChange,
   onClick,
   placeholder,
-  size,
+  size = "normal",
   textHelper,
   type,
   value,
-}: InputProperties): JSX.Element => {
+}) => {
   const inputRef = useRef(null);
+
   const { width, height, textSize } = sizeValues[size];
+  const [inputValue, setInputValue] = useState<string | number>(value);
+
+  const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const value = event.target.value;
+    setInputValue(value);
+
+    if (type === "number") {
+      onChange(Number(value));
+    } else {
+      onChange(value);
+    }
+  };
 
   const Helper = (): JSX.Element | null => {
     return textHelper ? (
@@ -83,27 +95,24 @@ export const Input = ({
     isDisabled ? "pointer-events-none opacity-60" : ""
   );
 
-  const defaultValueCheck = onChange ? undefined : "";
-
   return (
     <div>
       <Label />
       <div className="relative">
         <input
-          key={name}
-          type={type}
-          className={inputClass}
           autoComplete={autocomplete}
-          defaultValue={defaultValue ? defaultValue : defaultValueCheck}
+          className={inputClass}
           disabled={isDisabled}
           id={name}
+          key={name}
+          onBlur={onBlur}
+          onChange={handleInputChange}
+          onClick={onClick}
           placeholder={placeholder ?? label}
           readOnly={isReadOnly}
-          value={value}
-          onBlur={onBlur}
-          onChange={onChange}
-          onClick={onClick}
           ref={inputRef}
+          type={type}
+          value={inputValue}
         />
       </div>
       <Helper />
@@ -113,7 +122,6 @@ export const Input = ({
 
 Input.defaultProps = {
   autocomplete: undefined,
-  defaultValue: undefined,
   isDisabled: false,
   isReadOnly: false,
   onBlur: undefined,

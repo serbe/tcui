@@ -1,0 +1,17 @@
+/// <reference types="react" />
+export declare const Default: () => JSX.Element;
+export declare const Small: () => JSX.Element;
+export declare const Normal: () => JSX.Element;
+export declare const Large: () => JSX.Element;
+export declare const Label: () => JSX.Element;
+export declare const TextHelper: () => JSX.Element;
+export declare const LabelAndHelper: () => JSX.Element;
+export declare const IsDisabled: () => JSX.Element;
+export declare const IsReadOnly: () => JSX.Element;
+export declare const Email: () => JSX.Element;
+export declare const Password: () => JSX.Element;
+export declare const Tel: () => JSX.Element;
+export declare const Text: () => JSX.Element;
+export declare const Url: () => JSX.Element;
+export declare const Number: () => JSX.Element;
+export declare const AllInputs: () => JSX.Element;
