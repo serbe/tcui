@@ -13,6 +13,7 @@ module.exports = {
     "plugin:@typescript-eslint/strict",
     "plugin:jsx-a11y/recommended",
     "plugin:tailwindcss/recommended",
+    "prettier",
   ],
   overrides: [],
   parser: "@typescript-eslint/parser",
@@ -28,6 +29,7 @@ module.exports = {
     "tailwindcss",
     "simple-import-sort",
     "import",
+    "prettier",
   ],
   rules: {
     indent: ["error", 2],
@@ -35,7 +37,7 @@ module.exports = {
     quotes: ["error", "double"],
     semi: "off",
     "@typescript-eslint/semi": "error",
-    "max-len": ["warn", { code: 120 }],
+    // "max-len": ["warn", { code: 120 }],
     "react/prop-types": "off",
     "react/react-in-jsx-scope": "off",
     "@typescript-eslint/explicit-module-boundary-types": "off",
@@ -48,6 +50,7 @@ module.exports = {
     "import/first": "error",
     "import/newline-after-import": "error",
     "import/no-duplicates": "error",
+    "prettier/prettier": "error",
   },
   settings: {
     react: {
