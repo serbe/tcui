@@ -17,6 +17,6 @@
     "target": "ESNext",
     "useDefineForClassFields": true
   },
-  "include": ["lib"],
+  "include": ["src"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
