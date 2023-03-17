@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState } from "react";
+import { ChangeEvent, useState } from "react";
 
 import { useValue } from "../../utils/handles";
 import { Input } from "./index";
@@ -262,7 +262,7 @@ export const EmailInput = () => (
   </div>
 );
 
-export const AStaticI = () => (
+export const BStaticI = () => (
   <div className="relative h-11 w-full min-w-[200px]">
     <input
       id="and_o"
@@ -274,12 +274,12 @@ export const AStaticI = () => (
       htmlFor="and_o"
       className="pointer-events-none absolute left-0 -top-2.5 flex h-full w-full select-none text-sm font-normal leading-tight text-gray-500 transition-all after:absolute after:-bottom-2.5 after:block after:w-full after:scale-x-0 after:border-b-2 after:border-pink-500 after:transition-transform after:duration-300 peer-placeholder-shown:leading-tight peer-placeholder-shown:text-gray-500 peer-focus:text-sm peer-focus:leading-tight peer-focus:text-pink-500 peer-focus:after:scale-x-100 peer-focus:after:border-pink-500 peer-disabled:text-transparent peer-disabled:peer-placeholder-shown:text-gray-500"
     >
-      and_o
+      Static
     </label>
   </div>
 );
 
-export const AStandardI = () => (
+export const BStandardI = () => (
   <div className="relative h-11 w-full min-w-[200px]">
     <input
       id="istand"
@@ -295,11 +295,15 @@ export const AStandardI = () => (
   </div>
 );
 
-export const AOutlinedI = () => (
+export const BOutlinedI = () => (
   <div className="relative h-10 w-full min-w-[200px]">
     <input
       id="ioutl"
-      className="peer h-full w-full rounded-[7px] border border-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-gray-200 focus:border-2 focus:border-pink-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-gray-50"
+      // standard className="peer h-full w-full               border-b        border-slate-300                      bg-transparent     pt-4 pb-1.5                   font-sans text-sm font-normal text-slate-600 outline outline-0 transition-all                          placeholder-shown:border-slate-300                focus:border-pink-500                            focus:outline-0 disabled:border-0 disabled:bg-slate-100"
+      className="peer h-full w-full rounded-[7px]          border border-slate-300 border-t-transparent bg-transparent                 px-3 py-2.5       font-sans text-sm font-normal text-slate-600 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-slate-300 focus:border-2 focus:border-pink-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-slate-100"
+      // r button className="peer h-full w-full rounded-[7px]          border border-cyan-200  border-t-transparent bg-transparent                 px-3 py-2.5 pr-20 font-sans text-sm font-normal text-cyan-700  outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-cyan-200  focus:border-2 focus:border-pink-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-cyan-50"
+      // r icon   className="peer h-full w-full rounded-[7px]          border border-cyan-200  border-t-transparent bg-transparent                 px-3 py-2.5 !pr-9 font-sans text-sm font-normal text-cyan-700  outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-cyan-200  focus:border-2 focus:border-pink-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-cyan-50"
+      // large    className="peer h-full w-full rounded-md             border border-cyan-200  border-t-transparent bg-transparent p-3                               font-sans text-sm font-normal text-cyan-700  outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-cyan-200  focus:border-2 focus:border-pink-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-cyan-50"
       placeholder=" "
     />
     <label
@@ -311,7 +315,7 @@ export const AOutlinedI = () => (
   </div>
 );
 
-export const AOutlinedIndigoI = () => (
+export const BOutlinedIndigoI = () => (
   <div className="relative h-10 w-full min-w-[200px]">
     <input
       id="indigo"
@@ -331,16 +335,16 @@ export const AllInputs = (): JSX.Element => {
   return (
     <div className="flex flex-col gap-6">
       <div>
-        <AStaticI />
+        <BStaticI />
       </div>
       <div>
-        <AStandardI />
+        <BStandardI />
       </div>
       <div>
-        <AOutlinedI />
+        <BOutlinedI />
       </div>
       <div>
-        <AOutlinedIndigoI />
+        <BOutlinedIndigoI />
       </div>
       <div>
         <FloatingStandard />
