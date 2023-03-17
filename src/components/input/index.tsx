@@ -27,33 +27,69 @@ interface InputProps {
   value: number | string;
 }
 
-interface InputSize {
-  width: string;
-  height: string;
-  textSize: string;
-}
-
-const sizeValues: Record<Sizes, InputSize> = {
-  small: { width: "px-2", height: "py-1", textSize: "text-sm" },
-  normal: { width: "px-3", height: "py-1.5", textSize: "text-base" },
-  large: { width: "px-4", height: "py-2", textSize: "text-xl" },
-};
+// const sizeValues: Record<Sizes, InputSize> = {
+//   small: { width: "px-2", height: "py-1", textSize: "text-sm" },
+//   normal: { width: "px-3", height: "py-1.5", textSize: "text-base" },
+//   large: { width: "px-4", height: "py-2", textSize: "text-xl" },
+// };
 
 interface IInputOutlined {
   borderWidth: string;
+  borderTopColor?: string;
+  placeholderShown?: {
+    borderWith?: string;
+  };
+  focus?: {
+    borderWith?: string;
+    borderTopColor?: string;
+  };
 }
 
 const inputOutline = (isOutlined: boolean): IInputOutlined => {
-  return isOutlined ? { borderWidth: "border" } : { borderWidth: "border-b" };
+  return isOutlined === false
+    ? {
+        borderWidth: "border-b",
+      }
+    : {
+        borderWidth: "border",
+        borderTopColor: "border-t-transparent",
+        placeholderShown: { borderWith: "placeholder-shown:border" },
+        focus: {
+          borderWith: "focus:border-2",
+          borderTopColor: "focus:border-t-transparent",
+        },
+      };
 };
 
-// standard className="peer h-full w-full               border-b        border-slate-300                      bg-transparent     pt-4 pb-1.5                   font-sans text-sm font-normal text-slate-600 outline outline-0 transition-all                          placeholder-shown:border-slate-300                focus:border-pink-500                            focus:outline-0 disabled:border-0 disabled:bg-slate-100"
-// className="peer h-full w-full rounded-[7px]          border border-slate-300 border-t-transparent bg-transparent                 px-3 py-2.5       font-sans text-sm font-normal text-slate-600 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-slate-300 focus:border-2 focus:border-pink-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-slate-100"
-// r button className="peer h-full w-full rounded-[7px]          border border-cyan-200  border-t-transparent bg-transparent                 px-3 py-2.5 pr-20 font-sans text-sm font-normal text-cyan-700  outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-cyan-200  focus:border-2 focus:border-pink-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-cyan-50"
-// r icon   className="peer h-full w-full rounded-[7px]          border border-cyan-200  border-t-transparent bg-transparent                 px-3 py-2.5 !pr-9 font-sans text-sm font-normal text-cyan-700  outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-cyan-200  focus:border-2 focus:border-pink-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-cyan-50"
-// large    className="peer h-full w-full rounded-md             border border-cyan-200  border-t-transparent bg-transparent p-3                               font-sans text-sm font-normal text-cyan-700  outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-cyan-200  focus:border-2 focus:border-pink-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-cyan-50"
-// new      className="peer h-full w-full rounded-md                                     "
-//                                              {inputOutline.borderWidth}
+interface InputSize {
+  borderRadius?: string;
+  paddingTop?: string;
+  paddingBottom?: string;
+  paddingLeft?: string;
+  paddingRight?: string;
+  // height: string;
+  // textSize: string;
+}
+
+const sizeValues: Record<Sizes, InputSize> = {
+  small: { paddingTop: "pt-4", paddingBottom: "pb-1.5" },
+  normal: { paddingTop: "pt-4", paddingBottom: "pb-1.5" },
+  large: { paddingTop: "pt-4", paddingBottom: "pb-1.5" },
+};
+
+const sizeOutlinedValues: Record<Sizes, InputSize> = {
+  small: { borderRadius: "rounded-[7px]" },
+  normal: { borderRadius: "rounded-[7px]" },
+  large: { borderRadius: "rounded-md" },
+};
+
+// static   className="peer h-full w-full               border-b                   border-cyan-200                                bg-transparent pt-4 pb-1.5                   font-sans text-sm font-normal text-cyan-700  outline outline-0 transition-all                                            placeholder-shown:border-cyan-200                                   focus:border-pink-500                                     focus:outline-0 disabled:border-0 disabled:bg-cyan-50
+// standard className="peer h-full w-full               border-b                   border-slate-300                               bg-transparent pt-4 pb-1.5                   font-sans text-sm font-normal text-slate-600 outline outline-0 transition-all                                            placeholder-shown:border-slate-300                                  focus:border-pink-500                                     focus:outline-0 disabled:border-0 disabled:bg-slate-100"
+// outlined className="peer h-full w-full rounded-[7px] border                     border-slate-300 border-t-transparent          bg-transparent             px-3 py-2.5       font-sans text-sm font-normal text-slate-600 outline outline-0 transition-all placeholder-shown:border                   placeholder-shown:border-slate-300 focus:border-2                   focus:border-pink-500 focus:border-t-transparent          focus:outline-0 disabled:border-0 disabled:bg-slate-100"
+// r button className="peer h-full w-full rounded-[7px] border                     border-cyan-200  border-t-transparent          bg-transparent             px-3 py-2.5 pr-20 font-sans text-sm font-normal text-cyan-700  outline outline-0 transition-all placeholder-shown:border                   placeholder-shown:border-cyan-200  focus:border-2                   focus:border-pink-500 focus:border-t-transparent          focus:outline-0 disabled:border-0 disabled:bg-cyan-50"
+// r icon   className="peer h-full w-full rounded-[7px] border                     border-cyan-200  border-t-transparent          bg-transparent             px-3 py-2.5 !pr-9 font-sans text-sm font-normal text-cyan-700  outline outline-0 transition-all placeholder-shown:border                   placeholder-shown:border-cyan-200  focus:border-2                   focus:border-pink-500 focus:border-t-transparent          focus:outline-0 disabled:border-0 disabled:bg-cyan-50"
+// large    className="peer h-full w-full rounded-md    border                     border-cyan-200  border-t-transparent          bg-transparent             p-3               font-sans text-sm font-normal text-cyan-700  outline outline-0 transition-all placeholder-shown:border                   placeholder-shown:border-cyan-200  focus:border-2                   focus:border-pink-500 focus:border-t-transparent          focus:outline-0 disabled:border-0 disabled:bg-cyan-50"
+// new      className="peer h-full w-full rounded-md    {inputOutline.borderWidth} border-cyan-200  {inputOutline.borderTopColor}                                                                                                                            {inputOutline.placeholderShown.borderWith}                                    {inputOutline.focus.borderWidth}                       {inputOutline.focus.borderTopColor}
 
 export const Input: FC<InputProps> = ({
   autocomplete,
