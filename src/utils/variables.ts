@@ -1,14 +1,28 @@
 import type { ChangeEvent, Dispatch, SetStateAction } from "react";
 
 export type Colors =
-  | "primary"
-  | "secondary"
-  | "success"
-  | "danger"
-  | "warning"
-  | "info"
-  | "light"
-  | "dark";
+  | "slate"
+  | "gray"
+  | "zinc"
+  | "neutral"
+  | "stone"
+  | "red"
+  | "orange"
+  | "amber"
+  | "yellow"
+  | "lime"
+  | "green"
+  | "emerald"
+  | "teal"
+  | "cyan"
+  | "sky"
+  | "blue"
+  | "indigo"
+  | "violet"
+  | "purple"
+  | "fuchsia"
+  | "pink"
+  | "rose";
 
 export type Sizes = "large" | "normal" | "small";
 
@@ -23,6 +37,27 @@ export type InputTypes =
 export type Positions = "left" | "right";
 
 type HtmlInputSetter = (event: ChangeEvent<HTMLInputElement>) => void;
+
+export interface IBorder {
+  radius?: string;
+  width?: string;
+  color?: string;
+  topColor?: string;
+}
+
+export interface IPadding {
+  bottom?: string;
+  left?: string;
+  right?: string;
+  top?: string;
+  x?: string;
+  y?: string;
+}
+
+export interface IShadow {
+  box?: string;
+  color: string;
+}
 
 export interface StringInputProperties {
   value?: string;
