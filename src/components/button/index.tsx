@@ -12,7 +12,7 @@ interface IButtonProps {
   isDisabled?: boolean;
   isFullwith?: boolean;
   isOutline?: boolean;
-  isRounded?: boolean;
+  isUpperCase?: boolean;
   onClick?: MouseEventHandler<
     HTMLAnchorElement | HTMLButtonElement | HTMLInputElement
   >;
@@ -169,19 +169,10 @@ const hoverShadowColor: Record<Colors, string> = {
   rose: "shadow-rose-500/40",
 };
 
-interface IButtonColors {
-  borderColor: string;
-  textColor: string;
-  bgColor: string;
-  hoverTextColor: string;
-  hoverBgColor: string;
-  activeTextColor: string;
-  activeBgColor: string;
-}
-
 interface IButtonSize {
   padding: IPadding;
   textSize: string;
+  width: string;
 }
 
 interface IRing {
@@ -197,10 +188,9 @@ interface IShadow {
 interface IButtonClass {
   backgroundColor?: string;
   border: IBorder;
-  padding?: IPadding;
-  textColor: string;
-  textSize?: string;
+  sizes?: IButtonSize;
   shadow?: IShadow;
+  textColor: string;
   hover?: {
     opacity?: string;
     shadow?: IShadow;
@@ -217,9 +207,21 @@ interface IButtonClass {
 }
 
 const buttonSize: Record<Sizes, IButtonSize> = {
-  small: { padding: { x: "px-4", y: "py-2.5" }, textSize: "text-xs" },
-  normal: { padding: { x: "px-6", y: "py-2.5" }, textSize: "text-sm" },
-  large: { padding: { x: "px-7", y: "py-3" }, textSize: "text-base" },
+  small: {
+    padding: { x: "px-4", y: "py-2.5" },
+    textSize: "text-xs",
+    width: "min-w-[80px]",
+  },
+  normal: {
+    padding: { x: "px-6", y: "py-2.5" },
+    textSize: "text-sm",
+    width: "min-w-[100px]",
+  },
+  large: {
+    padding: { x: "px-7", y: "py-3" },
+    textSize: "text-base",
+    width: "min-w-[120px]",
+  },
 };
 
 const buttonClasses = (
@@ -234,9 +236,8 @@ const buttonClasses = (
       color: isOutlined ? borderColor[color] : undefined,
       width: isOutlined ? "border" : undefined,
     },
-    padding: bSize.padding,
+    sizes: bSize,
     textColor: isOutlined ? textColor[color] : "text-white",
-    textSize: bSize.textSize,
     shadow: {
       box: isOutlined ? "shadow-md" : undefined,
       color: isOutlined ? shadowColor[color] : undefined,
@@ -284,35 +285,28 @@ export const Button: FC<IButtonProps> = ({
   isDisabled,
   isFullwith,
   isOutline = false,
-  isRounded,
+  isUpperCase,
   onClick,
   size = "normal",
 }) => {
-  // const {
-  //   borderColor,
-  //   textColor,
-  //   bgColor,
-  //   hoverTextColor,
-  //   hoverBgColor,
-  //   activeTextColor,
-  //   activeBgColor,
-  // } = colorValues[color];
-  // const round = isRounded ? "rounded-full" : "rounded";
-  // const buttonWidth = isFullwith ? "w-full" : "";
-  const click = isDisabled ? undefined : onClick;
   const bc = buttonClasses(color, isOutline, size);
+  const buttonWidth = isFullwith ? "w-full" : bc.sizes?.width;
+  const click = isDisabled ? undefined : onClick;
 
   const buttonClass = classNames(
     className,
-    "mx-2 rounded-lg",
+    "mx-2",
+    buttonWidth,
+    "rounded-lg",
     bc.border.width,
     bc.border.color,
     bc.backgroundColor,
-    bc.padding?.y,
-    bc.padding?.x,
+    bc.sizes?.padding.y,
+    bc.sizes?.padding.x,
     "font-sans",
-    bc.textSize,
-    "font-bold capitalize",
+    bc.sizes?.textSize,
+    "font-bold",
+    isUpperCase ? "uppercase" : "capitalize",
     bc.textColor,
     bc.shadow?.box,
     bc.shadow?.color,
@@ -330,7 +324,7 @@ export const Button: FC<IButtonProps> = ({
   );
 
   return (
-    <button className={buttonClass} onClick={click}>
+    <button className={buttonClass} onClick={click} disabled={isDisabled}>
       {children}
     </button>
   );
