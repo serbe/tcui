@@ -23,7 +23,7 @@
     "preview": "vite preview",
     "test": "vitest",
     "lint": "eslint --ext .js,.jsx,.ts,.tsx src/",
-    "lint:fix": "eslint --fix 'src/**/*.{jsx,ts,tsx}'",
+    "lint:fix": "eslint --fix --ext .js,.jsx,.ts,.tsx src/",
     "format": "prettier -c src//**/*.{ts,tsx,css} --config ./.prettierrc.cjs",
     "typecheck": "tsc --project tsconfig.json",
     "ladle:serve": "ladle serve",

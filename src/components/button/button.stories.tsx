@@ -76,3 +76,13 @@ export const AllVariants = (): JSX.Element => (
     ))}
   </div>
 );
+
+export const Buttons = (): JSX.Element => {
+  return (
+    <div className="container mx-auto">
+      <div className="flex items-end py-1">
+        <Button isDisabled>Disabled</Button>
+      </div>
+    </div>
+  );
+};

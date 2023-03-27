@@ -198,7 +198,7 @@ export const Number = (): JSX.Element => {
   );
 };
 
-export const FloatingStandard = () => {
+export const FloatingStandard = (): JSX.Element => {
   return (
     <div className="relative z-0">
       <input
@@ -217,10 +217,10 @@ export const FloatingStandard = () => {
   );
 };
 
-export const FloatingOutlined = () => {
+export const FloatingOutlined = (): JSX.Element => {
   const [inputValue, setInputValue] = useState<string>("");
 
-  const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (event: ChangeEvent<HTMLInputElement>): void => {
     const value = event.target.value;
     setInputValue(value);
   };
@@ -244,7 +244,7 @@ export const FloatingOutlined = () => {
   );
 };
 
-export const EmailInput = () => (
+export const EmailInput = (): JSX.Element => (
   <div className="relative flex items-center">
     <input
       type="text"
@@ -262,7 +262,7 @@ export const EmailInput = () => (
   </div>
 );
 
-export const BStaticI = () => (
+export const BStaticI = (): JSX.Element => (
   <div className="relative h-11 w-full min-w-[200px]">
     <input
       id="and_o"
@@ -279,7 +279,7 @@ export const BStaticI = () => (
   </div>
 );
 
-export const BStandardI = () => (
+export const BStandardI = (): JSX.Element => (
   <div className="relative h-11 w-full min-w-[200px]">
     <input
       id="istand"
@@ -295,7 +295,7 @@ export const BStandardI = () => (
   </div>
 );
 
-export const BOutlinedI = () => (
+export const BOutlinedI = (): JSX.Element => (
   <div className="relative h-10 w-full min-w-[200px]">
     <input
       id="ioutl"
@@ -318,7 +318,7 @@ export const BOutlinedI = () => (
   </div>
 );
 
-export const BOutlinedIndigoI = () => (
+export const BOutlinedIndigoI = (): JSX.Element => (
   <div className="relative h-10 w-full min-w-[200px]">
     <input
       id="indigo"

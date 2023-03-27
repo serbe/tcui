@@ -151,7 +151,7 @@ export const Input: FC<InputProps> = ({
 
   const ic = getInputClass(color, isOutlined, size);
 
-  const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (event: ChangeEvent<HTMLInputElement>): void => {
     const value = event.target.value;
     setInputValue(value);
 
