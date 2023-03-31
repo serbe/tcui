@@ -9,7 +9,7 @@ export const useValue = (
 ] => {
   const [value, setValue] = useState<string | number>(initValue);
 
-  const handleValueChange = (newValue: string | number) => {
+  const handleValueChange = (newValue: string | number): void => {
     setValue(newValue);
   };
 
