@@ -32,7 +32,7 @@ module.exports = {
     "prettier",
   ],
   rules: {
-    indent: ["warn", 2, { offsetTernaryExpressions: true }],
+    // indent: ["warn", 2, { offsetTernaryExpressions: true }],
     "linebreak-style": ["error", "unix"],
     quotes: ["error", "double"],
     semi: "off",

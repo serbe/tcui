@@ -24,7 +24,34 @@ export type Colors =
   | "pink"
   | "rose";
 
+export const ColorValues = [
+  "slate",
+  "gray",
+  "zinc",
+  "neutral",
+  "stone",
+  "red",
+  "orange",
+  "amber",
+  "yellow",
+  "lime",
+  "green",
+  "emerald",
+  "teal",
+  "cyan",
+  "sky",
+  "blue",
+  "indigo",
+  "violet",
+  "purple",
+  "fuchsia",
+  "pink",
+  "rose",
+];
+
 export type Sizes = "large" | "normal" | "small";
+
+export const SizeValues = ["large", "normal", "small"];
 
 export type InputTypes =
   | "email"
@@ -38,11 +65,131 @@ export type Positions = "left" | "right";
 
 type HtmlInputSetter = (event: ChangeEvent<HTMLInputElement>) => void;
 
+export interface ICSSStyle {
+  pointerEvent?: string;
+  margin?: IMargin;
+  box?: IBox;
+  position?: string;
+  placement?: IPlacement;
+  display?: string;
+  sizing?: ISizing;
+  padding?: IPadding;
+  userSelect?: string;
+  flex?: IFlex;
+  scale?: string;
+  border?: IBorder;
+  background?: IBackground;
+  font?: IFont;
+  text?: IText;
+  line?: ILine;
+  outline?: IOutline;
+  transition?: ITransition;
+  duration?: string;
+}
+
+export interface ITransition {
+  transition?: string;
+  delay?: string;
+  duration?: string;
+  property?: string;
+  timingFunction?: string;
+}
+
+export interface IBackground {
+  background?: string;
+  attachment?: string;
+  blendMode?: string;
+  clip?: string;
+  color?: string;
+  image?: string;
+  origin?: string;
+  position?: string;
+  positionX?: string;
+  positionY?: string;
+  repeat?: string;
+  size?: string;
+}
+
+export interface IPadding {
+  padding?: string;
+  block?: string;
+  blockEnd?: string;
+  blockStart?: string;
+  bottom?: string;
+  inline?: string;
+  inlineEnd?: string;
+  inlineStart?: string;
+  left?: string;
+  right?: string;
+  top?: string;
+}
+
+export interface ILine {
+  break?: string;
+  height?: string;
+}
+
+// export interface IPlaceholder {
+//   shown?: {
+//     text?: IText;
+//     leading?: string;
+//   };
+// }
+
+export interface IBox {
+  decorationBreak?: string;
+  shadow?: string;
+  sizing?: string;
+}
+
+export interface IFlex {
+  flex?: string;
+  basis?: string;
+  direction?: string;
+  flow?: string;
+  grow?: string;
+  shrink?: string;
+  wrap?: string;
+}
+
+export interface BasicProps {
+  blockSize?: string;
+  bottom?: string;
+  collapse?: string;
+  color?: string;
+  colorScheme?: string;
+  columns?: string;
+  end?: string;
+  image?: string;
+  inline?: string;
+  left?: string;
+  radius?: string;
+  right?: string;
+  spacing?: string;
+  start?: string;
+  style?: string;
+  top?: string;
+  width?: string;
+}
+
 export interface IBorder {
+  border?: string;
   radius?: string;
   width?: string;
+  top?: BasicProps;
+  bottom?: BasicProps;
+  left?: BasicProps;
+  right?: BasicProps;
   color?: string;
-  topColor?: string;
+  placement?: IPlacement;
+}
+
+export interface IOutline {
+  outline?: string;
+  color?: string;
+  offset?: string;
+  style?: string;
+  width?: string;
 }
 
 export interface IPadding {
@@ -52,6 +199,45 @@ export interface IPadding {
   top?: string;
   x?: string;
   y?: string;
+}
+
+export interface IMargin {
+  bottom?: string;
+  left?: string;
+  right?: string;
+  top?: string;
+}
+
+export interface IPlacement {
+  bottom?: string;
+  left?: string;
+  right?: string;
+  top?: string;
+  inset?: string;
+}
+
+export interface ISizing {
+  height?: string;
+  width?: string;
+}
+
+export interface IText {
+  align?: string;
+  decoration?: string;
+  indent?: string;
+  justify?: string;
+  orientation?: string;
+  overflow?: string;
+  shadow?: string;
+  transform?: string;
+}
+
+export interface IFont {
+  color?: string;
+  family?: string;
+  size?: string;
+  style?: string;
+  weight?: string;
 }
 
 export interface IShadow {

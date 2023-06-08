@@ -4,14 +4,13 @@ import React from "react";
 import { classNames } from "../../utils/classNames";
 import type { Colors, IBorder, IPadding, Sizes } from "../../utils/variables";
 
-interface IButtonProps {
+export interface IButtonProps {
   children: ReactNode;
   className?: string;
   color?: Colors;
-  hasRipple?: boolean;
   isDisabled?: boolean;
   isFullwith?: boolean;
-  isOutline?: boolean;
+  isOutlined?: boolean;
   isUpperCase?: boolean;
   onClick?: MouseEventHandler<
     HTMLAnchorElement | HTMLButtonElement | HTMLInputElement
@@ -284,12 +283,12 @@ export const Button: FC<IButtonProps> = ({
   color = "blue",
   isDisabled,
   isFullwith,
-  isOutline = false,
+  isOutlined = false,
   isUpperCase,
   onClick,
   size = "normal",
 }) => {
-  const bc = buttonClasses(color, isOutline, size);
+  const bc = buttonClasses(color, isOutlined, size);
   const buttonWidth = isFullwith ? "w-full" : bc.sizes?.width;
   const click = isDisabled ? undefined : onClick;
 
