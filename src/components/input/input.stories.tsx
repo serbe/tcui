@@ -1,102 +1,26 @@
 import { ChangeEvent, useState } from "react";
 
 import { useValue } from "../../utils/handles";
-import { Colors, ColorValues, Sizes } from "../../utils/variables";
+import { Colors, ColorValues } from "../../utils/variables";
 import { Input } from "./index";
 
-export const ACustom = (): JSX.Element => {
-  return (
-    <div className="flex w-72 flex-col gap-6">
-      <div className="relative h-10 w-full min-w-[200px]">
-        <input
-          className="peer h-full w-full truncate rounded-[7px] border border-slate-300 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-slate-600 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-slate-300 focus:text-clip focus:border-2 focus:border-pink-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-slate-100"
-          placeholder=" "
-          id="custom"
-        />
-        <label
-          htmlFor="custom"
-          className="pointer-events-none absolute -top-1.5 left-0 flex h-full w-full select-none overflow-y-hidden text-[11px] font-normal leading-tight text-slate-400 transition-all before:pointer-events-none before:mr-1 before:mt-[6.5px] before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-l before:border-t before:border-slate-300 before:transition-all after:pointer-events-none after:ml-1 after:mt-[6.5px] after:box-border after:block after:h-1.5 after:w-2.5 after:grow after:rounded-tr-md after:border-r after:border-t after:border-slate-300 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-slate-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-pink-500 peer-focus:before:border-l-2 peer-focus:before:border-t-2 peer-focus:before:border-pink-500 peer-focus:after:border-r-2 peer-focus:after:border-t-2 peer-focus:after:border-pink-500 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-slate-500"
-        >
-          Input label
-        </label>
-      </div>
-      <div className="relative h-11 w-full min-w-[200px]">
-        <input
-          placeholder="Static"
-          className="peer h-full w-full border-b border-slate-300 bg-transparent pb-1.5 pt-4 font-sans text-sm font-normal text-slate-600 outline outline-0 transition-all placeholder-shown:border-slate-300 focus:border-pink-500 focus:outline-0 disabled:border-0 disabled:bg-slate-100"
-          id="static"
-        />
-        <label
-          htmlFor="static"
-          className="pointer-events-none absolute -top-2.5 left-0 flex h-full w-full select-none text-sm font-normal leading-tight text-slate-500 transition-all after:absolute after:-bottom-2.5 after:block after:w-full after:scale-x-0 after:border-b-2 after:border-pink-500 after:transition-transform after:duration-300 peer-placeholder-shown:leading-tight peer-placeholder-shown:text-slate-500 peer-focus:text-sm peer-focus:leading-tight peer-focus:text-pink-500 peer-focus:after:scale-x-100 peer-focus:after:border-pink-500 peer-disabled:text-transparent peer-disabled:peer-placeholder-shown:text-slate-500"
-        >
-          Static
-        </label>
-      </div>
-      <div className="relative h-11 w-full min-w-[200px]">
-        <input
-          className="peer h-full w-full border-b border-slate-300 bg-transparent pb-1.5 pt-4 font-sans text-sm font-normal text-slate-600 outline outline-0 transition-all placeholder-shown:border-slate-300 focus:border-pink-500 focus:outline-0 disabled:border-0 disabled:bg-slate-100"
-          placeholder=" "
-          id="standard"
-        />
-        <label
-          htmlFor="standard"
-          className="pointer-events-none absolute -top-1.5 left-0 flex h-full w-full select-none text-[11px] font-normal leading-tight text-slate-500 transition-all after:absolute after:-bottom-1.5 after:block after:w-full after:scale-x-0 after:border-b-2 after:border-pink-500 after:transition-transform after:duration-300 peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[4.25] peer-placeholder-shown:text-slate-500 peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-pink-500 peer-focus:after:scale-x-100 peer-focus:after:border-pink-500 peer-disabled:text-transparent peer-disabled:peer-placeholder-shown:text-slate-500"
-        >
-          Standard
-        </label>
-      </div>
-      <div className="relative h-10 w-full min-w-[200px]">
-        <input
-          className="peer h-full w-full rounded-[7px] border border-slate-300 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-slate-600 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-slate-300 focus:border-2 focus:border-pink-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-slate-100"
-          placeholder=" "
-          id="outlined"
-        />
-        <label
-          htmlFor="outlined"
-          className="pointer-events-none absolute -top-1.5 left-0 flex h-full w-full select-none text-[11px] font-normal leading-tight text-slate-400 transition-all before:pointer-events-none before:mr-1 before:mt-[6.5px] before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-l before:border-t before:border-slate-300 before:transition-all after:pointer-events-none after:ml-1 after:mt-[6.5px] after:box-border after:block after:h-1.5 after:w-2.5 after:grow after:rounded-tr-md after:border-r after:border-t after:border-slate-300 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-slate-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-pink-500 peer-focus:before:border-l-2 peer-focus:before:border-t-2 peer-focus:before:border-pink-500 peer-focus:after:border-r-2 peer-focus:after:border-t-2 peer-focus:after:border-pink-500 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-slate-500"
-        >
-          Outlined
-        </label>
-      </div>
-      <div>
-        <label
-          htmlFor="outlined"
-          className="pointer-events-none absolute -top-1.5 left-0 flex h-full w-full select-none text-[11px] font-normal leading-tight text-slate-500 transition-all before:pointer-events-none before:mr-1 before:mt-[6.5px] before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-l before:border-t before:border-slate-300 before:transition-all after:pointer-events-none after:ml-1 after:mt-[6.5px] after:box-border after:block after:h-1.5 after:w-2.5 after:grow after:rounded-tr-md after:border-r after:border-t after:border-slate-300 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-slate-600 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-pink-500 peer-focus:before:border-l-2 peer-focus:before:border-t-2 peer-focus:before:border-pink-500 peer-focus:after:border-r-2 peer-focus:after:border-t-2 peer-focus:after:border-pink-500 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-slate-600"
-        >
-          Input Medium
-        </label>
-        <label
-          htmlFor="outlined"
-          className="pointer-events-none absolute -top-1.5 left-0 flex h-full w-full select-none text-[11px] font-normal leading-tight text-slate-500 transition-all before:pointer-events-none before:mr-1 before:mt-[6.5px] before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-l before:border-t before:border-slate-300 before:transition-all after:pointer-events-none after:ml-1 after:mt-[6.5px] after:box-border after:block after:h-1.5 after:w-2.5 after:grow after:rounded-tr-md after:border-r after:border-t after:border-slate-300 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[4.1] peer-placeholder-shown:text-slate-600 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-pink-500 peer-focus:before:border-l-2 peer-focus:before:border-t-2 peer-focus:before:border-pink-500 peer-focus:after:border-r-2 peer-focus:after:border-t-2 peer-focus:after:border-pink-500 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-slate-600"
-        >
-          Input Large
-        </label>
-      </div>
-    </div>
-  );
-};
-
-export const AllVariants = (): JSX.Element => {
-  const [value, setValue] = useValue("default");
+export const AllColors = (): JSX.Element => {
+  const [value, setValue] = useValue("");
   return (
     <div className="container mx-auto">
       {ColorValues.map((color) => (
         <div className="flex items-end py-2" key={`div-${color}`}>
-          {[undefined, "small", "large"].map((size) =>
-            [false, true].map((isOutlined) => (
-              <Input
-                color={color as Colors}
-                size={size as Sizes}
-                isOutlined={isOutlined}
-                key={`${isOutlined ? "O" : ""}${color}${size ?? ""}`}
-                name={`${isOutlined ? "O" : ""}${color}${size ?? ""}`}
-                label={`${color} ${size ?? ""}${isOutlined ? "O" : ""}`}
-                value={value}
-                onChange={setValue}
-              ></Input>
-            ))
-          )}
+          {[false, true].map((isOutlined) => (
+            <Input
+              color={color as Colors}
+              isOutlined={isOutlined}
+              key={`${isOutlined ? "O" : ""} ${color}`}
+              name={`${isOutlined ? "O" : ""} ${color}`}
+              label={`${color} ${isOutlined ? "O" : ""}`}
+              value={value}
+              onChange={setValue}
+            ></Input>
+          ))}
         </div>
       ))}
     </div>
@@ -362,93 +286,9 @@ export const EmailInput = (): JSX.Element => (
   </div>
 );
 
-export const BStaticI = (): JSX.Element => (
-  <div className="relative h-11 w-full min-w-[200px]">
-    <input
-      id="and_o"
-      type="text"
-      placeholder="And O"
-      className="peer h-full w-full border-b border-gray-200 bg-transparent pb-1.5 pt-4 font-sans text-sm font-normal text-gray-700 outline outline-0 transition-all placeholder-shown:border-gray-200 focus:border-pink-500 focus:outline-0 disabled:border-0 disabled:bg-gray-50"
-    />
-    <label
-      htmlFor="and_o"
-      className="pointer-events-none absolute -top-2.5 left-0 flex h-full w-full select-none text-sm font-normal leading-tight text-gray-500 transition-all after:absolute after:-bottom-2.5 after:block after:w-full after:scale-x-0 after:border-b-2 after:border-pink-500 after:transition-transform after:duration-300 peer-placeholder-shown:leading-tight peer-placeholder-shown:text-gray-500 peer-focus:text-sm peer-focus:leading-tight peer-focus:text-pink-500 peer-focus:after:scale-x-100 peer-focus:after:border-pink-500 peer-disabled:text-transparent peer-disabled:peer-placeholder-shown:text-gray-500"
-    >
-      Static
-    </label>
-  </div>
-);
-
-export const BStandardI = (): JSX.Element => (
-  <div className="relative h-11 w-full min-w-[200px]">
-    <input
-      id="istand"
-      className="peer h-full w-full border-b border-gray-200 bg-transparent pb-1.5 pt-4 font-sans text-sm font-normal text-gray-700 outline outline-0 transition-all placeholder-shown:border-gray-200 focus:border-pink-500 focus:outline-0 disabled:border-0 disabled:bg-gray-50"
-      placeholder=" "
-    />
-    <label
-      htmlFor="istand"
-      className="pointer-events-none absolute -top-1.5 left-0 flex h-full w-full select-none text-[11px] font-normal leading-tight text-gray-500 transition-all after:absolute after:-bottom-1.5 after:block after:w-full after:scale-x-0 after:border-b-2 after:border-pink-500 after:transition-transform after:duration-300 peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[4.25] peer-placeholder-shown:text-gray-500 peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-pink-500 peer-focus:after:scale-x-100 peer-focus:after:border-pink-500 peer-disabled:text-transparent peer-disabled:peer-placeholder-shown:text-gray-500"
-    >
-      Standard
-    </label>
-  </div>
-);
-
-export const BOutlinedI = (): JSX.Element => (
-  <div className="relative h-10 w-full min-w-[200px]">
-    <input
-      id="ioutl"
-      // className="peer h-full w-full border-b border-cyan-200 bg-transparent pt-4 pb-1.5 font-sans text-sm font-normal text-cyan-700 outline outline-0 transition-all placeholder-shown:border-cyan-200 focus:border-pink-500 focus:outline-0 disabled:border-0 disabled:bg-cyan-50"
-      className="peer h-full w-full rounded-[7px]          border border-slate-300 border-t-transparent bg-transparent                 px-3 py-2.5 !pr-20      font-sans text-sm font-normal text-slate-600 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-slate-300 focus:border-2 focus:border-pink-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-slate-100"
-      // standard className="peer h-full w-full               border-b        border-slate-300                      bg-transparent     pt-4 pb-1.5                   font-sans text-sm font-normal text-slate-600 outline outline-0 transition-all                          placeholder-shown:border-slate-300                focus:border-pink-500                            focus:outline-0 disabled:border-0 disabled:bg-slate-100"
-      // outlined className="peer h-full w-full rounded-[7px]          border border-slate-300 border-t-transparent bg-transparent                 px-3 py-2.5       font-sans text-sm font-normal text-slate-600 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-slate-300 focus:border-2 focus:border-pink-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-slate-100"
-      // o indigo className="peer h-full w-full rounded-[7px]          border border-gray-200  border-t-transparent bg-transparent                 px-3 py-2.5       font-sans text-sm font-normal text-gray-700  outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-gray-200  focus:border-2 focus:border-indigo-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-gray-50
-      // r button className="peer h-full w-full rounded-[7px]          border border-cyan-200  border-t-transparent bg-transparent                 px-3 py-2.5 pr-20 font-sans text-sm font-normal text-cyan-700  outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-cyan-200  focus:border-2 focus:border-pink-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-cyan-50"
-      // r icon   className="peer h-full w-full rounded-[7px]          border border-cyan-200  border-t-transparent bg-transparent                 px-3 py-2.5 !pr-9 font-sans text-sm font-normal text-cyan-700  outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-cyan-200  focus:border-2 focus:border-pink-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-cyan-50"
-      // large    className="peer h-full w-full rounded-md             border border-cyan-200  border-t-transparent bg-transparent p-3                               font-sans text-sm font-normal text-cyan-700  outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-cyan-200  focus:border-2 focus:border-pink-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-cyan-50"
-      placeholder=" "
-    />
-    <label
-      htmlFor="ioutj"
-      className="pointer-events-none absolute -top-1.5 left-0 flex h-full w-full select-none text-[11px] font-normal leading-tight text-gray-400 transition-all before:pointer-events-none before:mr-1 before:mt-[6.5px] before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-l before:border-t before:border-gray-200 before:transition-all after:pointer-events-none after:ml-1 after:mt-[6.5px] after:box-border after:block after:h-1.5 after:w-2.5 after:grow after:rounded-tr-md after:border-r after:border-t after:border-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-pink-500 peer-focus:before:border-l-2 peer-focus:before:border-t-2 peer-focus:before:border-pink-500 peer-focus:after:border-r-2 peer-focus:after:border-t-2 peer-focus:after:border-pink-500 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-gray-500"
-    >
-      Outlined
-    </label>
-  </div>
-);
-
-export const BOutlinedIndigoI = (): JSX.Element => (
-  <div className="relative h-10 w-full min-w-[200px]">
-    <input
-      id="indigo"
-      className="peer h-full w-full rounded-[7px] border border-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-gray-200 focus:border-2 focus:border-indigo-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-gray-50"
-      placeholder=" "
-    />
-    <label
-      htmlFor="indigo"
-      className="pointer-events-none absolute -top-1.5 left-0 flex h-full w-full select-none text-[11px] font-normal leading-tight text-gray-400 transition-all before:pointer-events-none before:mr-1 before:mt-[6.5px] before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-l before:border-t before:border-gray-200 before:transition-all after:pointer-events-none after:ml-1 after:mt-[6.5px] after:box-border after:block after:h-1.5 after:w-2.5 after:grow after:rounded-tr-md after:border-r after:border-t after:border-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-indigo-500 peer-focus:before:border-l-2 peer-focus:before:border-t-2 peer-focus:before:border-indigo-500 peer-focus:after:border-r-2 peer-focus:after:border-t-2 peer-focus:after:border-indigo-500 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-gray-500"
-    >
-      Input Indigo
-    </label>
-  </div>
-);
-
 export const AllInputs = (): JSX.Element => {
   return (
     <div className="flex flex-col gap-6">
-      <div>
-        <BStaticI />
-      </div>
-      <div>
-        <BStandardI />
-      </div>
-      <div>
-        <BOutlinedI />
-      </div>
-      <div>
-        <BOutlinedIndigoI />
-      </div>
       <div>
         <FloatingStandard />
       </div>

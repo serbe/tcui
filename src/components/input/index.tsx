@@ -7,12 +7,12 @@ import React, {
   useState,
 } from "react";
 
-import { classNames } from "../../utils/classNames";
+import { classNames, classToString } from "../../utils/classNames";
 import type {
   Colors,
   IClassName,
-  InputTypes,
   IPadding,
+  InputTypes,
   Sizes,
 } from "../../utils/variables";
 
@@ -35,25 +35,209 @@ interface InputProps {
   value: number | string;
 }
 
-const sizePadding: Record<Sizes, IPadding> = {
-  small: { top: "pt-4", bottom: "pb-1.5" },
-  normal: { top: "pt-4", bottom: "pb-1.5" },
-  large: { top: "pt-4", bottom: "pb-1.5" },
+interface IDivSize {
+  height: string;
+}
+
+const divSize: Record<Sizes, IDivSize> = {
+  small: {
+    height: "h-9",
+  },
+  normal: {
+    height: "h-10",
+  },
+  large: {
+    height: "h-11",
+  },
 };
 
-const sizePaddingOutlined: Record<Sizes, IPadding> = {
-  small: { x: "px-3", y: "py-2.5" },
-  normal: { x: "px-3", y: "py-2.5" },
-  large: { x: "px-3", y: "py-3" },
+interface IInputSize {
+  fontSize: string;
+  radius: string;
+  padding: IPadding;
+}
+
+const inputSize: Record<Sizes, IInputSize> = {
+  small: {
+    fontSize: "text-sm",
+    radius: "rounded-[8px]",
+    padding: { x: "px-3", y: "py-2" },
+  },
+  normal: {
+    fontSize: "text-sm",
+    radius: "rounded-[7px]",
+    padding: { x: "px-3", y: "py-2.5" },
+  },
+  large: {
+    fontSize: "text-base",
+    radius: "rounded-md",
+    padding: { padding: "p-3" },
+  },
 };
 
-const sizeBorderRadius: Record<Sizes, string> = {
-  small: "rounded-[7px]",
-  normal: "rounded-[7px]",
-  large: "rounded-md",
+interface ILabelSize {
+  height: string;
+  fontSize: string;
+}
+
+const labelSize: Record<Sizes, ILabelSize> = {
+  small: {
+    height: "peer-placeholder-shown:leading-[3.4]",
+    fontSize: "peer-placeholder-shown:text-sm",
+  },
+  normal: {
+    height: "peer-placeholder-shown:leading-[3.75]",
+    fontSize: "peer-placeholder-shown:text-sm",
+  },
+  large: {
+    height: "peer-placeholder-shown:leading-[3.4]",
+    fontSize: "peer-placeholder-shown:text-base",
+  },
 };
 
-const inputFocusColor: Record<Colors, string> = {
+interface ILabelPeerFocusColor {
+  text: string;
+  beforeBorder: string;
+  afterBorder: string;
+  afterBorderN: string;
+}
+
+const peerFocusColor: Record<Colors, ILabelPeerFocusColor> = {
+  slate: {
+    text: "peer-focus:text-slate-500",
+    beforeBorder: "peer-focus:before:border-slate-500",
+    afterBorder: "peer-focus:after:border-slate-500",
+    afterBorderN: "after:border-slate-500",
+  },
+  gray: {
+    text: "peer-focus:text-gray-500",
+    beforeBorder: "peer-focus:before:border-gray-500",
+    afterBorder: "peer-focus:after:border-gray-500",
+    afterBorderN: "after:border-gray-500",
+  },
+  zinc: {
+    text: "peer-focus:text-zinc-500",
+    beforeBorder: "peer-focus:before:border-zinc-500",
+    afterBorder: "peer-focus:after:border-zinc-500",
+    afterBorderN: "after:border-zinc-500",
+  },
+  neutral: {
+    text: "peer-focus:text-neutral-500",
+    beforeBorder: "peer-focus:before:border-neutral-500",
+    afterBorder: "peer-focus:after:border-neutral-500",
+    afterBorderN: "after:border-neutral-500",
+  },
+  stone: {
+    text: "peer-focus:text-stone-500",
+    beforeBorder: "peer-focus:before:border-stone-500",
+    afterBorder: "peer-focus:after:border-stone-500",
+    afterBorderN: "after:border-stone-500",
+  },
+  red: {
+    text: "peer-focus:text-red-500",
+    beforeBorder: "peer-focus:before:border-red-500",
+    afterBorder: "peer-focus:after:border-red-500",
+    afterBorderN: "after:border-red-500",
+  },
+  orange: {
+    text: "peer-focus:text-orange-500",
+    beforeBorder: "peer-focus:before:border-orange-500",
+    afterBorder: "peer-focus:after:border-orange-500",
+    afterBorderN: "after:border-orange-500",
+  },
+  amber: {
+    text: "peer-focus:text-amber-500",
+    beforeBorder: "peer-focus:before:border-amber-500",
+    afterBorder: "peer-focus:after:border-amber-500",
+    afterBorderN: "after:border-amber-500",
+  },
+  yellow: {
+    text: "peer-focus:text-yellow-500",
+    beforeBorder: "peer-focus:before:border-yellow-500",
+    afterBorder: "peer-focus:after:border-yellow-500",
+    afterBorderN: "after:border-yellow-500",
+  },
+  lime: {
+    text: "peer-focus:text-lime-500",
+    beforeBorder: "peer-focus:before:border-lime-500",
+    afterBorder: "peer-focus:after:border-lime-500",
+    afterBorderN: "after:border-lime-500",
+  },
+  green: {
+    text: "peer-focus:text-green-500",
+    beforeBorder: "peer-focus:before:border-green-500",
+    afterBorder: "peer-focus:after:border-green-500",
+    afterBorderN: "after:border-green-500",
+  },
+  emerald: {
+    text: "peer-focus:text-emerald-500",
+    beforeBorder: "peer-focus:before:border-emerald-500",
+    afterBorder: "peer-focus:after:border-emerald-500",
+    afterBorderN: "after:border-emerald-500",
+  },
+  teal: {
+    text: "peer-focus:text-teal-500",
+    beforeBorder: "peer-focus:before:border-teal-500",
+    afterBorder: "peer-focus:after:border-teal-500",
+    afterBorderN: "after:border-teal-500",
+  },
+  cyan: {
+    text: "peer-focus:text-cyan-500",
+    beforeBorder: "peer-focus:before:border-cyan-500",
+    afterBorder: "peer-focus:after:border-cyan-500",
+    afterBorderN: "after:border-cyan-500",
+  },
+  sky: {
+    text: "peer-focus:text-sky-500",
+    beforeBorder: "peer-focus:before:border-sky-500",
+    afterBorder: "peer-focus:after:border-sky-500",
+    afterBorderN: "after:border-sky-500",
+  },
+  blue: {
+    text: "peer-focus:text-blue-500",
+    beforeBorder: "peer-focus:before:border-blue-500",
+    afterBorder: "peer-focus:after:border-blue-500",
+    afterBorderN: "after:border-blue-500",
+  },
+  indigo: {
+    text: "peer-focus:text-indigo-500",
+    beforeBorder: "peer-focus:before:border-indigo-500",
+    afterBorder: "peer-focus:after:border-indigo-500",
+    afterBorderN: "after:border-indigo-500",
+  },
+  violet: {
+    text: "peer-focus:text-violet-500",
+    beforeBorder: "peer-focus:before:border-violet-500",
+    afterBorder: "peer-focus:after:border-violet-500",
+    afterBorderN: "after:border-violet-500",
+  },
+  purple: {
+    text: "peer-focus:text-purple-500",
+    beforeBorder: "peer-focus:before:border-purple-500",
+    afterBorder: "peer-focus:after:border-purple-500",
+    afterBorderN: "after:border-purple-500",
+  },
+  fuchsia: {
+    text: "peer-focus:text-fuchsia-500",
+    beforeBorder: "peer-focus:before:border-fuchsia-500",
+    afterBorder: "peer-focus:after:border-fuchsia-500",
+    afterBorderN: "after:border-fuchsia-500",
+  },
+  pink: {
+    text: "peer-focus:text-pink-500",
+    beforeBorder: "peer-focus:before:border-pink-500",
+    afterBorder: "peer-focus:after:border-pink-500",
+    afterBorderN: "after:border-pink-500",
+  },
+  rose: {
+    text: "peer-focus:text-rose-500",
+    beforeBorder: "peer-focus:before:border-rose-500",
+    afterBorder: "peer-focus:after:border-rose-500",
+    afterBorderN: "after:border-rose-500",
+  },
+};
+
+const inputFocusBorderColor: Record<Colors, string> = {
   slate: "focus:border-slate-500",
   gray: "focus:border-gray-500",
   zinc: "focus:border-zinc-500",
@@ -81,12 +265,10 @@ const inputFocusColor: Record<Colors, string> = {
 const getLabelClass = (
   color: Colors,
   isOutlined: boolean,
-  size: Sizes
+  size: Sizes,
 ): IClassName => {
-  // const leading =
-  //   size == "large"
-  //     ? "peer-placeholder-shown:leading-[4.1]"
-  //     : "peer-placeholder-shown:leading-[3.75]";
+  const pfColor = peerFocusColor[color];
+  const lSize = labelSize[size];
   return !isOutlined
     ? {
         pointerEvent: "pointer-events-none",
@@ -122,7 +304,7 @@ const getLabelClass = (
             placement: {
               bottom: "after:border-b-2",
             },
-            color: "after:border-pink-500",
+            color: pfColor.afterBorderN,
           },
           transition: {
             transition: "after:transition-transform",
@@ -133,7 +315,7 @@ const getLabelClass = (
           placeholder: {
             shown: {
               font: {
-                size: "peer-placeholder-shown:text-sm",
+                size: lSize.fontSize,
                 color: "peer-placeholder-shown:text-slate-500",
               },
               line: {
@@ -144,7 +326,7 @@ const getLabelClass = (
           focus: {
             font: {
               size: "peer-focus:text-[11px]",
-              color: "peer-focus:text-pink-500",
+              color: pfColor.text,
             },
             line: {
               height: "peer-focus:leading-tight",
@@ -152,7 +334,7 @@ const getLabelClass = (
             after: {
               scale: "peer-focus:after:scale-x-100",
               border: {
-                color: "peer-focus:after:border-pink-500",
+                color: pfColor.afterBorder,
               },
             },
           },
@@ -254,11 +436,11 @@ const getLabelClass = (
           placeholder: {
             shown: {
               font: {
-                size: "peer-placeholder-shown:text-sm",
+                size: lSize.fontSize,
                 color: "peer-placeholder-shown:text-slate-500",
               },
               line: {
-                height: "peer-placeholder-shown:leading-[3.75]",
+                height: lSize.height,
               },
               before: {
                 border: {
@@ -275,7 +457,7 @@ const getLabelClass = (
           focus: {
             font: {
               size: "peer-focus:text-[11px]",
-              color: "peer-focus:text-pink-500",
+              color: pfColor.text,
             },
             line: {
               height: "peer-focus:leading-tight",
@@ -288,7 +470,7 @@ const getLabelClass = (
                 top: {
                   width: "peer-focus:before:border-t-2",
                 },
-                color: "peer-focus:before:border-pink-500",
+                color: pfColor.beforeBorder,
               },
             },
             after: {
@@ -299,7 +481,7 @@ const getLabelClass = (
                 top: {
                   width: "peer-focus:after:border-t-2",
                 },
-                color: "peer-focus:after:border-pink-500",
+                color: pfColor.afterBorder,
               },
             },
           },
@@ -335,8 +517,10 @@ const getLabelClass = (
 const getInputClass = (
   color: Colors,
   isOutlined: boolean,
-  size: Sizes
+  size: Sizes,
 ): IClassName => {
+  const iFocusBorderColor = inputFocusBorderColor[color];
+  const iSize = inputSize[size];
   return !isOutlined
     ? {
         peer: {
@@ -359,7 +543,7 @@ const getInputClass = (
         },
         font: {
           family: "font-sans",
-          size: "text-sm",
+          size: iSize.fontSize,
           weight: "font-normal",
           color: "text-slate-600",
         },
@@ -379,7 +563,7 @@ const getInputClass = (
         },
         focus: {
           border: {
-            color: "focus:border-pink-500",
+            color: iFocusBorderColor,
           },
           outline: {
             width: "focus:outline-0",
@@ -401,7 +585,7 @@ const getInputClass = (
         height: "h-full",
         width: "w-full",
         border: {
-          radius: "rounded-[7px]",
+          radius: iSize.radius,
           width: "border",
           color: "border-slate-300",
           top: {
@@ -411,13 +595,10 @@ const getInputClass = (
         background: {
           color: "bg-transparent",
         },
-        padding: {
-          x: "px-3",
-          y: "py-2.5",
-        },
+        padding: iSize.padding,
         font: {
           family: "font-sans",
-          size: "text-sm",
+          size: iSize.fontSize,
           weight: "font-normal",
           color: "text-slate-600",
         },
@@ -442,7 +623,7 @@ const getInputClass = (
         focus: {
           border: {
             width: "focus:border-2",
-            color: "focus:border-pink-500",
+            color: iFocusBorderColor,
             top: {
               color: "focus:border-t-transparent",
             },
@@ -461,6 +642,9 @@ const getInputClass = (
         },
       };
 };
+
+//               font-sans
+// icon // !pr-9 font-sans
 
 export const Input: FC<InputProps> = ({
   autocomplete,
@@ -506,81 +690,20 @@ export const Input: FC<InputProps> = ({
 
   const gl = getLabelClass(color, isOutlined, size);
 
-  const labelClassNames = classNames(
-    gl.pointerEvent,
-    gl.position,
-    gl.placement?.left,
-    gl.placement?.top,
-    gl.display,
-    gl.height,
-    gl.width,
-    gl.userSelect,
-    gl.font?.size,
-    gl.font?.weight,
-    gl.line?.height,
-    gl.font?.color,
-    gl.transition?.transition,
-    gl.before?.pointerEvent,
-    gl.before?.margin?.top,
-    gl.before?.margin?.right,
-    gl.before?.box?.sizing,
-    gl.before?.display,
-    gl.before?.height,
-    gl.before?.width,
-    gl.before?.border?.radius,
-    gl.before?.border?.left?.width,
-    gl.before?.border?.top?.width,
-    gl.before?.border?.color,
-    gl.before?.transition?.transition,
-    gl.after?.pointerEvent,
-    gl.after?.margin?.top,
-    gl.after?.margin?.left,
-    gl.after?.box?.sizing,
-    gl.after?.position,
-    gl.after?.placement?.bottom,
-    gl.after?.display,
-    gl.after?.height,
-    gl.after?.width,
-    gl.after?.flex?.grow,
-    gl.after?.scale,
-    gl.after?.border?.radius,
-    gl.after?.border?.right?.width,
-    gl.after?.border?.top?.width,
-    gl.after?.border?.placement?.bottom,
-    gl.after?.border?.color,
-    gl.after?.transition?.transition,
-    gl.after?.duration,
-    gl.peer?.placeholder?.shown?.font?.size,
-    gl.peer?.placeholder?.shown?.line?.height,
-    gl.peer?.placeholder?.shown?.font?.color,
-    gl.peer?.placeholder?.shown?.before?.border?.color,
-    gl.peer?.placeholder?.shown?.after?.border?.color,
-    gl.peer?.focus?.font?.size,
-    gl.peer?.focus?.line?.height,
-    gl.peer?.focus?.font?.color,
-    gl.peer?.focus?.before?.border?.left?.width,
-    gl.peer?.focus?.before?.border?.top?.width,
-    gl.peer?.focus?.before?.border?.color,
-    gl.peer?.focus?.after?.scale,
-    gl.peer?.focus?.after?.border?.right?.width,
-    gl.peer?.focus?.after?.border?.top?.width,
-    gl.peer?.focus?.after?.border?.color,
-    gl.peer?.disabled?.font?.color,
-    gl.peer?.disabled?.before?.border?.color,
-    gl.peer?.disabled?.after?.border?.color,
-    gl.peer?.disabled?.peer?.placeholder?.shown?.font?.color
-  );
+  const labelClassNames = classToString(gl);
 
   const inputClassNames = classNames(
     ic.peer?.peer,
     ic.height,
     ic.width,
+    ic.border?.border,
     ic.border?.radius,
     ic.border?.width,
     ic.border?.color,
     ic.border?.bottom?.width,
     ic.border?.top?.color,
     ic.background?.color,
+    ic.padding?.padding,
     ic.padding?.bottom,
     ic.padding?.top,
     ic.padding?.x,
@@ -600,7 +723,7 @@ export const Input: FC<InputProps> = ({
     ic.focus?.outline?.width,
     ic.disabled?.border?.width,
     ic.disabled?.background?.color,
-    className
+    className,
   );
 
   const Label = (): JSX.Element | null => {
@@ -611,9 +734,18 @@ export const Input: FC<InputProps> = ({
     ) : null;
   };
 
+  const iDiv = divSize[size];
+
+  const divClassNames = classNames(
+    "relative",
+    iDiv.height,
+    "w-full",
+    "min-w-[200px]",
+  );
+
   return (
     <div>
-      <div className="relative h-10 w-full min-w-[200px]">
+      <div className={divClassNames}>
         <input
           autoComplete={autocomplete}
           className={inputClassNames}
