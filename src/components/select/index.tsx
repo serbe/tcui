@@ -168,7 +168,7 @@ export const Select: FC<ISelectProps> = ({
     "bg-white bg-clip-padding bg-no-repeat font-normal text-gray-700 transition ease-in-out",
     "focus:border-blue-600 focus:bg-white focus:text-gray-700 focus:outline-none",
     className,
-    selectValues[size ?? "normal"]
+    selectValues[size ?? "normal"],
   );
 
   return (

@@ -1,7 +1,7 @@
 module.exports = {
   plugins: ["prettier-plugin-tailwindcss", "prettier-plugin-organize-imports"],
   tailwindConfig: "./tailwind.config.cjs",
-  pluginSearchDirs: false,
+  // pluginSearchDirs: false,
   organizeImportsSkipDestructiveCodeActions: true,
   // "semi": false,
   // "tabWidth": 2,

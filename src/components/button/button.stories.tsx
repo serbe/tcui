@@ -48,7 +48,7 @@ export const AllVariants = (): JSX.Element => (
               isOutlined={isOutlined}
               key={`${isOutlined ? "O" : ""}${color}${size ?? ""}`}
             >{`${color} ${size ?? ""}${isOutlined ? " O" : ""}`}</Button>
-          ))
+          )),
         )}
       </div>
     ))}

@@ -1,11 +1,11 @@
 import { Dispatch, SetStateAction, useState } from "react";
 
 export const useValue = (
-  initValue: string | number
+  initValue: string | number,
 ): [
   string | number,
   (newValue: string | number) => void,
-  Dispatch<SetStateAction<string | number>>
+  Dispatch<SetStateAction<string | number>>,
 ] => {
   const [value, setValue] = useState<string | number>(initValue);
 

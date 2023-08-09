@@ -226,7 +226,7 @@ const buttonSize: Record<Sizes, IButtonSize> = {
 const buttonClasses = (
   color: Colors,
   isOutlined: boolean,
-  size: Sizes
+  size: Sizes,
 ): IButtonClass => {
   const bSize = buttonSize[size];
   return {
@@ -274,8 +274,8 @@ const buttonClasses = (
 // pink ou className="mx-2 rounded-lg border          border-pink-500                    py-3         px-6         font-sans text-xs  font-bold uppercase  text-pink-500                                     transition-all                                                hover:opacity-75                                          focus:ring        focus:ring-pink-200                       active:opacity-[0.85]                      disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
 // bc                 mx-2 rounded-lg bc.border.width bc.border.color bc.backgroundColor bc.padding.y bc.padding.x font-sans textSize font-bold capitalize bc.textColor  bc.shadow.box bc.shadow.color       transition-all bc.hover.shadow.box bc.hover.shadow.box        bc.hover.opacity bc.focus.opacity     bc.focus.shadow.box bc.focus.ring.box bc.focus.ring.color                       active:opacity-[0.85] bc.active.shadow.box disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none
 
-// pink gr className="mx-2 rounded-lg                        bg-gradient-to-tr from-pink-600 to-pink-400 py-3 px-6 font-sans text-xs font-bold uppercase  text-white    shadow-md shadow-pink-500/20   transition-all hover:shadow-lg hover:shadow-pink-500/40                                                                                                                    active:opacity-[0.85]                    disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-// pink z  className="mx-2 rounded-lg                                                                    py-3 px-6 font-sans text-xs font-bold uppercase  text-pink-500                                transition-all                                            hover:bg-pink-500/10                                                                       active:bg-pink-500/30                                          disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+// pink gr className="mx-2 rounded-lg                        bg-gradient-to-tr from-pink-600 to-pink-400 py-3 px-6 font-sans text-xs  font-bold uppercase  text-white    shadow-md shadow-pink-500/20   transition-all hover:shadow-lg hover:shadow-pink-500/40                                                                                                                    active:opacity-[0.85]                    disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+// pink z  className="mx-2 rounded-lg                                                                    py-3 px-6 font-sans text-xs  font-bold uppercase  text-pink-500                                transition-all                                            hover:bg-pink-500/10                                                                       active:bg-pink-500/30                                          disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
 
 export const Button: FC<IButtonProps> = ({
   children,
@@ -319,7 +319,7 @@ export const Button: FC<IButtonProps> = ({
     bc.focus?.ring?.color,
     "active:opacity-[0.85]",
     bc.active?.shadow?.box,
-    "disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+    "disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none",
   );
 
   return (
