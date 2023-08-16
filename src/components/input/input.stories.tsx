@@ -1,5 +1,3 @@
-import { ChangeEvent, useState } from "react";
-
 import { useValue } from "../../utils/handles";
 import { Colors, ColorValues } from "../../utils/variables";
 import { Input } from "./index";
@@ -23,6 +21,44 @@ export const AllColors = (): JSX.Element => {
           ))}
         </div>
       ))}
+    </div>
+  );
+};
+
+export const Orig = (): JSX.Element => {
+  return (
+    <div className="relative h-10 w-full min-w-[200px]">
+      <input
+        id="orig"
+        className="peer h-full w-full rounded-[7px] border border-slate-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-slate-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-slate-200 focus:border-2 focus:border-pink-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-slate-50"
+        placeholder=" "
+      />
+      <label
+        htmlFor="orig"
+        className="pointer-events-none absolute -top-1.5 left-0 flex h-full w-full select-none text-[11px] font-normal leading-tight text-slate-400 transition-all before:pointer-events-none before:mr-1 before:mt-[6.5px] before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-l before:border-t before:border-slate-200 before:transition-all after:pointer-events-none after:ml-1 after:mt-[6.5px] after:box-border after:block after:h-1.5 after:w-2.5 after:grow after:rounded-tr-md after:border-r after:border-t after:border-slate-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-slate-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-pink-500 peer-focus:before:border-l-2 peer-focus:before:border-t-2 peer-focus:before:border-pink-500 peer-focus:after:border-r-2 peer-focus:after:border-t-2 peer-focus:after:border-pink-500 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-slate-500"
+      >
+        Required
+      </label>
+    </div>
+  );
+};
+
+export const Red = (): JSX.Element => {
+  return (
+    <div className="relative h-10 w-full min-w-[200px]">
+      <input
+        className="peer h-full w-full rounded-[7px] border border-slate-300 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-slate-600 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-slate-300 focus:border-2 focus:border-red-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-slate-100"
+        id="O red"
+        placeholder=""
+        type="text"
+        value=""
+      />
+      <label
+        htmlFor="O red"
+        className="pointer-events-none absolute -top-1.5 left-0 flex h-full w-full select-none text-[11px] font-normal leading-tight text-slate-400 transition-all before:pointer-events-none before:mr-1 before:mt-[6.5px] before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-l before:border-t before:border-slate-300 before:transition-all after:pointer-events-none after:ml-1 after:mt-[6.5px] after:box-border after:block after:h-1.5 after:w-2.5 after:grow after:rounded-tr-md after:border-r after:border-t after:border-slate-300 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-slate-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-red-500 peer-focus:before:border-l-2 peer-focus:before:border-t-2 peer-focus:before:border-red-500 peer-focus:after:border-r-2 peer-focus:after:border-t-2 peer-focus:after:border-red-500 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-slate-500"
+      >
+        red O
+      </label>
     </div>
   );
 };
@@ -96,22 +132,9 @@ export const TextHelper = (): JSX.Element => {
   return (
     <Input
       name="textHelper"
+      label="text helper"
       textHelper="text helper"
       placeholder="text helper"
-      value={value}
-      onChange={setValue}
-    />
-  );
-};
-
-export const LabelAndHelper = (): JSX.Element => {
-  const [value, setValue] = useValue("");
-  return (
-    <Input
-      name="labelAndHelper"
-      label="label"
-      textHelper="text helper"
-      placeholder="label and text helper"
       value={value}
       onChange={setValue}
     />
@@ -222,91 +245,14 @@ export const Number = (): JSX.Element => {
   );
 };
 
-export const FloatingStandard = (): JSX.Element => {
-  return (
-    <div className="relative z-0">
-      <input
-        type="text"
-        id="floating_standard"
-        className="peer block w-full appearance-none border-0 border-b-2 border-gray-300 bg-transparent px-0 py-2.5 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0 dark:border-gray-600 dark:text-white dark:focus:border-blue-500"
-        placeholder=" "
-      />
-      <label
-        htmlFor="floating_standard"
-        className="absolute top-3 -z-10 origin-[0] -translate-y-6 scale-75 text-sm text-gray-500 duration-300 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:left-0 peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:text-blue-600 dark:text-gray-400 peer-focus:dark:text-blue-500"
-      >
-        Floating standard
-      </label>
-    </div>
-  );
-};
-
-export const FloatingOutlined = (): JSX.Element => {
-  const [inputValue, setInputValue] = useState<string>("");
-
-  const handleInputChange = (event: ChangeEvent<HTMLInputElement>): void => {
-    const value = event.target.value;
-    setInputValue(value);
-  };
-  return (
-    <div className="relative">
-      <input
-        type="text"
-        id="floating_outlined"
-        className="peer block w-full appearance-none rounded-lg border-2 border-gray-300 bg-transparent px-2.5 pb-2.5 pt-4 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0 dark:border-gray-600 dark:text-white dark:focus:border-blue-500"
-        value={inputValue}
-        onChange={handleInputChange}
-        placeholder=" "
-      />
-      <label
-        htmlFor="floating_outlined"
-        className="absolute left-1 top-2 z-10 origin-[0] -translate-y-4 scale-75 bg-white px-2 text-sm text-gray-500 duration-300 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:top-2 peer-focus:-translate-y-4 peer-focus:scale-75 peer-focus:px-2 peer-focus:text-blue-600 dark:text-gray-400 peer-focus:dark:text-blue-500"
-      >
-        Floating outlined
-      </label>
-    </div>
-  );
-};
-
-export const EmailInput = (): JSX.Element => (
-  <div className="relative flex items-center">
-    <input
-      type="text"
-      className="w-full rounded-lg border-b-2 border-black bg-gray-200/50 px-3 py-2 outline-none transition-all focus:border-blue-800"
-      id="email"
-      name="email"
-      value=""
-    />
-    <label
-      htmlFor="email"
-      className="absolute top-0 p-2 font-semibold transition-all ease-out"
-    >
-      Email
-    </label>
-  </div>
-);
-
 export const AllInputs = (): JSX.Element => {
   return (
     <div className="flex flex-col gap-6">
-      <div>
-        <FloatingStandard />
-      </div>
-      <div>
-        <FloatingOutlined />
-      </div>
-      <div>
-        <EmailInput />
-      </div>
-
       <div>
         <Label />
       </div>
       <div>
         <TextHelper />
-      </div>
-      <div>
-        <LabelAndHelper />
       </div>
       <div>
         <Default />
