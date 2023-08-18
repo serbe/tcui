@@ -1,5 +1,3 @@
-import { ChangeEvent, useState } from "react";
-
 import { useValue } from "../../utils/handles";
 import { Colors, ColorValues } from "../../utils/variables";
 import { Input } from "./index";
@@ -9,327 +7,225 @@ export const AllColors = (): JSX.Element => {
   return (
     <div className="container mx-auto">
       {ColorValues.map((color) => (
-        <div className="flex items-end py-2" key={`div-${color}`}>
-          {[false, true].map((isOutlined) => (
+        <div className="my-2 flex flex-wrap" key={`div-${color}`}>
+          <div className="m-2">
             <Input
               color={color as Colors}
-              isOutlined={isOutlined}
-              key={`${isOutlined ? "O" : ""} ${color}`}
-              name={`${isOutlined ? "O" : ""} ${color}`}
-              label={`${color} ${isOutlined ? "O" : ""}`}
+              isOutlined={false}
+              name={`${color}NoOutline`}
+              label={`${color} no outline`}
               value={value}
               onChange={setValue}
+              className=""
             ></Input>
-          ))}
+          </div>
+          <div className="m-2">
+            <Input
+              color={color as Colors}
+              name={`${color}normal`}
+              label={`${color} normal`}
+              value={value}
+              onChange={setValue}
+              className=""
+            ></Input>
+          </div>
+          <div className="m-2">
+            <Input
+              color={color as Colors}
+              name={`${color}small`}
+              label={`${color} small`}
+              value={value}
+              size="small"
+              onChange={setValue}
+              className=""
+            ></Input>
+          </div>
+          <div className="m-2">
+            <Input
+              color={color as Colors}
+              name={`${color}large`}
+              label={`${color} large`}
+              value={value}
+              size="large"
+              onChange={setValue}
+              className=""
+            ></Input>
+          </div>
         </div>
       ))}
     </div>
   );
 };
 
-export const Default = (): JSX.Element => {
-  const [value, setValue] = useValue("default");
-  return (
-    <Input
-      name="default"
-      placeholder="default"
-      value={value}
-      onChange={setValue}
-    />
-  );
-};
-
-export const Small = (): JSX.Element => {
-  const [value, setValue] = useValue("small");
-  return (
-    <Input
-      name="small"
-      size="small"
-      placeholder="small"
-      value={value}
-      onChange={setValue}
-    />
-  );
-};
-
-export const Normal = (): JSX.Element => {
-  const [value, setValue] = useValue("normal");
-  return (
-    <Input
-      name="normal"
-      size="normal"
-      placeholder="normal"
-      value={value}
-      onChange={setValue}
-    />
-  );
-};
-
-export const Large = (): JSX.Element => {
-  const [value, setValue] = useValue("large");
-  return (
-    <Input
-      name="large"
-      size="large"
-      placeholder="large"
-      value={value}
-      onChange={setValue}
-    />
-  );
-};
-
-export const Label = (): JSX.Element => {
+export const AllTypes = (): JSX.Element => {
   const [value, setValue] = useValue("");
   return (
-    <Input
-      name="label"
-      label="label"
-      placeholder="label"
-      value={value}
-      onChange={setValue}
-    />
+    <div className="container mx-auto">
+      <div className="my-2 flex flex-wrap">
+        <div className="m-2">
+          <Input
+            name="default"
+            placeholder="default"
+            value={value}
+            onChange={setValue}
+          />
+        </div>
+        <div className="m-2">
+          <Input
+            name="email"
+            type="email"
+            placeholder="email"
+            value="mail@example.com"
+            onChange={setValue}
+          />
+        </div>
+        <div className="m-2">
+          <Input
+            name="password"
+            type="password"
+            placeholder="password"
+            value="password"
+            onChange={setValue}
+          />
+        </div>
+        <div className="m-2">
+          <Input
+            name="tel"
+            type="tel"
+            placeholder="+1800123456"
+            value="+1800123456"
+            onChange={setValue}
+          />
+        </div>
+        <div className="m-2">
+          <Input
+            name="text"
+            type="text"
+            placeholder="text"
+            value="text"
+            onChange={setValue}
+          />
+        </div>
+        <div className="m-2">
+          <Input
+            name="url"
+            type="url"
+            placeholder="URL"
+            value="http://example.com"
+            onChange={setValue}
+          />
+        </div>
+        <div className="m-2">
+          <Input
+            name="number"
+            type="number"
+            placeholder="123"
+            value="123"
+            onChange={setValue}
+          />
+        </div>
+        <div className="m-2">
+          <Input
+            isDisabled
+            name="isDisabled"
+            placeholder="is disabled"
+            value=""
+            onChange={setValue}
+          />
+        </div>
+        <div className="m-2">
+          <Input
+            isReadOnly
+            name="isReadOnly"
+            placeholder="is read only"
+            value=""
+            onChange={setValue}
+          />
+        </div>
+      </div>
+    </div>
   );
 };
 
-export const TextHelper = (): JSX.Element => {
-  const [value, setValue] = useValue("");
+export const LAI = (): JSX.Element => {
   return (
-    <Input
-      name="textHelper"
-      textHelper="text helper"
-      placeholder="text helper"
-      value={value}
-      onChange={setValue}
-    />
-  );
-};
-
-export const LabelAndHelper = (): JSX.Element => {
-  const [value, setValue] = useValue("");
-  return (
-    <Input
-      name="labelAndHelper"
-      label="label"
-      textHelper="text helper"
-      placeholder="label and text helper"
-      value={value}
-      onChange={setValue}
-    />
-  );
-};
-
-export const IsDisabled = (): JSX.Element => {
-  const [value, setValue] = useValue("");
-  return (
-    <Input
-      isDisabled
-      name="isDisabled"
-      placeholder="is disabled"
-      value={value}
-      onChange={setValue}
-    />
-  );
-};
-
-export const IsReadOnly = (): JSX.Element => {
-  const [value, setValue] = useValue("");
-  return (
-    <Input
-      isReadOnly
-      name="isReadOnly"
-      placeholder="is read only"
-      value={value}
-      onChange={setValue}
-    />
-  );
-};
-
-export const Email = (): JSX.Element => {
-  const [value, setValue] = useValue("mail@example.com");
-  return (
-    <Input
-      name="email"
-      type="email"
-      placeholder="email"
-      value={value}
-      onChange={setValue}
-    />
-  );
-};
-
-export const Password = (): JSX.Element => {
-  const [value, setValue] = useValue("password");
-  return (
-    <Input
-      name="password"
-      type="password"
-      placeholder="password"
-      value={value}
-      onChange={setValue}
-    />
-  );
-};
-
-export const Tel = (): JSX.Element => {
-  const [value, setValue] = useValue("+1800123456");
-  return (
-    <Input
-      name="tel"
-      type="tel"
-      placeholder="+1800123456"
-      value={value}
-      onChange={setValue}
-    />
-  );
-};
-
-export const Text = (): JSX.Element => {
-  const [value, setValue] = useValue("text");
-  return (
-    <Input
-      name="text"
-      type="text"
-      placeholder="text"
-      value={value}
-      onChange={setValue}
-    />
-  );
-};
-
-export const Url = (): JSX.Element => {
-  const [value, setValue] = useValue("http://example.com");
-  return (
-    <Input
-      name="url"
-      type="url"
-      placeholder="URL"
-      value={value}
-      onChange={setValue}
-    />
-  );
-};
-
-export const Number = (): JSX.Element => {
-  const [value, setValue] = useValue(123);
-  return (
-    <Input
-      name="number"
-      type="number"
-      placeholder="123"
-      value={value}
-      onChange={setValue}
-    />
-  );
-};
-
-export const FloatingStandard = (): JSX.Element => {
-  return (
-    <div className="relative z-0">
-      <input
-        type="text"
-        id="floating_standard"
-        className="peer block w-full appearance-none border-0 border-b-2 border-gray-300 bg-transparent px-0 py-2.5 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0 dark:border-gray-600 dark:text-white dark:focus:border-blue-500"
-        placeholder=" "
-      />
+    <div>
       <label
-        htmlFor="floating_standard"
-        className="absolute top-3 -z-10 origin-[0] -translate-y-6 scale-75 text-sm text-gray-500 duration-300 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:left-0 peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:text-blue-600 dark:text-gray-400 peer-focus:dark:text-blue-500"
+        htmlFor="email"
+        className="block text-sm font-medium leading-6 text-gray-900"
       >
-        Floating standard
+        Email
       </label>
+      <div className="relative mt-2 rounded-md shadow-sm">
+        <input
+          type="email"
+          name="email"
+          id="email"
+          className="block w-full rounded-md border-0 py-1.5 pr-10 text-sm leading-6 text-red-900 ring-1 ring-inset ring-red-300 placeholder:text-red-300 focus-within:ring-2 focus-within:ring-inset focus:ring-red-500"
+          placeholder="you@example.com"
+          aria-invalid="true"
+          aria-describedby="email-error"
+          value="adamwathan"
+        />
+        <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+            aria-hidden="true"
+            className="h-5 w-5 text-red-500"
+          >
+            <path
+              fillRule="evenodd"
+              d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-5a.75.75 0 01.75.75v4.5a.75.75 0 01-1.5 0v-4.5A.75.75 0 0110 5zm0 10a1 1 0 100-2 1 1 0 000 2z"
+              clipRule="evenodd"
+            ></path>
+          </svg>
+        </div>
+      </div>
+      <p className="mt-2 text-sm text-red-600" id="email-error">
+        Not a valid email address.
+      </p>
     </div>
   );
 };
 
-export const FloatingOutlined = (): JSX.Element => {
-  const [inputValue, setInputValue] = useState<string>("");
+// export const Label = (): JSX.Element => {
+//   const [value, setValue] = useValue("");
+//   return (
+//     <Input
+//       name="label"
+//       label="label"
+//       placeholder="label"
+//       value={value}
+//       onChange={setValue}
+//     />
+//   );
+// };
 
-  const handleInputChange = (event: ChangeEvent<HTMLInputElement>): void => {
-    const value = event.target.value;
-    setInputValue(value);
-  };
-  return (
-    <div className="relative">
-      <input
-        type="text"
-        id="floating_outlined"
-        className="peer block w-full appearance-none rounded-lg border-2 border-gray-300 bg-transparent px-2.5 pb-2.5 pt-4 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0 dark:border-gray-600 dark:text-white dark:focus:border-blue-500"
-        value={inputValue}
-        onChange={handleInputChange}
-        placeholder=" "
-      />
-      <label
-        htmlFor="floating_outlined"
-        className="absolute left-1 top-2 z-10 origin-[0] -translate-y-4 scale-75 bg-white px-2 text-sm text-gray-500 duration-300 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:top-2 peer-focus:-translate-y-4 peer-focus:scale-75 peer-focus:px-2 peer-focus:text-blue-600 dark:text-gray-400 peer-focus:dark:text-blue-500"
-      >
-        Floating outlined
-      </label>
-    </div>
-  );
-};
+// export const TextHelper = (): JSX.Element => {
+//   const [value, setValue] = useValue("");
+//   return (
+//     <Input
+//       name="textHelper"
+//       textHelper="text helper"
+//       placeholder="text helper"
+//       value={value}
+//       onChange={setValue}
+//     />
+//   );
+// };
 
-export const EmailInput = (): JSX.Element => (
-  <div className="relative flex items-center">
-    <input
-      type="text"
-      className="w-full rounded-lg border-b-2 border-black bg-gray-200/50 px-3 py-2 outline-none transition-all focus:border-blue-800"
-      id="email"
-      name="email"
-      value=""
-    />
-    <label
-      htmlFor="email"
-      className="absolute top-0 p-2 font-semibold transition-all ease-out"
-    >
-      Email
-    </label>
-  </div>
-);
-
-export const AllInputs = (): JSX.Element => {
-  return (
-    <div className="flex flex-col gap-6">
-      <div>
-        <FloatingStandard />
-      </div>
-      <div>
-        <FloatingOutlined />
-      </div>
-      <div>
-        <EmailInput />
-      </div>
-
-      <div>
-        <Label />
-      </div>
-      <div>
-        <TextHelper />
-      </div>
-      <div>
-        <LabelAndHelper />
-      </div>
-      <div>
-        <Default />
-      </div>
-      <div>
-        <Small />
-        <Normal />
-        <Large />
-      </div>
-      <div>
-        <IsDisabled />
-      </div>
-      <div>
-        <IsReadOnly />
-      </div>
-      <div>
-        <Email />
-        <Password />
-        <Tel />
-        <Text />
-        <Url />
-        <Number />
-      </div>
-    </div>
-  );
-};
+// export const LabelAndHelper = (): JSX.Element => {
+//   const [value, setValue] = useValue("");
+//   return (
+//     <Input
+//       name="labelAndHelper"
+//       label="label"
+//       textHelper="text helper"
+//       placeholder="label and text helper"
+//       value={value}
+//       onChange={setValue}
+//     />
+//   );
+// };
