@@ -11,6 +11,7 @@ import { classNames, classToString } from "../../utils/classNames";
 import {
   borderColor,
   focusOutlineColor,
+  placeholderTextColor,
   type Colors,
   type IClassName,
   type InputTypes,
@@ -74,12 +75,11 @@ const inputSize: Record<Sizes, IInputSize> = {
 
 export const inp = (): JSX.Element => (
   <input
+    className="w-full appearance-none rounded-md py-2 pl-10 text-sm leading-6 text-slate-900 shadow-sm ring-1 ring-slate-200 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
     type="text"
-    name="first-name"
-    id="first-name"
-    autoComplete="given-name"
-    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-  ></input>
+    aria-label="Filter projects"
+    placeholder="Filter projects..."
+  />
 );
 
 const getInputClass = (
@@ -89,9 +89,9 @@ const getInputClass = (
 ): IClassName => {
   const iSize = inputSize[size];
   return {
-    layout: {
-      display: "block",
-    },
+    // layout: {
+    //   display: "block",
+    // },
     padding: {
       x: isOutlined ? iSize.padding.ox : iSize.padding.x,
       y: iSize.padding.y,
@@ -110,7 +110,7 @@ const getInputClass = (
       lineHeight: iSize.leading,
     },
     interactivity: {
-      accentColor: "accent-transparent",
+      appearance: "appearance-none",
     },
     hover: {
       effect: {
@@ -123,6 +123,11 @@ const getInputClass = (
         outlineOffset: "focus:outline-offset-0",
         outlineWidth: "focus:outline-2",
         outlineStyle: "focus:outline-none",
+      },
+    },
+    placeholder: {
+      typography: {
+        textColor: placeholderTextColor[color],
       },
     },
   };
@@ -191,7 +196,7 @@ export const Input: FC<InputProps> = ({
           onBlur={onBlur}
           onChange={handleInputChange}
           onClick={onClick}
-          placeholder={label ? "" : placeholder}
+          placeholder={placeholder}
           readOnly={isReadOnly}
           ref={inputRef}
           type={type}
