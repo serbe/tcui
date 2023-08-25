@@ -200,28 +200,28 @@ export const placeholderTextColor: Record<Colors, string> = {
 };
 
 export const focusBorderColor: Record<Colors, string> = {
-  slate: "focus:border-slate-600",
-  gray: "focus:border-gray-600",
-  zinc: "focus:border-zinc-600",
-  neutral: "focus:border-neutral-600",
-  stone: "focus:border-stone-600",
-  red: "focus:border-red-600",
-  orange: "focus:border-orange-600",
-  amber: "focus:border-amber-600",
-  yellow: "focus:border-yellow-600",
-  lime: "focus:border-lime-600",
-  green: "focus:border-green-600",
-  emerald: "focus:border-emerald-600",
-  teal: "focus:border-teal-600",
-  cyan: "focus:border-cyan-600",
-  sky: "focus:border-sky-600",
-  blue: "focus:border-blue-600",
-  indigo: "focus:border-indigo-600",
-  violet: "focus:border-violet-600",
-  purple: "focus:border-purple-600",
-  fuchsia: "focus:border-fuchsia-600",
-  pink: "focus:border-pink-600",
-  rose: "focus:border-rose-600",
+  slate: "focus:border-slate-500",
+  gray: "focus:border-gray-500",
+  zinc: "focus:border-zinc-500",
+  neutral: "focus:border-neutral-500",
+  stone: "focus:border-stone-500",
+  red: "focus:border-red-500",
+  orange: "focus:border-orange-500",
+  amber: "focus:border-amber-500",
+  yellow: "focus:border-yellow-500",
+  lime: "focus:border-lime-500",
+  green: "focus:border-green-500",
+  emerald: "focus:border-emerald-500",
+  teal: "focus:border-teal-500",
+  cyan: "focus:border-cyan-500",
+  sky: "focus:border-sky-500",
+  blue: "focus:border-blue-500",
+  indigo: "focus:border-indigo-500",
+  violet: "focus:border-violet-500",
+  purple: "focus:border-purple-500",
+  fuchsia: "focus:border-fuchsia-500",
+  pink: "focus:border-pink-500",
+  rose: "focus:border-rose-500",
 };
 
 export const peerFocusTextColor: Record<Colors, string> = {
@@ -438,50 +438,57 @@ export type InputTypes =
 
 export type Positions = "left" | "right";
 
-export interface IClassName extends IObject {
-  before?: IObject;
-  after?: IObject;
-  peer?: IObject & {
-    peer?: string;
-    placeholder?: IObject & {
-      shown?: IObject & {
-        before?: IObject;
-        after?: IObject;
-      };
-    };
-    focus?: IObject & {
-      after?: IObject;
-      before?: IObject;
-    };
-    disabled?: IObject & {
-      before?: IObject;
-      after?: IObject;
-      peer?: IObject & {
-        placeholder?: IObject & {
-          shown?: IObject;
-        };
-      };
-    };
-  };
-  placeholder?: IObject & {
-    shown?: IObject;
-  };
-  active?: IObject;
-  empty?: IObject;
-  focus?: IObject;
-  hover?: IObject;
-  disabled?: IObject;
-}
-
-export interface IObject extends IBasicProps {
-  sm?: IBasicProps;
-  md?: IBasicProps;
-  lg?: IBasicProps;
-  xl?: IBasicProps;
-  xxl?: IBasicProps;
+export interface IClassName extends IBasicProps {
+  hover?: IClassName;
+  focus?: IClassName;
+  focusWithin?: IClassName;
+  focusVisible?: IClassName;
+  active?: IClassName;
+  visited?: IClassName;
+  target?: IClassName;
+  first?: IClassName;
+  last?: IClassName;
+  only?: IClassName;
+  odd?: IClassName;
+  even?: IClassName;
+  firstOfType?: IClassName;
+  lastOfType?: IClassName;
+  onlyOfType?: IClassName;
+  empty?: IClassName;
+  disabled?: IClassName;
+  enabled?: IClassName;
+  checked?: IClassName;
+  indeterminate?: IClassName;
+  default?: IClassName;
+  required?: IClassName;
+  valid?: IClassName;
+  invalid?: IClassName;
+  inRange?: IClassName;
+  outOfRange?: IClassName;
+  placeholderShown?: IClassName;
+  autofill?: IClassName;
+  readOnly?: IClassName;
+  before?: IClassName;
+  after?: IClassName;
+  placeholder?: IClassName;
+  selection?: IClassName;
+  group?: IClassName;
+  peer?: IClassName;
+  min?: IClassName;
+  max?: IClassName;
+  sm?: IClassName;
+  md?: IClassName;
+  lg?: IClassName;
+  xl?: IClassName;
+  xxl?: IClassName;
+  maxSm?: IClassName;
+  maxMd?: IClassName;
+  maxLg?: IClassName;
+  maxXl?: IClassName;
 }
 
 export interface IBasicProps {
+  self?: string;
   layout?: ILayout;
   item?: IItem;
   padding?: IPadding;

@@ -9,7 +9,7 @@ import React, {
 
 import { classNames, classToString } from "../../utils/classNames";
 import {
-  borderColor,
+  focusBorderColor,
   focusOutlineColor,
   placeholderTextColor,
   type Colors,
@@ -73,15 +73,6 @@ const inputSize: Record<Sizes, IInputSize> = {
   },
 };
 
-export const inp = (): JSX.Element => (
-  <input
-    className="w-full appearance-none rounded-md py-2 pl-10 text-sm leading-6 text-slate-900 shadow-sm ring-1 ring-slate-200 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
-    type="text"
-    aria-label="Filter projects"
-    placeholder="Filter projects..."
-  />
-);
-
 const getInputClass = (
   color: Colors,
   isOutlined: boolean,
@@ -101,9 +92,14 @@ const getInputClass = (
     },
     border: {
       borderRadius: isOutlined ? "rounded-full" : "rounded-sm",
-      borderColor: borderColor[color],
-      borderWidth: isOutlined ? "border" : "border-b",
+      borderColor: isOutlined ? undefined : "border-slate-500",
+      borderWidth: isOutlined ? undefined : "border-b",
+      outlineColor: isOutlined ? "outline-slate-500" : undefined,
       outlineStyle: "outline-none",
+      outlineWidth: isOutlined ? "outline-1" : undefined,
+    },
+    background: {
+      color: "bg-transparent",
     },
     typography: {
       fontSize: iSize.fontSize,
@@ -119,10 +115,10 @@ const getInputClass = (
     },
     focus: {
       border: {
-        outlineColor: focusOutlineColor[color],
-        outlineOffset: "focus:outline-offset-0",
-        outlineWidth: "focus:outline-2",
-        outlineStyle: "focus:outline-none",
+        borderColor: isOutlined ? undefined : focusBorderColor[color],
+        borderWidth: isOutlined ? undefined : "focus:border-b-2",
+        outlineColor: isOutlined ? focusOutlineColor[color] : undefined,
+        outlineWidth: isOutlined ? "focus:outline-2" : undefined,
       },
     },
     placeholder: {
@@ -179,7 +175,11 @@ export const Input: FC<InputProps> = ({
   const inputClassNames = classNames(classToString(ic), className);
 
   const Label = (): JSX.Element | null => {
-    return label ? <label htmlFor={name}>{label}</label> : null;
+    return label ? (
+      <label htmlFor={name} className="block bg-green-300">
+        {label}
+      </label>
+    ) : null;
   };
 
   const divClassNames = classNames("relative", "min-w-[200px]", "min-h-[8px]");
@@ -187,6 +187,7 @@ export const Input: FC<InputProps> = ({
   return (
     <div>
       <div className={divClassNames}>
+        <Label />
         <input
           autoComplete={autocomplete}
           className={inputClassNames}
@@ -202,7 +203,6 @@ export const Input: FC<InputProps> = ({
           type={type}
           value={inputValue}
         />
-        <Label />
       </div>
       <Helper />
     </div>
