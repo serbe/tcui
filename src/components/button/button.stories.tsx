@@ -21,10 +21,10 @@ export const AllVariants = (): JSX.Element => (
       </Button>
     </div>
     <div className="my-1 flex items-end">
-      <Button className="mx-1" isFullwith>
+      <Button className="mx-1" isFullwidth>
         FullWidth
       </Button>
-      <Button className="mx-1" isFullwith isOutlined>
+      <Button className="mx-1" isFullwidth isOutlined>
         FullWidth O
       </Button>
     </div>
@@ -69,7 +69,7 @@ export const Buttons: Story<IButtonProps> = ({
   className,
   color,
   isDisabled,
-  isFullwith,
+  isFullwidth,
   isOutlined,
   isUpperCase,
   size,
@@ -85,7 +85,7 @@ export const Buttons: Story<IButtonProps> = ({
           className={className}
           color={color}
           isDisabled={isDisabled}
-          isFullwith={isFullwith}
+          isFullwidth={isFullwidth}
           isOutlined={isOutlined}
           isUpperCase={isUpperCase}
           onClick={onClick}
@@ -101,10 +101,10 @@ export const Buttons: Story<IButtonProps> = ({
 
 Buttons.args = {
   children: "Button",
-  color: "blue",
+  color: "slate",
   size: "normal",
   isDisabled: false,
-  isFullwith: false,
+  isFullwidth: false,
   isOutlined: false,
   isUpperCase: false,
   className: "",
@@ -114,7 +114,7 @@ Buttons.argTypes = {
   color: {
     options: ColorValues,
     control: { type: "select" },
-    defaultValue: "blue",
+    defaultValue: "slate",
   },
   size: {
     options: ["small", "normal", "large"],
