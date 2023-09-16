@@ -22,7 +22,9 @@ export type Colors =
   | "purple"
   | "fuchsia"
   | "pink"
-  | "rose";
+  | "rose"
+  | "white"
+  | "black";
 
 export const ColorValues = [
   "slate",
@@ -47,6 +49,8 @@ export const ColorValues = [
   "fuchsia",
   "pink",
   "rose",
+  "white",
+  "black",
 ];
 
 export const outlineColor: Record<Colors, string> = {
@@ -72,31 +76,62 @@ export const outlineColor: Record<Colors, string> = {
   fuchsia: "outline-fuchsia-300",
   pink: "outline-pink-300",
   rose: "outline-rose-300",
+  white: "outline-white",
+  black: "outline-black",
 };
 
 export const focusOutlineColor: Record<Colors, string> = {
-  slate: "focus:outline-slate-500",
-  gray: "focus:outline-gray-500",
-  zinc: "focus:outline-zinc-500",
-  neutral: "focus:outline-neutral-500",
-  stone: "focus:outline-stone-500",
-  red: "focus:outline-red-500",
-  orange: "focus:outline-orange-500",
-  amber: "focus:outline-amber-500",
-  yellow: "focus:outline-yellow-500",
-  lime: "focus:outline-lime-500",
-  green: "focus:outline-green-500",
-  emerald: "focus:outline-emerald-500",
-  teal: "focus:outline-teal-500",
-  cyan: "focus:outline-cyan-500",
-  sky: "focus:outline-sky-500",
-  blue: "focus:outline-blue-500",
-  indigo: "focus:outline-indigo-500",
-  violet: "focus:outline-violet-500",
-  purple: "focus:outline-purple-500",
-  fuchsia: "focus:outline-fuchsia-500",
-  pink: "focus:outline-pink-500",
-  rose: "focus:outline-rose-500",
+  slate: "focus:outline-slate-400",
+  gray: "focus:outline-gray-400",
+  zinc: "focus:outline-zinc-400",
+  neutral: "focus:outline-neutral-400",
+  stone: "focus:outline-stone-400",
+  red: "focus:outline-red-400",
+  orange: "focus:outline-orange-400",
+  amber: "focus:outline-amber-400",
+  yellow: "focus:outline-yellow-400",
+  lime: "focus:outline-lime-400",
+  green: "focus:outline-green-400",
+  emerald: "focus:outline-emerald-400",
+  teal: "focus:outline-teal-400",
+  cyan: "focus:outline-cyan-400",
+  sky: "focus:outline-sky-400",
+  blue: "focus:outline-blue-400",
+  indigo: "focus:outline-indigo-400",
+  violet: "focus:outline-violet-400",
+  purple: "focus:outline-purple-400",
+  fuchsia: "focus:outline-fuchsia-400",
+  pink: "focus:outline-pink-400",
+  rose: "focus:outline-rose-400",
+  white: "focus:outline-white",
+  black: "focus:outline-black",
+};
+
+export const hoverOutlineColor: Record<Colors, string> = {
+  slate: "hover:outline-slate-300",
+  gray: "hover:outline-gray-300",
+  zinc: "hover:outline-zinc-300",
+  neutral: "hover:outline-neutral-300",
+  stone: "hover:outline-stone-300",
+  red: "hover:outline-red-300",
+  orange: "hover:outline-orange-300",
+  amber: "hover:outline-amber-300",
+  yellow: "hover:outline-yellow-300",
+  lime: "hover:outline-lime-300",
+  green: "hover:outline-green-300",
+  emerald: "hover:outline-emerald-300",
+  teal: "hover:outline-teal-300",
+  cyan: "hover:outline-cyan-300",
+  sky: "hover:outline-sky-300",
+  blue: "hover:outline-blue-300",
+  indigo: "hover:outline-indigo-300",
+  violet: "hover:outline-violet-300",
+  purple: "hover:outline-purple-300",
+  fuchsia: "hover:outline-fuchsia-300",
+  pink: "hover:outline-pink-300",
+  rose: "hover:outline-rose-300",
+  white: "hover:outline-white",
+  black: "hover:outline-black",
 };
 
 export const borderColor: Record<Colors, string> = {
@@ -122,6 +157,8 @@ export const borderColor: Record<Colors, string> = {
   fuchsia: "border-fuchsia-500",
   pink: "border-pink-500",
   rose: "border-rose-500",
+  white: "border-white",
+  black: "border-black",
 };
 
 export const backgroundColor: Record<Colors, string> = {
@@ -147,6 +184,8 @@ export const backgroundColor: Record<Colors, string> = {
   fuchsia: "bg-fuchsia-500",
   pink: "bg-pink-500",
   rose: "bg-rose-500",
+  white: "bg-white",
+  black: "bg-black",
 };
 
 export const textColor: Record<Colors, string> = {
@@ -172,6 +211,8 @@ export const textColor: Record<Colors, string> = {
   fuchsia: "text-fuchsia-500",
   pink: "text-pink-500",
   rose: "text-rose-500",
+  white: "text-white",
+  black: "text-black",
 };
 
 export const placeholderTextColor: Record<Colors, string> = {
@@ -197,31 +238,62 @@ export const placeholderTextColor: Record<Colors, string> = {
   fuchsia: "placeholder:text-fuchsia-300",
   pink: "placeholder:text-pink-300",
   rose: "placeholder:text-rose-300",
+  white: "placeholder:text-white",
+  black: "placeholder:text-black",
 };
 
 export const focusBorderColor: Record<Colors, string> = {
-  slate: "focus:border-slate-500",
-  gray: "focus:border-gray-500",
-  zinc: "focus:border-zinc-500",
-  neutral: "focus:border-neutral-500",
-  stone: "focus:border-stone-500",
-  red: "focus:border-red-500",
-  orange: "focus:border-orange-500",
-  amber: "focus:border-amber-500",
-  yellow: "focus:border-yellow-500",
-  lime: "focus:border-lime-500",
-  green: "focus:border-green-500",
-  emerald: "focus:border-emerald-500",
-  teal: "focus:border-teal-500",
-  cyan: "focus:border-cyan-500",
-  sky: "focus:border-sky-500",
-  blue: "focus:border-blue-500",
-  indigo: "focus:border-indigo-500",
-  violet: "focus:border-violet-500",
-  purple: "focus:border-purple-500",
-  fuchsia: "focus:border-fuchsia-500",
-  pink: "focus:border-pink-500",
-  rose: "focus:border-rose-500",
+  slate: "focus:border-slate-400",
+  gray: "focus:border-gray-400",
+  zinc: "focus:border-zinc-400",
+  neutral: "focus:border-neutral-400",
+  stone: "focus:border-stone-400",
+  red: "focus:border-red-400",
+  orange: "focus:border-orange-400",
+  amber: "focus:border-amber-400",
+  yellow: "focus:border-yellow-400",
+  lime: "focus:border-lime-400",
+  green: "focus:border-green-400",
+  emerald: "focus:border-emerald-400",
+  teal: "focus:border-teal-400",
+  cyan: "focus:border-cyan-400",
+  sky: "focus:border-sky-400",
+  blue: "focus:border-blue-400",
+  indigo: "focus:border-indigo-400",
+  violet: "focus:border-violet-400",
+  purple: "focus:border-purple-400",
+  fuchsia: "focus:border-fuchsia-400",
+  pink: "focus:border-pink-400",
+  rose: "focus:border-rose-400",
+  white: "focus:border-white",
+  black: "focus:border-black",
+};
+
+export const hoverBorderColor: Record<Colors, string> = {
+  slate: "hover:border-slate-500",
+  gray: "hover:border-gray-500",
+  zinc: "hover:border-zinc-500",
+  neutral: "hover:border-neutral-500",
+  stone: "hover:border-stone-500",
+  red: "hover:border-red-500",
+  orange: "hover:border-orange-500",
+  amber: "hover:border-amber-500",
+  yellow: "hover:border-yellow-500",
+  lime: "hover:border-lime-500",
+  green: "hover:border-green-500",
+  emerald: "hover:border-emerald-500",
+  teal: "hover:border-teal-500",
+  cyan: "hover:border-cyan-500",
+  sky: "hover:border-sky-500",
+  blue: "hover:border-blue-500",
+  indigo: "hover:border-indigo-500",
+  violet: "hover:border-violet-500",
+  purple: "hover:border-purple-500",
+  fuchsia: "hover:border-fuchsia-500",
+  pink: "hover:border-pink-500",
+  rose: "hover:border-rose-500",
+  white: "hover:border-white",
+  black: "hover:border-black",
 };
 
 export const peerFocusTextColor: Record<Colors, string> = {
@@ -247,6 +319,8 @@ export const peerFocusTextColor: Record<Colors, string> = {
   fuchsia: "peer-focus:text-fuchsia-500",
   pink: "peer-focus:text-pink-500",
   rose: "peer-focus:text-rose-500",
+  white: "peer-focus:text-white",
+  black: "peer-focus:text-black",
 };
 
 export const peerFocusBeforeBorderColor: Record<Colors, string> = {
@@ -272,6 +346,8 @@ export const peerFocusBeforeBorderColor: Record<Colors, string> = {
   fuchsia: "peer-focus:before:border-fuchsia-500",
   pink: "peer-focus:before:border-pink-500",
   rose: "peer-focus:before:border-rose-500",
+  white: "peer-focus:before:border-white",
+  black: "peer-focus:before:border-black",
 };
 
 export const peerFocusAfterBorderColor: Record<Colors, string> = {
@@ -297,6 +373,8 @@ export const peerFocusAfterBorderColor: Record<Colors, string> = {
   fuchsia: "peer-focus:after:border-fuchsia-500",
   pink: "peer-focus:after:border-pink-500",
   rose: "peer-focus:after:border-rose-500",
+  white: "peer-focus:after:border-white",
+  black: "peer-focus:after:border-black",
 };
 
 export const afterBorderColor: Record<Colors, string> = {
@@ -322,6 +400,8 @@ export const afterBorderColor: Record<Colors, string> = {
   fuchsia: "after:border-fuchsia-500",
   pink: "after:border-pink-500",
   rose: "after:border-rose-500",
+  white: "after:border-white",
+  black: "after:border-black",
 };
 
 // export const ringColor: Record<Colors, string> = {
@@ -397,6 +477,8 @@ export const shadowColor: Record<Colors, string> = {
   fuchsia: "shadow-fuchsia-500/20",
   pink: "shadow-pink-500/20",
   rose: "shadow-rose-500/20",
+  white: "shadow-white",
+  black: "shadow-black",
 };
 
 export const hoverShadowColor: Record<Colors, string> = {
@@ -422,13 +504,15 @@ export const hoverShadowColor: Record<Colors, string> = {
   fuchsia: "hover:shadow-fuchsia-500/40",
   pink: "hover:shadow-pink-500/40",
   rose: "hover:shadow-rose-500/40",
+  white: "hover:shadow-white",
+  black: "hover:shadow-black",
 };
 
 export type Sizes = "large" | "normal" | "small";
 
 export const SizeValues = ["large", "normal", "small"];
 
-export type InputTypes =
+export type IInputTypes =
   | "email"
   | "password"
   | "tel"
