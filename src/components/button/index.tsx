@@ -7,7 +7,6 @@ import {
   borderColor,
   textColor,
   type Colors,
-  type IPadding,
   type Sizes,
 } from "../../utils/variables";
 
@@ -16,7 +15,7 @@ export interface IButtonProps {
   className?: string;
   color?: Colors;
   isDisabled?: boolean;
-  isFullwith?: boolean;
+  isFullwidth?: boolean;
   isOutlined?: boolean;
   isUpperCase?: boolean;
   onClick?: MouseEventHandler<
@@ -26,24 +25,24 @@ export interface IButtonProps {
 }
 
 interface IButtonSize {
-  padding: IPadding;
+  paddingX: string;
   fontSize: string;
   minWidth: string;
 }
 
 const buttonSize: Record<Sizes, IButtonSize> = {
   small: {
-    padding: { x: "px-2", bottom: "pb-1.5", top: "pt-1" },
+    paddingX: "px-2",
     fontSize: "text-xs",
     minWidth: "min-w-[80px]",
   },
   normal: {
-    padding: { x: "px-3", bottom: "pb-1.5", top: "pt-1" },
+    paddingX: "px-3",
     fontSize: "text-sm",
     minWidth: "min-w-[100px]",
   },
   large: {
-    padding: { x: "px-4", bottom: "pb-1.5", top: "pt-1" },
+    paddingX: "px-4",
     fontSize: "text-base",
     minWidth: "min-w-[120px]",
   },
@@ -54,12 +53,12 @@ const buttonClasses = (
   isOutlined: boolean,
   size: Sizes,
   isUpperCase: boolean,
-  isFullwith: boolean,
+  isFullwidth: boolean,
 ): IClassName => {
   const bSize = buttonSize[size];
   return {
     size: {
-      width: isFullwith ? "w-full" : undefined,
+      width: isFullwidth ? "w-full" : undefined,
       minWidth: bSize.minWidth,
     },
     border: {
@@ -71,9 +70,9 @@ const buttonClasses = (
       color: isOutlined ? "bg-white" : backgroundColor[color],
     },
     padding: {
-      x: bSize.padding.x,
-      bottom: bSize.padding.bottom,
-      top: bSize.padding.top,
+      x: bSize.paddingX,
+      bottom: "pb-1.5",
+      top: "pt-1",
     },
     typography: {
       fontSize: bSize.fontSize,
@@ -97,13 +96,13 @@ export const Button: FC<IButtonProps> = ({
   className,
   color = "slate",
   isDisabled,
-  isFullwith = false,
+  isFullwidth = false,
   isOutlined = false,
   isUpperCase = false,
   onClick,
   size = "normal",
 }) => {
-  const bc = buttonClasses(color, isOutlined, size, isUpperCase, isFullwith);
+  const bc = buttonClasses(color, isOutlined, size, isUpperCase, isFullwidth);
   const click = isDisabled ? undefined : onClick;
 
   const buttonClass = classNames(className, classToString(bc));
