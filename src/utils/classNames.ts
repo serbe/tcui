@@ -21,9 +21,11 @@ const objectsToArray = (object: object): (string | object | undefined)[] => {
 };
 
 export const classToString = (classes: IClassName): string => {
-  return objectsToArray(classes)?.filter(Boolean).join(" ") ?? "";
+  return objectsToArray(classes)
+    .filter((v) => typeof v === "string")
+    .join(" ");
 };
 
-export const classNames = (...classes: unknown[]): string => {
+export const classNames = (...classes: (string | undefined)[]): string => {
   return classes.filter(Boolean).join(" ");
 };
