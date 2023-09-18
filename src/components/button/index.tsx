@@ -31,20 +31,20 @@ interface IButtonSize {
 }
 
 const buttonSize: Record<Sizes, IButtonSize> = {
-  small: {
-    paddingX: "px-2",
-    fontSize: "text-xs",
-    minWidth: "min-w-[80px]",
-  },
-  normal: {
-    paddingX: "px-3",
-    fontSize: "text-sm",
-    minWidth: "min-w-[100px]",
-  },
   large: {
-    paddingX: "px-4",
     fontSize: "text-base",
     minWidth: "min-w-[120px]",
+    paddingX: "px-4",
+  },
+  normal: {
+    fontSize: "text-sm",
+    minWidth: "min-w-[100px]",
+    paddingX: "px-3",
+  },
+  small: {
+    fontSize: "text-xs",
+    minWidth: "min-w-[80px]",
+    paddingX: "px-2",
   },
 };
 
@@ -57,28 +57,13 @@ const buttonClasses = (
 ): IClassName => {
   const bSize = buttonSize[size];
   return {
-    size: {
-      width: isFullwidth ? "w-full" : undefined,
-      minWidth: bSize.minWidth,
-    },
-    border: {
-      borderRadius: "rounded-md",
-      borderWidth: "border",
-      borderColor: borderColor[color],
-    },
     background: {
       color: isOutlined ? "bg-white" : backgroundColor[color],
     },
-    padding: {
-      x: bSize.paddingX,
-      bottom: "pb-1.5",
-      top: "pt-1",
-    },
-    typography: {
-      fontSize: bSize.fontSize,
-      fontWeight: "font-bold",
-      textColor: isOutlined ? textColor[color] : "text-white",
-      textTransform: isUpperCase ? "uppercase" : undefined,
+    border: {
+      borderColor: borderColor[color],
+      borderRadius: "rounded-md",
+      borderWidth: "border",
     },
     effect: {
       boxShadow: "shadow-md",
@@ -87,6 +72,21 @@ const buttonClasses = (
       effect: {
         boxShadow: "hover:shadow-lg",
       },
+    },
+    padding: {
+      bottom: "pb-1.5",
+      top: "pt-1",
+      x: bSize.paddingX,
+    },
+    size: {
+      minWidth: bSize.minWidth,
+      width: isFullwidth ? "w-full" : undefined,
+    },
+    typography: {
+      fontSize: bSize.fontSize,
+      fontWeight: "font-bold",
+      textColor: isOutlined ? textColor[color] : "text-white",
+      textTransform: isUpperCase ? "uppercase" : undefined,
     },
   };
 };

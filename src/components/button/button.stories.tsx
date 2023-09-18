@@ -101,24 +101,24 @@ export const Buttons: Story<IButtonProps> = ({
 
 Buttons.args = {
   children: "Button",
+  className: "",
   color: "slate",
-  size: "normal",
   isDisabled: false,
   isFullwidth: false,
   isOutlined: false,
   isUpperCase: false,
-  className: "",
+  size: "normal",
 };
 
 Buttons.argTypes = {
   color: {
-    options: ColorValues,
     control: { type: "select" },
     defaultValue: "slate",
+    options: ColorValues,
   },
   size: {
-    options: ["small", "normal", "large"],
     control: { type: "select" },
     defaultValue: "normal",
+    options: ["small", "normal", "large"],
   },
 };
