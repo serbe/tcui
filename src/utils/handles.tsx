@@ -4,6 +4,7 @@ export const useValue = (
   initValue: string | number,
 ): [
   string | number,
+  // eslint-disable-next-line no-unused-vars
   (newValue: string | number) => void,
   Dispatch<SetStateAction<string | number>>,
 ] => {

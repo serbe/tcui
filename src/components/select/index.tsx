@@ -1,5 +1,5 @@
 // Import { ChangeEventHandler, FocusEventHandler, Fragment, MouseEventHandler } from 'react'
-import React, { FC } from "react";
+import { FC } from "react";
 
 import { classNames } from "../../utils/classNames";
 import type { Sizes } from "../../utils/variables";
@@ -18,17 +18,17 @@ interface ISelectProps {
   // Setter: Dispatch<SetStateAction<number | undefined>>
 }
 
-interface ISelectSize {
-  width: string;
-  height: string;
-  textSize: string;
-}
+// interface ISelectSize {
+//   width: string;
+//   height: string;
+//   textSize: string;
+// }
 
-const selectValues: Record<Sizes, ISelectSize> = {
-  small: { width: "px-2", height: "py-1", textSize: "text-sm" },
-  normal: { width: "px-3", height: "py-1.5", textSize: "text-base" },
-  large: { width: "px-4", height: "py-2", textSize: "text-xl" },
-};
+// const selectValues: Record<Sizes, ISelectSize> = {
+//   small: { width: "px-2", height: "py-1", textSize: "text-sm" },
+//   normal: { width: "px-3", height: "py-1.5", textSize: "text-base" },
+//   large: { width: "px-4", height: "py-2", textSize: "text-xl" },
+// };
 
 // Export const Select({
 //   name,
@@ -160,7 +160,7 @@ export const Select: FC<ISelectProps> = ({
   data,
   id,
   name,
-  size,
+  // size,
 }) => {
   // eslint-disable-next-line tailwindcss/no-custom-classname
   const selectClass = classNames(
@@ -168,7 +168,7 @@ export const Select: FC<ISelectProps> = ({
     "bg-white bg-clip-padding bg-no-repeat font-normal text-gray-700 transition ease-in-out",
     "focus:border-blue-600 focus:bg-white focus:text-gray-700 focus:outline-none",
     className,
-    selectValues[size ?? "normal"],
+    // selectValues[size ?? "normal"],
   );
 
   return (
