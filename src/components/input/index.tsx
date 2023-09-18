@@ -1,139 +1,186 @@
-import React, {
+import {
   ChangeEvent,
   FC,
   FocusEventHandler,
   MouseEventHandler,
+  ReactNode,
   useRef,
   useState,
 } from "react";
 
 import { classNames, classToString } from "../../utils/classNames";
 import {
+  backgroundColor,
   focusBorderColor,
   focusOutlineColor,
+  hoverBorderColor,
+  hoverOutlineColor,
   placeholderTextColor,
   type Colors,
   type IClassName,
-  type InputTypes,
+  type IInputTypes,
   type Sizes,
 } from "../../utils/variables";
 
-interface InputProps {
+export interface IInputProps {
   autocomplete?: string;
+  bgColor?: Colors;
   className?: string;
   color?: Colors;
+  divClassName?: string;
+  icon?: ReactNode;
   isDisabled?: boolean;
+  isFullwidth?: boolean;
   isOutlined?: boolean;
   isReadOnly?: boolean;
   label?: string;
   name: string;
   onBlur?: FocusEventHandler<HTMLInputElement>;
+  // eslint-disable-next-line no-unused-vars
   onChange: (value: string | number) => void;
   onClick?: MouseEventHandler<HTMLInputElement>;
   placeholder?: string;
   size?: Sizes;
-  textHelper?: string;
-  type?: InputTypes;
+  type?: IInputTypes;
   value: number | string;
 }
 
 interface IInputSize {
   fontSize: string;
-  radius: string;
-  padding: {
-    x: string;
-    ox: string;
-    y: string;
-  };
+  height: string;
   minWidth: string;
   leading: string;
 }
 
+interface IElemSize {
+  divHeight: string;
+  divWidth: string;
+  iconHeight: string;
+  iconWidth: string;
+  paddingRight: string;
+}
+
 const inputSize: Record<Sizes, IInputSize> = {
-  small: {
-    fontSize: "text-sm",
-    radius: "rounded-[8px]",
-    padding: { x: "px-2", ox: "px-3", y: "py-1" },
+  large: {
+    fontSize: "text-lg",
+    height: "h-9",
+    leading: "leading-7",
     minWidth: "min-w-[100px]",
-    leading: "leading-tight",
   },
   normal: {
     fontSize: "text-base",
-    radius: "rounded-[7px]",
-    padding: { x: "px-2", ox: "px-3", y: "py-1" },
-    minWidth: "min-w-[100px]",
+    height: "h-8",
     leading: "leading-tight",
-  },
-  large: {
-    fontSize: "text-lg",
-    radius: "rounded-md",
-    padding: { x: "px-2", ox: "px-3", y: "py-1" },
     minWidth: "min-w-[100px]",
-    leading: "leading-7",
+  },
+  small: {
+    fontSize: "text-sm",
+    height: "h-7",
+    leading: "leading-3",
+    minWidth: "min-w-[100px]",
   },
 };
 
 const getInputClass = (
   color: Colors,
+  isFullwidth: boolean,
   isOutlined: boolean,
   size: Sizes,
+  paddingRight?: string,
 ): IClassName => {
   const iSize = inputSize[size];
   return {
-    // layout: {
-    //   display: "block",
-    // },
-    padding: {
-      x: isOutlined ? iSize.padding.ox : iSize.padding.x,
-      y: iSize.padding.y,
-    },
-    size: {
-      maxWidth: iSize.minWidth,
+    background: {
+      color: "bg-transparent",
     },
     border: {
-      borderRadius: isOutlined ? "rounded-full" : "rounded-sm",
       borderColor: isOutlined ? undefined : "border-slate-500",
+      borderRadius: isOutlined ? "rounded-sm" : undefined,
       borderWidth: isOutlined ? undefined : "border-b",
       outlineColor: isOutlined ? "outline-slate-500" : undefined,
       outlineStyle: "outline-none",
       outlineWidth: isOutlined ? "outline-1" : undefined,
     },
-    background: {
-      color: "bg-transparent",
+    focus: {
+      border: {
+        borderColor: isOutlined ? undefined : focusBorderColor[color],
+        // borderWidth: isOutlined ? undefined : "focus:border-b-1",
+        outlineColor: isOutlined ? focusOutlineColor[color] : undefined,
+        // outlineWidth: isOutlined ? "focus:outline-1" : undefined,
+      },
     },
-    typography: {
-      fontSize: iSize.fontSize,
-      lineHeight: iSize.leading,
+    hover: {
+      border: {
+        borderColor: isOutlined ? undefined : hoverBorderColor[color],
+        outlineColor: isOutlined ? hoverOutlineColor[color] : undefined,
+      },
+      // effect: {
+      //   boxShadow: "hover:shadow",
+      // },
     },
     interactivity: {
       appearance: "appearance-none",
     },
-    hover: {
-      effect: {
-        boxShadow: "hover:shadow-lg",
-      },
+    layout: {
+      left: "left-1",
+      position: "relative",
+      top: "top-3",
     },
-    focus: {
-      border: {
-        borderColor: isOutlined ? undefined : focusBorderColor[color],
-        borderWidth: isOutlined ? undefined : "focus:border-b-2",
-        outlineColor: isOutlined ? focusOutlineColor[color] : undefined,
-        outlineWidth: isOutlined ? "focus:outline-2" : undefined,
-      },
+    padding: {
+      left: isOutlined ? "pl-1" : undefined,
+      right: paddingRight ? paddingRight : `${isOutlined ? "pr-1" : undefined}`,
+      y: "py-1",
     },
     placeholder: {
       typography: {
         textColor: placeholderTextColor[color],
       },
     },
+    size: {
+      height: iSize.height,
+      minWidth: iSize.minWidth,
+      width: isFullwidth ? "w-full" : undefined,
+    },
+    typography: {
+      fontSize: iSize.fontSize,
+      lineHeight: iSize.leading,
+    },
   };
 };
 
-export const Input: FC<InputProps> = ({
+const elemSize: Record<Sizes, IElemSize> = {
+  large: {
+    divHeight: "min-h-[3.3rem]",
+    divWidth: "min-w-[16.35rem]",
+    iconHeight: "h-8",
+    iconWidth: "w-8",
+    paddingRight: "pr-10",
+  },
+  normal: {
+    divHeight: "min-h-[3.1rem]",
+    divWidth: "min-w-[14.6rem]",
+    iconHeight: "h-7",
+    iconWidth: "w-7",
+    paddingRight: "pr-9",
+  },
+  small: {
+    divHeight: "min-h-[2.9rem]",
+    divWidth: "min-w-[13.5rem]",
+    iconHeight: "h-6",
+    iconWidth: "w-6",
+    paddingRight: "pr-8",
+  },
+};
+
+export const Input: FC<IInputProps> = ({
   autocomplete,
+  bgColor = "white",
   className,
   color = "slate",
+  divClassName,
+  icon,
   isDisabled,
+  isFullwidth = false,
   isOutlined = true,
   isReadOnly,
   label,
@@ -141,15 +188,13 @@ export const Input: FC<InputProps> = ({
   onBlur,
   onChange,
   onClick,
-  size = "normal",
   placeholder,
-  textHelper,
-  type,
+  size = "normal",
+  type = "text",
   value,
 }) => {
   const inputRef = useRef(null);
 
-  // const { width, height, textSize } = sizeValues[size];
   const [inputValue, setInputValue] = useState<string | number>(value);
 
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>): void => {
@@ -163,48 +208,69 @@ export const Input: FC<InputProps> = ({
     }
   };
 
-  const Helper = (): JSX.Element | null => {
-    return textHelper ? (
-      <div className="mt-1 text-sm text-gray-500">{textHelper}</div>
-    ) : null;
-  };
+  const elem = elemSize[size];
 
-  // const labelClassNames = classToString(gl);
-  const ic = getInputClass(color, isOutlined, size);
+  const ic = getInputClass(
+    color,
+    isFullwidth,
+    isOutlined,
+    size,
+    icon ? elem.paddingRight : undefined,
+  );
 
   const inputClassNames = classNames(classToString(ic), className);
 
+  const Icon = (): JSX.Element | null => {
+    return icon ? (
+      <div
+        className={`absolute right-1.5 top-3.5 grid ${elem.iconHeight} ${elem.iconWidth} place-items-center`}
+      >
+        {icon}
+      </div>
+    ) : null;
+  };
+
   const Label = (): JSX.Element | null => {
     return label ? (
-      <label htmlFor={name} className="block bg-green-300">
+      <label
+        htmlFor={name}
+        className={`pointer-events-none absolute select-none ${
+          isOutlined ? "left-2" : ""
+        } z-10 ${backgroundColor[bgColor]} px-1 text-xs`}
+      >
         {label}
       </label>
     ) : null;
   };
 
-  const divClassNames = classNames("relative", "min-w-[200px]", "min-h-[8px]");
+  const divClassNames = classNames(
+    divClassName,
+    "relative",
+    isFullwidth ? "w-full" : undefined,
+    elem.divHeight,
+    elem.divWidth,
+    backgroundColor[bgColor],
+  );
 
   return (
-    <div>
-      <div className={divClassNames}>
-        <Label />
-        <input
-          autoComplete={autocomplete}
-          className={inputClassNames}
-          disabled={isDisabled}
-          id={name}
-          key={name}
-          onBlur={onBlur}
-          onChange={handleInputChange}
-          onClick={onClick}
-          placeholder={placeholder}
-          readOnly={isReadOnly}
-          ref={inputRef}
-          type={type}
-          value={inputValue}
-        />
-      </div>
-      <Helper />
+    <div className={divClassNames}>
+      <Label />
+      <Icon />
+      <input
+        autoComplete={autocomplete}
+        className={inputClassNames}
+        disabled={isDisabled}
+        id={name}
+        key={name}
+        onBlur={onBlur}
+        onChange={handleInputChange}
+        onClick={onClick}
+        placeholder={placeholder}
+        readOnly={isReadOnly}
+        ref={inputRef}
+        type={type}
+        value={inputValue}
+      />
     </div>
   );
 };

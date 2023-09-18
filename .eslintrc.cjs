@@ -6,13 +6,23 @@ module.exports = {
   },
   extends: [
     "eslint:recommended",
+    'plugin:@typescript-eslint/strict-type-checked',
+    'plugin:@typescript-eslint/stylistic-type-checked',
+    "plugin:functional/external-typescript-recommended",
+    // "plugin:functional/recommended",
+    "plugin:functional/stylistic",
+    "plugin:import/recommended",
+    "plugin:import/typescript",
+    "plugin:promise/recommended",
+    "plugin:regexp/recommended",
     "plugin:react/recommended",
+    "plugin:react/jsx-runtime",
+    'plugin:no-use-extend-native/recommended',
+    "plugin:prettier/recommended",
     "plugin:react-hooks/recommended",
-    "plugin:@typescript-eslint/recommended-type-checked",
-    "plugin:@typescript-eslint/strict-type-checked",
-    "plugin:@typescript-eslint/stylistic-type-checked",
-    "plugin:jsx-a11y/recommended",
+    "plugin:jsx-a11y/strict",
     "plugin:tailwindcss/recommended",
+
     "prettier",
   ],
   overrides: [
@@ -20,6 +30,12 @@ module.exports = {
       files: ['*.js'],
       extends: ['plugin:@typescript-eslint/disable-type-checked'],
     },
+    {
+      "files": ["*.ts", "*.tsx"],
+      "rules": {
+        "no-undef": "off"
+      }
+    }
   ],
   parser: "@typescript-eslint/parser",
   parserOptions: {
@@ -27,23 +43,58 @@ module.exports = {
     sourceType: "module",
     project: true,
     tsconfigRootDir: __dirname,
+    "ecmaFeatures": {
+      "jsx": true
+    }
   },
   plugins: [
-    "react",
     "@typescript-eslint",
+    "jsx-a11y",
     "tailwindcss",
+    "simple-import-sort",
+
+    "react",
+    "perfectionist",
+    "regexp",
+    "pure",
+    "promise",
+    "no-loops",
     "import",
-    "prettier",
+    // "immutable",
+    "functional",
+    "array-func",
   ],
   rules: {
+    "array-func/from-map": "error",
+    // "immutable/no-let": 2,
+    // "immutable/no-this": 2,
+    // "immutable/no-mutation": 2,
+    "no-loops/no-loops": 2,
+    "no-var": 2,
+    "prefer-const": 2,
+    "no-undef": "off",
+    "no-unused-vars": 2,
+    "perfectionist/sort-objects": [
+      "error",
+      {
+        "type": "natural",
+        "order": "asc"
+      }
+    ],
+    "indent": ["error", 2],
+    "semi": ["error", "always"],
+    "quotes": ["error", "double"],
+    "prefer-const": "error",
+
+
     // indent: ["warn", 2, { offsetTernaryExpressions: true }],
     "linebreak-style": ["error", "unix"],
-    quotes: ["error", "double"],
-    semi: "off",
     "@typescript-eslint/semi": "error",
     // "max-len": ["warn", { code: 120 }],
-    "react/prop-types": "warn",
-    "react/react-in-jsx-scope": "off",
+    // "react/prop-types": "warn",
+    // "react/react-in-jsx-scope": "off",
+    // 'react/jsx-uses-react': 'error',
+    //   'react/jsx-uses-vars': 'error',
     "@typescript-eslint/explicit-function-return-type": "warn",
     "@typescript-eslint/explicit-module-boundary-types": "warn",
     // "@typescript-eslint/no-non-null-assertion": "off",
@@ -55,12 +106,35 @@ module.exports = {
     "import/first": "error",
     "import/newline-after-import": "error",
     "import/no-duplicates": "error",
+    "import/no-unresolved": "error",
     "prettier/prettier": "error",
+    "arrow-body-style": "off",
+    "prefer-arrow-callback": "off",
   },
   root: true,
   settings: {
     react: {
       version: "detect",
     },
+    "import/parsers": {
+      "@typescript-eslint/parser": [".ts", ".tsx"]
+    },
+    "import/resolver": {
+      "typescript": {
+        "alwaysTryTypes": true, // always try to resolve types under `<root>@types` directory even it doesn't contain any source code, like `@types/unist`
+
+        // Choose from one of the "project" configs below or omit to use <root>/tsconfig.json by default
+
+        // use <root>/path/to/folder/tsconfig.json
+        // "project": "path/to/folder",
+      }
+    },
+    'import/resolver': {
+      typescript: true,
+      node: true
+    }
+  },
+  "globals": {
+    "JSX": "readonly",
   },
 };
