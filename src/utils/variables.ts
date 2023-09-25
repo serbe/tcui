@@ -1,30 +1,30 @@
 import type { ChangeEvent, Dispatch, SetStateAction } from "react";
 
 export type Colors =
-  | "slate"
-  | "gray"
-  | "zinc"
-  | "neutral"
-  | "stone"
-  | "red"
-  | "orange"
   | "amber"
-  | "yellow"
-  | "lime"
-  | "green"
-  | "emerald"
-  | "teal"
-  | "cyan"
-  | "sky"
+  | "black"
   | "blue"
-  | "indigo"
-  | "violet"
-  | "purple"
+  | "cyan"
+  | "emerald"
   | "fuchsia"
+  | "gray"
+  | "green"
+  | "indigo"
+  | "lime"
+  | "neutral"
+  | "orange"
   | "pink"
+  | "purple"
+  | "red"
   | "rose"
+  | "sky"
+  | "slate"
+  | "stone"
+  | "teal"
+  | "violet"
   | "white"
-  | "black";
+  | "yellow"
+  | "zinc";
 
 export const ColorValues = [
   "amber",
@@ -514,162 +514,162 @@ export const SizeValues = ["large", "normal", "small"];
 
 export type IInputTypes =
   | "email"
+  | "number"
   | "password"
   | "tel"
   | "text"
-  | "url"
-  | "number";
+  | "url";
 
 export type Positions = "left" | "right";
 
-export interface IClassName extends IBasicProps {
-  hover?: IClassName;
-  focus?: IClassName;
-  focusWithin?: IClassName;
-  focusVisible?: IClassName;
+export interface IClassName extends IBasicProperties {
   active?: IClassName;
-  visited?: IClassName;
-  target?: IClassName;
-  first?: IClassName;
-  last?: IClassName;
-  only?: IClassName;
-  odd?: IClassName;
-  even?: IClassName;
-  firstOfType?: IClassName;
-  lastOfType?: IClassName;
-  onlyOfType?: IClassName;
-  empty?: IClassName;
-  disabled?: IClassName;
-  enabled?: IClassName;
-  checked?: IClassName;
-  indeterminate?: IClassName;
-  default?: IClassName;
-  required?: IClassName;
-  valid?: IClassName;
-  invalid?: IClassName;
-  inRange?: IClassName;
-  outOfRange?: IClassName;
-  placeholderShown?: IClassName;
-  autofill?: IClassName;
-  readOnly?: IClassName;
-  before?: IClassName;
   after?: IClassName;
-  placeholder?: IClassName;
-  selection?: IClassName;
+  autofill?: IClassName;
+  before?: IClassName;
+  checked?: IClassName;
+  default?: IClassName;
+  disabled?: IClassName;
+  empty?: IClassName;
+  enabled?: IClassName;
+  even?: IClassName;
+  first?: IClassName;
+  firstOfType?: IClassName;
+  focus?: IClassName;
+  focusVisible?: IClassName;
+  focusWithin?: IClassName;
   group?: IClassName;
-  peer?: IClassName;
-  min?: IClassName;
-  max?: IClassName;
-  sm?: IClassName;
-  md?: IClassName;
+  hover?: IClassName;
+  inRange?: IClassName;
+  indeterminate?: IClassName;
+  invalid?: IClassName;
+  last?: IClassName;
+  lastOfType?: IClassName;
   lg?: IClassName;
+  max?: IClassName;
+  maxLg?: IClassName;
+  maxMd?: IClassName;
+  maxSm?: IClassName;
+  maxXl?: IClassName;
+  md?: IClassName;
+  min?: IClassName;
+  odd?: IClassName;
+  only?: IClassName;
+  onlyOfType?: IClassName;
+  outOfRange?: IClassName;
+  peer?: IClassName;
+  placeholder?: IClassName;
+  placeholderShown?: IClassName;
+  readOnly?: IClassName;
+  required?: IClassName;
+  selection?: IClassName;
+  sm?: IClassName;
+  target?: IClassName;
+  valid?: IClassName;
+  visited?: IClassName;
   xl?: IClassName;
   xxl?: IClassName;
-  maxSm?: IClassName;
-  maxMd?: IClassName;
-  maxLg?: IClassName;
-  maxXl?: IClassName;
 }
 
-export interface IBasicProps {
-  self?: string;
-  layout?: ILayout;
-  item?: IItem;
-  padding?: IPadding;
-  margin?: IMargin;
-  space?: ISpace;
-  size?: ISize;
-  typography?: ITypography;
+export interface IBasicProperties {
   background?: IBackground;
   border?: IBorder;
   effect?: IEffect;
   filter?: IFilter;
-  table?: ITable;
-  transition?: ITransition;
-  transform?: ITransform;
   interactivity?: IInteractivity;
+  item?: IItem;
+  layout?: ILayout;
+  margin?: IMargin;
+  padding?: IPadding;
+  self?: string;
+  size?: ISize;
+  space?: ISpace;
+  table?: ITable;
+  transform?: ITransform;
+  transition?: ITransition;
+  typography?: ITypography;
 }
 
 export interface ILayout {
   aspectRatio?: string;
-  container?: string;
-  columns?: string;
+  bottom?: string;
+  boxDecorationBreak?: string;
+  boxSizing?: string;
   breakAfter?: string;
   breakBefore?: string;
   breakInside?: string;
-  boxDecorationBreak?: string;
-  boxSizing?: string;
+  clear?: string;
+  columns?: string;
+  container?: string;
   display?: string;
   float?: string;
-  clear?: string;
+  inset?: string;
   isolation?: string;
+  left?: string;
   objectFit?: string;
   objectPosition?: string;
   overflow?: string;
   overscrollBehavior?: string;
   position?: string;
-  inset?: string;
-  top?: string;
   right?: string;
-  bottom?: string;
-  left?: string;
+  top?: string;
   visibility?: string;
   zIndex?: string;
 }
 
 export interface IItem {
-  flexBasis?: string;
-  flexDirection?: string;
-  flexWrap?: string;
-  flex?: string;
-  flexGrow?: string;
-  flexShrink?: string;
-  order?: string;
-  gridTemplateColumns?: string;
-  gridColumnStart?: string;
-  gridColumnEnd?: string;
-  gridTemplateRows?: string;
-  gridRowStart?: string;
-  gridRowEnd?: string;
-  gridAutoFlow?: string;
-  gridAutoColumns?: string;
-  gridAutoRows?: string;
-  gap?: string;
-  justifyContent?: string;
-  justifyItems?: string;
-  justifySelf?: string;
   alignContent?: string;
   alignItems?: string;
   alignSelf?: string;
+  flex?: string;
+  flexBasis?: string;
+  flexDirection?: string;
+  flexGrow?: string;
+  flexShrink?: string;
+  flexWrap?: string;
+  gap?: string;
+  gridAutoColumns?: string;
+  gridAutoFlow?: string;
+  gridAutoRows?: string;
+  gridColumnEnd?: string;
+  gridColumnStart?: string;
+  gridRowEnd?: string;
+  gridRowStart?: string;
+  gridTemplateColumns?: string;
+  gridTemplateRows?: string;
+  justifyContent?: string;
+  justifyItems?: string;
+  justifySelf?: string;
+  order?: string;
   placeContent?: string;
   placeItems?: string;
   placeSelf?: string;
 }
 
 export interface IPadding {
-  padding?: string;
-  x?: string;
-  y?: string;
+  bottom?: string;
   inline?: string;
-  inlineStart?: string;
   inlineEnd?: string;
+  inlineStart?: string;
   left?: string;
+  padding?: string;
   right?: string;
   top?: string;
-  bottom?: string;
+  x?: string;
+  y?: string;
 }
 
 export interface IMargin {
-  margin?: string;
-  x?: string;
-  y?: string;
+  bottom?: string;
   inline?: string;
-  inlineStart?: string;
   inlineEnd?: string;
+  inlineStart?: string;
   left?: string;
+  margin?: string;
   right?: string;
   top?: string;
-  bottom?: string;
+  x?: string;
+  y?: string;
 }
 
 export interface ISpace {
@@ -678,21 +678,23 @@ export interface ISpace {
 }
 
 export interface ISize {
-  width?: string;
-  minWidth?: string;
-  maxWidth?: string;
   height?: string;
-  minHeight?: string;
   maxHeight?: string;
+  maxWidth?: string;
+  minHeight?: string;
+  minWidth?: string;
+  width?: string;
 }
 
 export interface ITypography {
+  content?: string;
   fontFamily?: string;
   fontSize?: string;
   fontSmoothing?: string;
   fontStyle?: string;
-  fontWeight?: string;
   fontVariant?: string;
+  fontWeight?: string;
+  hyphens?: string;
   letterSpacing?: string;
   lineClamp?: string;
   lineHeight?: string;
@@ -705,65 +707,54 @@ export interface ITypography {
   textDecorationColor?: string;
   textDecorationStyle?: string;
   textDecorationThickness?: string;
-  textUnderlineOffset?: string;
-  textTransform?: string;
-  textOverflow?: string;
   textIndent?: string;
+  textOverflow?: string;
+  textTransform?: string;
+  textUnderlineOffset?: string;
   verticalAlign?: string;
   whitespace?: string;
   wordBreak?: string;
-  hyphens?: string;
-  content?: string;
 }
 
 export interface IBackground {
   attachment?: string;
   clip?: string;
   color?: string;
+  gradientColorStops?: string;
+  image?: string;
   origin?: string;
   position?: string;
   repeat?: string;
   size?: string;
-  image?: string;
-  gradientColorStops?: string;
 }
 
 export interface IBorder {
-  borderRadius?: string;
-  borderWidth?: string;
   borderColor?: string;
+  borderRadius?: string;
   borderStyle?: string;
-  divideWidth?: string;
+  borderWidth?: string;
   divideColor?: string;
   divideStyle?: string;
-  outlineWidth?: string;
+  divideWidth?: string;
   outlineColor?: string;
-  outlineStyle?: string;
   outlineOffset?: string;
-  ringWidth?: string;
+  outlineStyle?: string;
+  outlineWidth?: string;
   ringColor?: string;
-  ringOffsetWidth?: string;
   ringOffsetColor?: string;
+  ringOffsetWidth?: string;
+  ringWidth?: string;
 }
 
 export interface IEffect {
+  backgroundBlendMode?: string;
   boxShadow?: string;
   boxShadowColor?: string;
-  opacity?: string;
   mixBlendMode?: string;
-  backgroundBlendMode?: string;
+  opacity?: string;
 }
 
 export interface IFilter {
-  blur?: string;
-  brightness?: string;
-  contrast?: string;
-  dropShadow?: string;
-  grayscale?: string;
-  hueRotate?: string;
-  invert?: string;
-  saturate?: string;
-  sepia?: string;
   backdropBlur?: string;
   backdropBrightness?: string;
   backdropContrast?: string;
@@ -773,36 +764,45 @@ export interface IFilter {
   backdropOpacity?: string;
   backdropSaturate?: string;
   backdropSepia?: string;
+  blur?: string;
+  brightness?: string;
+  contrast?: string;
+  dropShadow?: string;
+  grayscale?: string;
+  hueRotate?: string;
+  invert?: string;
+  saturate?: string;
+  sepia?: string;
 }
 
 export interface ITable {
   borderCollapse?: string;
   borderSpacing?: string;
-  tableLayout?: string;
   captionSide?: string;
+  tableLayout?: string;
 }
 
 export interface ITransition {
-  transitionProperty?: string;
-  transitionDuration?: string;
-  transitionTimingFunction?: string;
-  transitionDelay?: string;
   animation?: string;
+  transitionDelay?: string;
+  transitionDuration?: string;
+  transitionProperty?: string;
+  transitionTimingFunction?: string;
 }
 
 export interface ITransform {
-  scale?: string;
   rotate?: string;
-  translate?: string;
+  scale?: string;
   skew?: string;
   transformOrigin?: string;
+  translate?: string;
 }
 
 export interface IInteractivity {
   accentColor?: string;
   appearance?: string;
-  cursor?: string;
   caretColor?: string;
+  cursor?: string;
   pointerEvents?: string;
   resize?: string;
   scrollBehavior?: string;
@@ -816,22 +816,21 @@ export interface IInteractivity {
   willChange?: string;
 }
 
-// eslint-disable-next-line no-unused-vars
 export type HtmlInputSetter = (event: ChangeEvent<HTMLInputElement>) => void;
 
 export interface StringInputProperties {
-  value?: string;
   setter: HtmlInputSetter;
+  value?: string;
 }
 
 export interface NumberInputProperties {
-  value?: number;
   setter: HtmlInputSetter;
+  value?: number;
 }
 
 export interface BooleanInputProperties {
-  value: boolean;
   setter: Dispatch<SetStateAction<boolean>>;
+  value: boolean;
 }
 
 export interface SelectValues {
@@ -840,6 +839,6 @@ export interface SelectValues {
 }
 
 export interface DatePickerValues {
-  value?: string;
   setter: Dispatch<SetStateAction<string | undefined>>;
+  value?: string;
 }
