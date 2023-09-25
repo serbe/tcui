@@ -1,140 +1,92 @@
 module.exports = {
-  env: {
-    browser: true,
-    es2021: true,
-    node: true,
+  "env": {
+    "browser": true,
+    "es2023": true,
   },
-  extends: [
+  "extends": [
     "eslint:recommended",
     'plugin:@typescript-eslint/strict-type-checked',
     'plugin:@typescript-eslint/stylistic-type-checked',
+    "plugin:array-func/all",
     "plugin:functional/external-typescript-recommended",
     // "plugin:functional/recommended",
     "plugin:functional/stylistic",
-    "plugin:import/recommended",
-    "plugin:import/typescript",
+    "plugin:jsx-a11y/strict",
+    "plugin:perfectionist/recommended-natural",
     "plugin:promise/recommended",
-    "plugin:regexp/recommended",
     "plugin:react/recommended",
     "plugin:react/jsx-runtime",
-    'plugin:no-use-extend-native/recommended',
-    "plugin:prettier/recommended",
     "plugin:react-hooks/recommended",
-    "plugin:jsx-a11y/strict",
+    "plugin:regexp/recommended",
     "plugin:tailwindcss/recommended",
-
-    "prettier",
+    "plugin:sonarjs/recommended",
+    "plugin:unicorn/recommended",
+    "plugin:prettier/recommended",
   ],
-  overrides: [
-    {
-      files: ['*.js'],
-      extends: ['plugin:@typescript-eslint/disable-type-checked'],
-    },
-    {
-      "files": ["*.ts", "*.tsx"],
-      "rules": {
-        "no-undef": "off"
-      }
-    }
-  ],
-  parser: "@typescript-eslint/parser",
-  parserOptions: {
-    ecmaVersion: "latest",
-    sourceType: "module",
-    project: true,
-    tsconfigRootDir: __dirname,
+  "ignorePatterns": ['dist'],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": "latest",
+    "sourceType": "module",
+    "project": true,
+    "tsconfigRootDir": __dirname,
     "ecmaFeatures": {
       "jsx": true
     }
   },
-  plugins: [
-    "@typescript-eslint",
-    "jsx-a11y",
-    "tailwindcss",
-    "simple-import-sort",
-
-    "react",
-    "perfectionist",
-    "regexp",
-    "pure",
-    "promise",
-    "no-loops",
-    "import",
-    // "immutable",
+  "plugins": [
     "functional",
-    "array-func",
+    'react-refresh',
   ],
-  rules: {
-    "array-func/from-map": "error",
-    // "immutable/no-let": 2,
-    // "immutable/no-this": 2,
-    // "immutable/no-mutation": 2,
-    "no-loops/no-loops": 2,
-    "no-var": 2,
-    "prefer-const": 2,
-    "no-undef": "off",
-    "no-unused-vars": 2,
-    "perfectionist/sort-objects": [
-      "error",
+  "rules": {
+    // eslint
+    "semi": ["error", "always"],
+    "quotes": "off",
+    "prefer-const": "error",
+    "curly": ["error", "all"],
+    "padding-line-between-statements": [
+        "error",
+        { "blankLine": "always", "prev": ["const", "let", "var"], "next": "*" },
+        { "blankLine": "any", "prev": ["const", "let", "var"], "next": ["const", "let", "var"] },
+        { "blankLine": "always", "prev": "*", "next": "return" }
+    ],
+    "no-multiple-empty-lines": ["error"],
+    "arrow-body-style": ["error", "as-needed"],
+    "prefer-arrow-callback": "off",
+    "no-console": ["error", { "allow": ["warn", "info", "error"] }],
+    "no-underscore-dangle": [
+        "error",
+        {
+            "allow": ["_id", "__typename", "__schema", "__dirname", "_global"],
+            "allowAfterThis": true
+        }
+    ],
+    // typescript-eslint
+    "@typescript-eslint/prefer-readonly": "error",
+    "@typescript-eslint/switch-exhaustiveness-check": "error",
+    "@typescript-eslint/consistent-type-imports": "error",
+    "@typescript-eslint/quotes": "error",
+    // react-refresh
+    // 'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
+    'react-refresh/only-export-components': [
+      'warn',
+      { allowConstantExport: true },
+    ],
+    // prettier
+    "prettier/prettier": "error",
+    // perfectionist
+    "perfectionist/sort-named-imports": [
+      "off",
       {
         "type": "natural",
         "order": "asc"
       }
-    ],
-    "indent": ["error", 2],
-    "semi": ["error", "always"],
-    "quotes": ["error", "double"],
-    "prefer-const": "error",
-
-
-    // indent: ["warn", 2, { offsetTernaryExpressions: true }],
-    "linebreak-style": ["error", "unix"],
-    "@typescript-eslint/semi": "error",
-    // "max-len": ["warn", { code: 120 }],
-    // "react/prop-types": "warn",
-    // "react/react-in-jsx-scope": "off",
-    // 'react/jsx-uses-react': 'error',
-    //   'react/jsx-uses-vars': 'error',
-    "@typescript-eslint/explicit-function-return-type": "warn",
-    "@typescript-eslint/explicit-module-boundary-types": "warn",
-    // "@typescript-eslint/no-non-null-assertion": "off",
-    "tailwindcss/classnames-order": "warn",
-    "tailwindcss/no-custom-classname": "warn",
-    "tailwindcss/no-contradicting-classname": "error",
-    // "simple-import-sort/imports": "error",
-    // "simple-import-sort/exports": "error",
-    "import/first": "error",
-    "import/newline-after-import": "error",
-    "import/no-duplicates": "error",
-    "import/no-unresolved": "error",
-    "prettier/prettier": "error",
-    "arrow-body-style": "off",
-    "prefer-arrow-callback": "off",
+    ]
   },
-  root: true,
-  settings: {
-    react: {
-      version: "detect",
+  "root": true,
+  "settings": {
+    "react": {
+      "version": "detect",
     },
-    "import/parsers": {
-      "@typescript-eslint/parser": [".ts", ".tsx"]
-    },
-    "import/resolver": {
-      "typescript": {
-        "alwaysTryTypes": true, // always try to resolve types under `<root>@types` directory even it doesn't contain any source code, like `@types/unist`
-
-        // Choose from one of the "project" configs below or omit to use <root>/tsconfig.json by default
-
-        // use <root>/path/to/folder/tsconfig.json
-        // "project": "path/to/folder",
-      }
-    },
-    'import/resolver': {
-      typescript: true,
-      node: true
-    }
-  },
-  "globals": {
-    "JSX": "readonly",
   },
 };

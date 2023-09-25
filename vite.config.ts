@@ -2,6 +2,7 @@
 import { resolve } from "path";
 import { defineConfig } from "vite";
 import dts from "vite-plugin-dts";
+import react from '@vitejs/plugin-react-swc'
 // https://vitejs.dev/guide/build.html#library-mode
 export default defineConfig({
   build: {
@@ -11,7 +12,7 @@ export default defineConfig({
       fileName: "tcui",
     },
   },
-  plugins: [dts()],
+  plugins: [dts(), react()],
   test: {
     // ...
   },
