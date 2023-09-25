@@ -1,6 +1,8 @@
 import type { IClassName } from "./variables";
 
-const objectsToArray = (object: object): (object | string | undefined)[] => {
+export const objectsToArray = (
+  object: object,
+): (object | string | undefined)[] => {
   let result: (object | string | undefined)[] = [];
 
   for (const value of Object.values(object)) {
@@ -13,9 +15,6 @@ const objectsToArray = (object: object): (object | string | undefined)[] => {
     ) {
       result = [...result, ...objectsToArray(value as object)];
     }
-
-    // undefined;
-    // continue;
   }
 
   return result;
