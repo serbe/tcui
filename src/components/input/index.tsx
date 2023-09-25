@@ -1,14 +1,22 @@
-import {
+/* eslint-disable unicorn/no-null */
+import type {
   ChangeEvent,
   FC,
   FocusEventHandler,
   MouseEventHandler,
   ReactNode,
-  useRef,
-  useState,
 } from "react";
 
-import { classNames, classToString } from "../../utils/classNames";
+import { useRef, useState } from "react";
+
+import type {
+  Colors,
+  IClassName,
+  IInputTypes,
+  Sizes,
+} from "../../utils/variables";
+
+import { classNames, classToString } from "../../utils/class-names";
 import {
   backgroundColor,
   focusBorderColor,
@@ -16,13 +24,9 @@ import {
   hoverBorderColor,
   hoverOutlineColor,
   placeholderTextColor,
-  type Colors,
-  type IClassName,
-  type IInputTypes,
-  type Sizes,
 } from "../../utils/variables";
 
-export interface IInputProps {
+export interface IInputProperties {
   autocomplete?: string;
   bgColor?: Colors;
   className?: string;
@@ -36,8 +40,7 @@ export interface IInputProps {
   label?: string;
   name: string;
   onBlur?: FocusEventHandler<HTMLInputElement>;
-  // eslint-disable-next-line no-unused-vars
-  onChange: (value: string | number) => void;
+  onChange: (value: number | string) => void;
   onClick?: MouseEventHandler<HTMLInputElement>;
   placeholder?: string;
   size?: Sizes;
@@ -48,11 +51,11 @@ export interface IInputProps {
 interface IInputSize {
   fontSize: string;
   height: string;
-  minWidth: string;
   leading: string;
+  minWidth: string;
 }
 
-interface IElemSize {
+interface IElementSize {
   divHeight: string;
   divWidth: string;
   iconHeight: string;
@@ -60,24 +63,26 @@ interface IElemSize {
   paddingRight: string;
 }
 
-const inputSize: Record<Sizes, IInputSize> = {
+const minW100 = "min-w-[100px]";
+
+const getInputSize: Record<Sizes, IInputSize> = {
   large: {
     fontSize: "text-lg",
     height: "h-9",
     leading: "leading-7",
-    minWidth: "min-w-[100px]",
+    minWidth: minW100,
   },
   normal: {
     fontSize: "text-base",
     height: "h-8",
     leading: "leading-tight",
-    minWidth: "min-w-[100px]",
+    minWidth: minW100,
   },
   small: {
     fontSize: "text-sm",
     height: "h-7",
     leading: "leading-3",
-    minWidth: "min-w-[100px]",
+    minWidth: minW100,
   },
 };
 
@@ -88,7 +93,8 @@ const getInputClass = (
   size: Sizes,
   paddingRight?: string,
 ): IClassName => {
-  const iSize = inputSize[size];
+  const inputSize = getInputSize[size];
+
   return {
     background: {
       color: "bg-transparent",
@@ -128,7 +134,7 @@ const getInputClass = (
     },
     padding: {
       left: isOutlined ? "pl-1" : undefined,
-      right: paddingRight ? paddingRight : `${isOutlined ? "pr-1" : undefined}`,
+      right: paddingRight ?? `${isOutlined ? "pr-1" : undefined}`,
       y: "py-1",
     },
     placeholder: {
@@ -137,18 +143,18 @@ const getInputClass = (
       },
     },
     size: {
-      height: iSize.height,
-      minWidth: iSize.minWidth,
+      height: inputSize.height,
+      minWidth: inputSize.minWidth,
       width: isFullwidth ? "w-full" : undefined,
     },
     typography: {
-      fontSize: iSize.fontSize,
-      lineHeight: iSize.leading,
+      fontSize: inputSize.fontSize,
+      lineHeight: inputSize.leading,
     },
   };
 };
 
-const elemSize: Record<Sizes, IElemSize> = {
+const getElementSize: Record<Sizes, IElementSize> = {
   large: {
     divHeight: "min-h-[3.3rem]",
     divWidth: "min-w-[16.35rem]",
@@ -172,7 +178,7 @@ const elemSize: Record<Sizes, IElemSize> = {
   },
 };
 
-export const Input: FC<IInputProps> = ({
+export const Input: FC<IInputProperties> = ({
   autocomplete,
   bgColor = "white",
   className,
@@ -193,12 +199,13 @@ export const Input: FC<IInputProps> = ({
   type = "text",
   value,
 }) => {
-  const inputRef = useRef(null);
+  const inputReference = useRef(null);
 
-  const [inputValue, setInputValue] = useState<string | number>(value);
+  const [inputValue, setInputValue] = useState<number | string>(value);
 
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>): void => {
     const value = event.target.value;
+
     setInputValue(value);
 
     if (type === "number") {
@@ -208,47 +215,45 @@ export const Input: FC<IInputProps> = ({
     }
   };
 
-  const elem = elemSize[size];
+  const elementSize = getElementSize[size];
 
   const ic = getInputClass(
     color,
     isFullwidth,
     isOutlined,
     size,
-    icon ? elem.paddingRight : undefined,
+    icon ? elementSize.paddingRight : undefined,
   );
 
   const inputClassNames = classNames(classToString(ic), className);
 
-  const Icon = (): JSX.Element | null => {
-    return icon ? (
+  const Icon = (): JSX.Element | null =>
+    icon ? (
       <div
-        className={`absolute right-1.5 top-3.5 grid ${elem.iconHeight} ${elem.iconWidth} place-items-center`}
+        className={`absolute right-1.5 top-3.5 grid ${elementSize.iconHeight} ${elementSize.iconWidth} place-items-center`}
       >
         {icon}
       </div>
     ) : null;
-  };
 
-  const Label = (): JSX.Element | null => {
-    return label ? (
+  const Label = (): JSX.Element | null =>
+    label ? (
       <label
-        htmlFor={name}
         className={`pointer-events-none absolute select-none ${
           isOutlined ? "left-2" : ""
         } z-10 ${backgroundColor[bgColor]} px-1 text-xs`}
+        htmlFor={name}
       >
         {label}
       </label>
     ) : null;
-  };
 
   const divClassNames = classNames(
     divClassName,
     "relative",
     isFullwidth ? "w-full" : undefined,
-    elem.divHeight,
-    elem.divWidth,
+    elementSize.divHeight,
+    elementSize.divWidth,
     backgroundColor[bgColor],
   );
 
@@ -267,7 +272,7 @@ export const Input: FC<IInputProps> = ({
         onClick={onClick}
         placeholder={placeholder}
         readOnly={isReadOnly}
-        ref={inputRef}
+        ref={inputReference}
         type={type}
         value={inputValue}
       />

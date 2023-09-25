@@ -1,8 +1,9 @@
 import type { FC, MouseEventHandler, ReactNode } from "react";
 
-import { classNames, classToString } from "../../utils/classNames";
+import type { IClassName } from "../../utils/variables";
+
+import { classNames, classToString } from "../../utils/class-names";
 import {
-  IClassName,
   backgroundColor,
   borderColor,
   textColor,
@@ -10,7 +11,7 @@ import {
   type Sizes,
 } from "../../utils/variables";
 
-export interface IButtonProps {
+export interface IButtonProperties {
   children: ReactNode;
   className?: string;
   color?: Colors;
@@ -25,9 +26,9 @@ export interface IButtonProps {
 }
 
 interface IButtonSize {
-  paddingX: string;
   fontSize: string;
   minWidth: string;
+  paddingX: string;
 }
 
 const buttonSize: Record<Sizes, IButtonSize> = {
@@ -56,6 +57,7 @@ const buttonClasses = (
   isFullwidth: boolean,
 ): IClassName => {
   const bSize = buttonSize[size];
+
   return {
     background: {
       color: isOutlined ? "bg-white" : backgroundColor[color],
@@ -91,7 +93,7 @@ const buttonClasses = (
   };
 };
 
-export const Button: FC<IButtonProps> = ({
+export const Button: FC<IButtonProperties> = ({
   children,
   className,
   color = "slate",
@@ -110,9 +112,9 @@ export const Button: FC<IButtonProps> = ({
   return (
     <button
       className={buttonClass}
-      onClick={click}
-      disabled={isDisabled}
       data-ripple-light="true"
+      disabled={isDisabled}
+      onClick={click}
     >
       {children}
     </button>

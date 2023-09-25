@@ -7,6 +7,4 @@ const data = [
   { id: 3, name: "name-3" },
 ];
 
-export const Default = (): JSX.Element => {
-  return <Select data={data} name="default" />;
-};
+export const Default = (): JSX.Element => <Select data={data} name="default" />;

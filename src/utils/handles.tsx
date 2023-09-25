@@ -1,16 +1,17 @@
-import { Dispatch, SetStateAction, useState } from "react";
+import type { Dispatch, SetStateAction } from "react";
+
+import { useState } from "react";
 
 export const useValue = (
-  initValue: string | number,
+  initValue: number | string,
 ): [
-  string | number,
-  // eslint-disable-next-line no-unused-vars
-  (newValue: string | number) => void,
-  Dispatch<SetStateAction<string | number>>,
+  number | string,
+  (newValue: number | string) => void,
+  Dispatch<SetStateAction<number | string>>,
 ] => {
-  const [value, setValue] = useState<string | number>(initValue);
+  const [value, setValue] = useState<number | string>(initValue);
 
-  const handleValueChange = (newValue: string | number): void => {
+  const handleValueChange = (newValue: number | string): void => {
     setValue(newValue);
   };
 

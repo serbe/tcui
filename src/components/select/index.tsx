@@ -1,15 +1,16 @@
 // Import { ChangeEventHandler, FocusEventHandler, Fragment, MouseEventHandler } from 'react'
-import { FC } from "react";
+import type { FC } from "react";
 
-import { classNames } from "../../utils/classNames";
 import type { Sizes } from "../../utils/variables";
+
+import { classNames } from "../../utils/class-names";
 
 interface ISelectItem {
   id: number;
   name: string;
 }
 
-interface ISelectProps {
+interface ISelectProperties {
   className?: string;
   data: ISelectItem[];
   id?: number;
@@ -155,14 +156,14 @@ interface ISelectProps {
 //   label: undefined,
 // }
 
-export const Select: FC<ISelectProps> = ({
+export const Select: FC<ISelectProperties> = ({
   className,
   data,
   id,
   name,
   // size,
 }) => {
-  // eslint-disable-next-line tailwindcss/no-custom-classname
+  /// eslint-disable-next-line tailwindcss/no-custom-classname
   const selectClass = classNames(
     "form-select m-0 block w-full appearance-none rounded border border-solid border-gray-300",
     "bg-white bg-clip-padding bg-no-repeat font-normal text-gray-700 transition ease-in-out",
@@ -174,12 +175,12 @@ export const Select: FC<ISelectProps> = ({
   return (
     <div className="flex justify-center">
       <div className="mb-3 xl:w-96">
-        <select className={selectClass} aria-label={name}>
+        <select aria-label={name} className={selectClass}>
           {data.map((SelectItem) => (
             <option
               key={`${name} + ${SelectItem.id}`}
+              selected={SelectItem.id === (id ?? 0)}
               value={SelectItem.id}
-              selected={SelectItem.id === (id ? id : 0)}
             >
               {SelectItem.name}
             </option>
