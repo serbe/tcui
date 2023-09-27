@@ -45,21 +45,21 @@ module.exports = {
     "prefer-const": "error",
     "curly": ["error", "all"],
     "padding-line-between-statements": [
-        "error",
-        { "blankLine": "always", "prev": ["const", "let", "var"], "next": "*" },
-        { "blankLine": "any", "prev": ["const", "let", "var"], "next": ["const", "let", "var"] },
-        { "blankLine": "always", "prev": "*", "next": "return" }
+      "error",
+      { "blankLine": "always", "prev": ["const", "let", "var"], "next": "*" },
+      { "blankLine": "any", "prev": ["const", "let", "var"], "next": ["const", "let", "var"] },
+      { "blankLine": "always", "prev": "*", "next": "return" }
     ],
     "no-multiple-empty-lines": ["error"],
     "arrow-body-style": ["error", "as-needed"],
     "prefer-arrow-callback": "off",
     "no-console": ["error", { "allow": ["warn", "info", "error"] }],
     "no-underscore-dangle": [
-        "error",
-        {
-            "allow": ["_id", "__typename", "__schema", "__dirname", "_global"],
-            "allowAfterThis": true
-        }
+      "error",
+      {
+        "allow": ["_id", "__typename", "__schema", "__dirname", "_global"],
+        "allowAfterThis": true
+      }
     ],
     // typescript-eslint
     "@typescript-eslint/prefer-readonly": "error",

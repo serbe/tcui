@@ -11,6 +11,13 @@ export default defineConfig({
       name: "tcui",
       fileName: "tcui",
     },
+    minify: 'terser',
+    terserOptions: {
+      ecma: 2020,
+    },
+  },
+  define: {
+    'import.meta.vitest': 'undefined',
   },
   plugins: [dts(), react()],
   test: {

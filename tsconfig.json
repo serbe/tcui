@@ -21,6 +21,10 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
 
+    "types": [
+      "vitest/importMeta",
+    ],
+
     // "allowJs": false,
     // "allowSyntheticDefaultImports": true,
     // "declaration": true,
