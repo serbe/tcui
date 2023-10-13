@@ -1,9 +1,10 @@
 // Import { ChangeEventHandler, FocusEventHandler, Fragment, MouseEventHandler } from 'react'
 import type { FC } from "react";
 
-import type { Sizes } from "../../utils/variables";
+import type { Colors, Sizes } from "../../utils/variables";
 
 import { classNames } from "../../utils/class-names";
+import { backgroundColor } from "../../utils/variables";
 
 interface ISelectItem {
   id: number;
@@ -11,9 +12,12 @@ interface ISelectItem {
 }
 
 interface ISelectProperties {
+  bgColor?: Colors;
   className?: string;
   data: ISelectItem[];
+  divClassName?: string;
   id?: number;
+  isFullwidth?: boolean;
   name: string;
   size?: Sizes;
   // Setter: Dispatch<SetStateAction<number | undefined>>
@@ -157,24 +161,41 @@ interface ISelectProperties {
 // }
 
 export const Select: FC<ISelectProperties> = ({
-  className,
+  bgColor = "white",
+  // className,
   data,
-  id,
-  name,
+  divClassName,
+  // id,
+  isFullwidth,
+  // name,
   // size,
 }) => {
   /// eslint-disable-next-line tailwindcss/no-custom-classname
-  const selectClass = classNames(
-    "form-select m-0 block w-full appearance-none rounded border border-solid border-gray-300",
-    "bg-white bg-clip-padding bg-no-repeat font-normal text-gray-700 transition ease-in-out",
-    "focus:border-blue-600 focus:bg-white focus:text-gray-700 focus:outline-none",
-    className,
-    // selectValues[size ?? "normal"],
+  // const selectClass = classNames(
+  //   "form-select m-0 block w-full appearance-none rounded border border-solid border-gray-300",
+  //   "bg-white bg-clip-padding bg-no-repeat font-normal text-gray-700 transition ease-in-out",
+  //   "focus:border-blue-600 focus:bg-white focus:text-gray-700 focus:outline-none",
+  //   className,
+  //   // selectValues[size ?? "normal"],
+  // );
+
+  const divClassNames = classNames(
+    divClassName,
+    "relative",
+    isFullwidth ? "w-full" : undefined,
+    // elementSize.divHeight,
+    backgroundColor[bgColor],
   );
 
   return (
-    <div className="flex justify-center">
-      <div className="mb-3 xl:w-96">
+    <div className={divClassNames}>
+      <input />
+      <div>
+        {data.map((SelectItem) => (
+          <div key={SelectItem.id}>{SelectItem.name}</div>
+        ))}
+      </div>
+      {/* <div className="mb-3 xl:w-96">
         <select aria-label={name} className={selectClass}>
           {data.map((SelectItem) => (
             <option
@@ -186,7 +207,7 @@ export const Select: FC<ISelectProperties> = ({
             </option>
           ))}
         </select>
-      </div>
+      </div> */}
     </div>
   );
 };
