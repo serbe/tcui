@@ -110,7 +110,7 @@ const Txt: JSX.Element = (
   </svg>
 );
 
-export const InputOutline = (): JSX.Element => {
+export const InputOutlineWidthIcon = (): JSX.Element => {
   const [value, setValue] = useValue("");
 
   return (
@@ -158,7 +158,7 @@ export const InputOutline = (): JSX.Element => {
   );
 };
 
-export const InputNoOutline = (): JSX.Element => {
+export const InputNoOutlineWidthIcon = (): JSX.Element => {
   const [value, setValue] = useValue("");
 
   return (
@@ -209,7 +209,7 @@ export const InputNoOutline = (): JSX.Element => {
   );
 };
 
-export const InputBgColors = (): JSX.Element => {
+export const InputBgColorsWidthIcon = (): JSX.Element => {
   const [value, setValue] = useValue("");
 
   return (
@@ -254,13 +254,141 @@ export const InputBgColors = (): JSX.Element => {
               value={value}
             ></Input>
           </div>
+        </div>
+      ))}
+    </div>
+  );
+};
+
+export const InputOutline = (): JSX.Element => {
+  const [value, setValue] = useValue("");
+
+  return (
+    <div className="container mx-auto">
+      {ColorValues.map((color) => (
+        <div className="my-2 flex flex-wrap" key={`div-${color}`}>
+          <div className="m-2">
+            <Input
+              color={color as Colors}
+              label={`${color} small`}
+              name={`${color}small`}
+              onChange={setValue}
+              placeholder={color}
+              size="small"
+              value={value}
+            ></Input>
+          </div>
+          <div className="m-2">
+            <Input
+              color={color as Colors}
+              label={`${color} normal`}
+              name={`${color}normal`}
+              onChange={setValue}
+              placeholder={color}
+              value={value}
+            ></Input>
+          </div>
+          <div className="m-2">
+            <Input
+              color={color as Colors}
+              label={`${color} large`}
+              name={`${color}large`}
+              onChange={setValue}
+              placeholder={color}
+              size="large"
+              value={value}
+            ></Input>
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+};
+
+export const InputNoOutline = (): JSX.Element => {
+  const [value, setValue] = useValue("");
+
+  return (
+    <div className="container mx-auto">
+      {ColorValues.map((color) => (
+        <div className="flex flex-wrap" key={`div-${color}`}>
           <div className="m-1">
             <Input
-              bgColor={color as Colors}
-              icon={Icon}
+              color={color as Colors}
+              isOutlined={false}
+              label={`${color} small`}
+              name={`${color}small`}
+              onChange={setValue}
+              placeholder={color}
+              size="small"
+              value={value}
+            ></Input>
+          </div>
+          <div className="m-1">
+            <Input
+              color={color as Colors}
+              isOutlined={false}
+              label={`${color} normal`}
+              name={`${color}normal`}
+              onChange={setValue}
+              placeholder={color}
+              value={value}
+            ></Input>
+          </div>
+          <div className="m-1">
+            <Input
+              color={color as Colors}
               isOutlined={false}
               label={`${color} large`}
               name={`${color}large`}
+              onChange={setValue}
+              placeholder={color}
+              size="large"
+              value={value}
+            ></Input>
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+};
+
+export const InputBgColors = (): JSX.Element => {
+  const [value, setValue] = useValue("");
+
+  return (
+    <div className="container mx-auto">
+      {ColorValues.map((color) => (
+        <div className="flex flex-wrap" key={`div-${color}`}>
+          <div className="m-1">
+            <Input
+              bgColor={color as Colors}
+              isOutlined={true}
+              label={`${color} small o`}
+              name={`o${color}small`}
+              onChange={setValue}
+              placeholder={color}
+              size="small"
+              value={value}
+            ></Input>
+          </div>
+          <div className="m-1">
+            <Input
+              bgColor={color as Colors}
+              isOutlined={true}
+              label={`${color} normal o`}
+              name={`o${color}normal`}
+              onChange={setValue}
+              placeholder={color}
+              value={value}
+            ></Input>
+          </div>
+          <div className="m-1">
+            <Input
+              bgColor={color as Colors}
+              isOutlined={true}
+              label={`${color} large o`}
+              name={`o${color}large`}
               onChange={setValue}
               placeholder={color}
               size="large"
@@ -409,7 +537,7 @@ export const Inputs: Story<IInputProperties> = ({
 
   return (
     <div className="container mx-auto">
-      <div className="flex items-end">
+      <div className="">
         <Input
           bgColor={bgColor}
           className={className}
@@ -430,9 +558,9 @@ export const Inputs: Story<IInputProperties> = ({
           value={text}
         />
       </div>
-      <div className="flex items-end"> Value: {text}</div>
-      <div className="flex items-end"> Blurs: {countBlur}</div>
-      <div className="flex items-end"> Clicks: {countClick}</div>
+      <div className=""> Value: {text}</div>
+      <div className=""> Blurs: {countBlur}</div>
+      <div className=""> Clicks: {countClick}</div>
     </div>
   );
 };

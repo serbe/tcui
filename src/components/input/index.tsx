@@ -46,6 +46,7 @@ export interface IInputProperties {
   size?: Sizes;
   type?: IInputTypes;
   value: number | string;
+  width?: string;
 }
 
 interface IInputSize {
@@ -58,7 +59,7 @@ interface IElementSize {
   divHeight: string;
   iconHeight: string;
   iconWidth: string;
-  paddingRight: string;
+  paddingLeft: string;
 }
 
 const getInputSize: Record<Sizes, IInputSize> = {
@@ -84,28 +85,28 @@ const getElementSize: Record<Sizes, IElementSize> = {
     divHeight: "min-h-[3.3rem]",
     iconHeight: "h-8",
     iconWidth: "w-8",
-    paddingRight: "pr-9",
+    paddingLeft: "pl-9",
   },
   normal: {
     divHeight: "min-h-[3.1rem]",
     iconHeight: "h-7",
     iconWidth: "w-7",
-    paddingRight: "pr-8",
+    paddingLeft: "pl-8",
   },
   small: {
     divHeight: "min-h-[2.9rem]",
     iconHeight: "h-6",
     iconWidth: "w-6",
-    paddingRight: "pr-7",
+    paddingLeft: "pl-7",
   },
 };
 
 const getInputClass = (
   color: Colors,
-  isFullwidth: boolean,
   isOutlined: boolean,
   size: Sizes,
-  paddingRight?: string,
+  width?: string,
+  paddingLeft?: string,
 ): IClassName => {
   const inputSize = getInputSize[size];
 
@@ -144,8 +145,8 @@ const getInputClass = (
       x: isOutlined ? "mx-1" : undefined,
     },
     padding: {
-      left: isOutlined ? "pl-1" : "undefined",
-      right: paddingRight ?? `${isOutlined ? "pr-1" : undefined}`,
+      left: paddingLeft ?? `${isOutlined ? "pl-1" : undefined}`,
+      right: isOutlined ? "pr-1" : undefined,
       y: "py-1",
     },
     placeholder: {
@@ -155,7 +156,7 @@ const getInputClass = (
     },
     size: {
       height: inputSize.height,
-      width: isFullwidth ? "w-full" : undefined,
+      width: width,
     },
     typography: {
       fontSize: inputSize.fontSize,
@@ -184,6 +185,7 @@ export const Input: FC<IInputProperties> = ({
   size = "normal",
   type = "text",
   value,
+  width = "w-[280px]",
 }) => {
   const inputReference = useRef(null);
 
@@ -203,19 +205,26 @@ export const Input: FC<IInputProperties> = ({
 
   const elementSize = getElementSize[size];
 
-  const ic = getInputClass(
-    color,
-    isFullwidth,
-    isOutlined,
-    size,
-    icon ? elementSize.paddingRight : undefined,
+  const divClassNames = classNames(
+    divClassName,
+    "relative",
+    elementSize.divHeight,
+    backgroundColor[bgColor],
   );
 
-  const inputClassNames = classNames(classToString(ic), className);
+  const ic = getInputClass(
+    color,
+    isOutlined,
+    size,
+    isFullwidth ? "w-full" : width,
+    icon ? elementSize.paddingLeft : undefined,
+  );
+
+  const inputClassNames = classNames(className, classToString(ic));
   const iconClassName = classNames(
     "absolute",
-    isOutlined ? "right-1" : "right-0",
-    "top-3.5",
+    isOutlined ? "left-1" : "left-0",
+    "top-4",
     "grid",
     elementSize.iconHeight,
     elementSize.iconWidth,
@@ -236,14 +245,6 @@ export const Input: FC<IInputProperties> = ({
         {label}
       </label>
     ) : null;
-
-  const divClassNames = classNames(
-    divClassName,
-    "relative",
-    isFullwidth ? "w-full" : undefined,
-    elementSize.divHeight,
-    backgroundColor[bgColor],
-  );
 
   return (
     <div className={divClassNames}>
