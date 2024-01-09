@@ -1,6 +1,6 @@
 module.exports = {
   // plugins: ["prettier-plugin-tailwindcss", "prettier-plugin-organize-imports"],
-  tailwindConfig: "./tailwind.config.cjs",
+  // tailwindConfig: "./tailwind.config.cjs",
   // pluginSearchDirs: false,
   // organizeImportsSkipDestructiveCodeActions: true,
   // "semi": false,

@@ -10,6 +10,7 @@ module.exports = {
     "plugin:array-func/all",
     "plugin:functional/external-typescript-recommended",
     // "plugin:functional/recommended",
+    // "plugin:functional/lite",
     "plugin:functional/stylistic",
     "plugin:jsx-a11y/strict",
     "plugin:perfectionist/recommended-natural",
