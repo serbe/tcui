@@ -11,7 +11,7 @@ import { Input } from "./index";
 
 const Icon: JSX.Element = (
   <svg
-    className="h-full w-full text-green-500"
+    className="size-full text-green-500"
     fill="none"
     stroke="currentColor"
     strokeWidth="1.5"
@@ -28,7 +28,7 @@ const Icon: JSX.Element = (
 
 const Phone: JSX.Element = (
   <svg
-    className="h-full w-full text-green-500"
+    className="size-full text-green-500"
     fill="none"
     stroke="currentColor"
     strokeWidth="1.5"
@@ -45,7 +45,7 @@ const Phone: JSX.Element = (
 
 const Link: JSX.Element = (
   <svg
-    className="h-full w-full text-blue-500"
+    className="size-full text-blue-500"
     fill="none"
     stroke="currentColor"
     strokeWidth="1.5"
@@ -62,7 +62,7 @@ const Link: JSX.Element = (
 
 const At: JSX.Element = (
   <svg
-    className="h-full w-full text-orange-500"
+    className="size-full text-orange-500"
     fill="none"
     stroke="currentColor"
     strokeWidth="1.5"
@@ -78,7 +78,7 @@ const At: JSX.Element = (
 
 const Es: JSX.Element = (
   <svg
-    className="h-full w-full text-red-500"
+    className="size-full text-red-500"
     fill="none"
     stroke="currentColor"
     strokeWidth="1.5"
@@ -95,7 +95,7 @@ const Es: JSX.Element = (
 
 const Txt: JSX.Element = (
   <svg
-    className="h-full w-full text-amber-800"
+    className="size-full text-amber-800"
     fill="none"
     stroke="currentColor"
     strokeWidth="1.5"
