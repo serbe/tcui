@@ -521,7 +521,7 @@ export const Inputs: Story<IInputProperties> = ({
   size,
   type,
   value,
-}: IInputProperties): JSX.Element => {
+}: Readonly<IInputProperties>): JSX.Element => {
   const [countBlur, setCountBlur] = useState(0);
   const [countClick, setCountClick] = useState(0);
   const [text, setText] = useState(value);

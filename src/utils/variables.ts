@@ -816,7 +816,9 @@ export interface IInteractivity {
   willChange?: string;
 }
 
-export type HtmlInputSetter = (event: ChangeEvent<HTMLInputElement>) => void;
+export type HtmlInputSetter = (
+  event: Readonly<ChangeEvent<HTMLInputElement>>,
+) => void;
 
 export interface StringInputProperties {
   setter: HtmlInputSetter;

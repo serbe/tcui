@@ -168,7 +168,7 @@ export const Select: FC<ISelectProperties> = ({
   // id,
   isFullwidth,
   // name,
-  // size,
+  // size = "normal",
 }) => {
   /// eslint-disable-next-line tailwindcss/no-custom-classname
   // const selectClass = classNames(
@@ -210,10 +210,6 @@ export const Select: FC<ISelectProperties> = ({
       </div> */}
     </div>
   );
-};
-
-Select.defaultProps = {
-  size: "normal",
 };
 
 export default Select;

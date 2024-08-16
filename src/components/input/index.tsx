@@ -1,4 +1,4 @@
-/* eslint-disable unicorn/no-null */
+// /* eslint-disable unicorn/no-null */
 import type {
   ChangeEvent,
   FC,
@@ -172,10 +172,10 @@ export const Input: FC<IInputProperties> = ({
   color = "slate",
   divClassName,
   icon,
-  isDisabled,
+  isDisabled = false,
   isFullwidth = false,
   isOutlined = true,
-  isReadOnly,
+  isReadOnly = false,
   label,
   name,
   onBlur,
@@ -191,13 +191,18 @@ export const Input: FC<IInputProperties> = ({
 
   const [inputValue, setInputValue] = useState<number | string>(value);
 
-  const handleInputChange = (event: ChangeEvent<HTMLInputElement>): void => {
+  const handleInputChange = (
+    event: Readonly<ChangeEvent<HTMLInputElement>>,
+    // eslint-disable-next-line functional/no-return-void
+  ): void => {
     const value = event.target.value;
 
     setInputValue(value);
 
+    // eslint-disable-next-line functional/no-conditional-statements
     if (type === "number") {
       onChange(Number(value));
+      // eslint-disable-next-line functional/no-conditional-statements
     } else {
       onChange(value);
     }
@@ -205,12 +210,12 @@ export const Input: FC<IInputProperties> = ({
 
   const elementSize = getElementSize[size];
 
-  const divClassNames = classNames(
+  const divClassNames = classNames([
     divClassName,
     "relative",
     elementSize.divHeight,
     backgroundColor[bgColor],
-  );
+  ]);
 
   const ic = getInputClass(
     color,
@@ -220,8 +225,8 @@ export const Input: FC<IInputProperties> = ({
     icon ? elementSize.paddingLeft : undefined,
   );
 
-  const inputClassNames = classNames(className, classToString(ic));
-  const iconClassName = classNames(
+  const inputClassNames = classNames([className, classToString(ic)]);
+  const iconClassName = classNames([
     "absolute",
     isOutlined ? "left-1" : "left-0",
     "top-4",
@@ -229,12 +234,12 @@ export const Input: FC<IInputProperties> = ({
     elementSize.iconHeight,
     elementSize.iconWidth,
     "place-items-center",
-  );
+  ]);
 
-  const Icon = (): JSX.Element | null =>
-    icon ? <div className={iconClassName}>{icon}</div> : null;
+  const Icon = (): JSX.Element | undefined =>
+    icon ? <div className={iconClassName}>{icon}</div> : undefined;
 
-  const Label = (): JSX.Element | null =>
+  const Label = (): JSX.Element | undefined =>
     label ? (
       <label
         className={`pointer-events-none absolute select-none ${
@@ -244,7 +249,7 @@ export const Input: FC<IInputProperties> = ({
       >
         {label}
       </label>
-    ) : null;
+    ) : undefined;
 
   return (
     <div className={divClassNames}>
@@ -267,19 +272,6 @@ export const Input: FC<IInputProperties> = ({
       />
     </div>
   );
-};
-
-Input.defaultProps = {
-  autocomplete: undefined,
-  isDisabled: false,
-  isReadOnly: false,
-  onBlur: undefined,
-  onChange: undefined,
-  onClick: undefined,
-  placeholder: undefined,
-  size: "normal",
-  type: "text",
-  value: undefined,
 };
 
 export default Input;

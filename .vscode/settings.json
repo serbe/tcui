@@ -8,9 +8,12 @@
   "files.autoSave": "onFocusChange", // optional but recommended
   "vs-code-prettier-eslint.prettierLast": false,
   "[javascript]": {
-    "editor.defaultFormatter": "rvest.vs-code-prettier-eslint"
+    "editor.defaultFormatter": "vscode.typescript-language-features"
   },
   "[typescriptreact]": {
     "editor.defaultFormatter": "rvest.vs-code-prettier-eslint"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
   } // set as "true" to run 'prettier' last not first
 }
