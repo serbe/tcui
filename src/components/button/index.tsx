@@ -107,7 +107,7 @@ export const Button: FC<IButtonProperties> = ({
   const bc = buttonClasses(color, isOutlined, size, isUpperCase, isFullwidth);
   const click = isDisabled ? undefined : onClick;
 
-  const buttonClass = classNames(className, classToString(bc));
+  const buttonClass = classNames([className, classToString(bc)]);
 
   return (
     <button

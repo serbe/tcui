@@ -179,13 +179,13 @@ export const Select: FC<ISelectProperties> = ({
   //   // selectValues[size ?? "normal"],
   // );
 
-  const divClassNames = classNames(
+  const divClassNames = classNames([
     divClassName,
     "relative",
     isFullwidth ? "w-full" : undefined,
     // elementSize.divHeight,
     backgroundColor[bgColor],
-  );
+  ]);
 
   return (
     <div className={divClassNames}>

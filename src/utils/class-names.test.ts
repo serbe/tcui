@@ -5,7 +5,7 @@ import type { IClassName } from "./variables";
 import { classNames, classToString, objectsToArray } from "./class-names";
 
 test("test classNames", () => {
-  expect(classNames("one", "two")).toBe("one two");
+  expect(classNames(["one", "two"])).toBe("one two");
 });
 
 const testClass: IClassName = {
